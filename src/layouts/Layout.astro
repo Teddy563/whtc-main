@@ -19,6 +19,12 @@ const { title } = Astro.props;
 		<link rel="dns-prefetch" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		
+		<!-- Preload Google Fonts WOFF2 files (Latin subsets) -->
+		<link rel="preload" as="font" href="https://fonts.gstatic.com/s/anton/v27/1Ptgg87LROyAm3Kz-C8CSKlv.woff2" crossorigin>
+		<link rel="preload" as="font" href="https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" crossorigin>
+		
+		<!-- Google Fonts stylesheet (for @font-face definitions) -->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;900&display=swap">
 		
 		<!-- Preload render-blocking CSS -->

@@ -16,9 +16,13 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 		
 		<!-- Google Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+		<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;900&display=swap">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;900&display=swap" media="print" onload="this.media='all'">
+		<noscript>
+			<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;900&display=swap">
+		</noscript>
 		
 		<title>{title}</title>
 	</head>
@@ -191,11 +195,12 @@ const { title } = Astro.props;
 	
 	.lang-switch-btn {
 		font-weight: 700;
-		opacity: 0.4;
-		transition: opacity 0.3s;
+		color: #4b5563; /* Changed from #6b7280 (gray-500) to #4b5563 (gray-700) for better contrast */
+		transition: color 0.3s, opacity 0.3s;
 	}
-	.lang-switch-btn:hover { opacity: 1; }
+	.lang-switch-btn:hover { color: #111; opacity: 1; } /* Change color on hover to black or specific active color */
 	.lang-switch-btn.active {
+		color: #111; /* Active state color (black) */
 		opacity: 1;
 		text-decoration: underline;
 		text-decoration-color: #f16215;

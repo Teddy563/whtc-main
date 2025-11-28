@@ -1,0 +1,91 @@
+<header id="hero-section" class="bg-brand-black relative h-[100dvh] w-full overflow-hidden pt-20">
+    <!-- Background Container -->
+    <div id="bg-container" class="absolute inset-0 w-full h-full bg-black">
+        <div class="absolute inset-0 bg-black/40 z-10 pointer-events-none"></div>
+        
+        <!-- Rotating Backgrounds -->
+        <div class="bg-layer active absolute inset-0 bg-cover bg-center transition-opacity duration-[1500ms]" style="background-image: url('/slide3.webp');"></div>
+        <div class="bg-layer absolute inset-0 bg-cover bg-center transition-opacity duration-[1500ms] opacity-0" style="background-image: url('/slide2.webp');"></div>
+        <div class="bg-layer absolute inset-0 bg-cover bg-center transition-opacity duration-[1500ms] opacity-0" style="background-image: url('/slide3.webp');"></div>
+        <div class="bg-layer absolute inset-0 bg-cover bg-center transition-opacity duration-[1500ms] opacity-0" style="background-image: url('/slide4.webp');"></div>
+    </div>
+
+    <!-- Main H1 centered to entire page -->
+    <div class="absolute inset-0 z-20 flex justify-center items-center text-center px-4 pb-32 md:pb-24">
+        <div class="relative">
+            <h1 class="font-anton text-white text-4xl md:text-7xl lg:text-8xl uppercase leading-tight tracking-wide drop-shadow-2xl">
+                <span data-i18n="hero_line1">Working at Height</span><br>
+                <span class="text-brand-orange" data-i18n="hero_line2">Training Centre</span>
+            </h1>
+            
+        </div>
+    </div>
+
+    <!-- Scroll Down Arrow -->
+    <a href="#divisions-section" class="absolute bottom-48 md:bottom-40 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
+    </a>
+    
+    <!-- Integrated Bottom Bar -->
+    <div class="absolute bottom-0 left-0 right-0 z-30 bg-black border-t border-gray-800 text-white">
+        <div class="max-w-7xl mx-auto px-6 py-6 md:py-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            
+            <!-- 3M Partner -->
+            <div class="flex items-center gap-6">
+                <div class="h-14 w-14 bg-white flex items-center justify-center sharp flex-shrink-0">
+                    <span class="font-black text-[#FF0000] text-2xl font-inter tracking-tighter">3M</span>
+                </div>
+                <div class="text-left">
+                    <h3 class="font-inter font-bold text-[10px] tracking-[0.2em] text-brand-orange uppercase mb-1" data-i18n="partner_title">Partener Oficial</h3>
+                    <h2 class="font-anton text-xl md:text-2xl uppercase tracking-wide leading-none" data-i18n="partner_role">Distribuitor Autorizat</h2>
+                    <p class="font-inter text-gray-400 text-xs mt-1" data-i18n="partner_desc">Soluții 3M Fall Protection</p>
+                </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="hidden md:block h-12 w-[1px] bg-gray-700"></div>
+
+            <!-- Certifications -->
+            <div class="flex gap-8 items-center opacity-80">
+                <div class="flex flex-col text-right md:text-left">
+                    <span class="font-bold text-lg md:text-xl font-anton tracking-wide">ISO</span>
+                    <span class="text-[10px] text-gray-400 font-inter tracking-wider">9001 / 14001 / 45001</span>
+                </div>
+                <div class="flex flex-col text-right md:text-left">
+                    <span class="font-bold text-lg md:text-xl font-anton tracking-wide">EcoVadis</span>
+                    <span class="text-[10px] text-gray-400 font-inter tracking-wider" data-i18n="ecovadis">Rating Bronze</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<script>
+    const bgLayers = document.querySelectorAll('.bg-layer');
+    let currentBgIndex = 0;
+
+    function rotateBackground() {
+        bgLayers[currentBgIndex].classList.remove('active', 'opacity-100');
+        bgLayers[currentBgIndex].classList.add('opacity-0');
+        
+        currentBgIndex = (currentBgIndex + 1) % bgLayers.length;
+        
+        bgLayers[currentBgIndex].classList.remove('opacity-0');
+        bgLayers[currentBgIndex].classList.add('active', 'opacity-100');
+    }
+
+    setInterval(rotateBackground, 4000);
+</script>
+
+<style>
+    .bg-layer {
+        transform: scale(1.1);
+        animation: zoomEffect 20s infinite alternate;
+    }
+    @keyframes zoomEffect {
+        0% { transform: scale(1); }
+        100% { transform: scale(1.1); }
+    }
+</style>

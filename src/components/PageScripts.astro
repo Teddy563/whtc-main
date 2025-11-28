@@ -1,0 +1,10 @@
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    if ('scrollBehavior' in document.documentElement.style === false) {
+      // Fallback for browsers that do not support scroll-behavior
+      import('smoothscroll-polyfill').then(smoothscroll => {
+        smoothscroll.polyfill();
+      });
+    }
+  });
+</script>

@@ -1,0 +1,70 @@
+<section id="request-form" class="w-full bg-white text-black py-20 lg:py-24 px-6 lg:px-12 border-t border-gray-100">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+        
+        <!-- Left: Contact Details -->
+        <div>
+            <h4 class="font-inter font-bold text-xs tracking-[0.2em] text-brand-orange uppercase mb-6" data-i18n="contact_subtitle">Contact Rapid</h4>
+            <h2 class="font-anton text-5xl uppercase mb-8 leading-tight" data-i18n="contact_title">Hai să Discutăm<br>Proiectul Tău</h2>
+            <p class="font-inter text-gray-600 mb-12 text-lg leading-relaxed max-w-md" data-i18n="contact_desc">
+                Echipa noastră de experți este gata să ofere soluții personalizate pentru siguranța la înălțime.
+            </p>
+
+            <div class="space-y-8 font-inter">
+                <div class="flex items-start gap-6">
+                    <div class="w-12 h-12 bg-black text-white flex items-center justify-center flex-shrink-0 sharp">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="block text-xs uppercase tracking-widest text-gray-400 mb-1">Email</span>
+                        <a href="mailto:office@whtc.ro" class="text-xl font-bold hover:text-brand-orange transition-colors">office@whtc.ro</a>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-6">
+                    <div class="w-12 h-12 bg-brand-orange text-white flex items-center justify-center flex-shrink-0 sharp">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="block text-xs uppercase tracking-widest text-gray-400 mb-1" data-i18n="lbl_phone">Telefon</span>
+                        <a href="tel:+40749225956" class="text-xl font-bold hover:text-brand-orange transition-colors">+40 749 225 956</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Corporate Form -->
+        <div class="bg-white p-8 md:p-10 border border-gray-200 shadow-xl shadow-gray-100/50 sharp">
+            <form class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="text-xs uppercase tracking-widest font-bold text-gray-500" data-i18n="form_name">Nume Complet</label>
+                        <input type="text" class="w-full bg-[#F9F9F9] border border-[#E5E5E5] p-4 text-sm outline-none focus:border-brand-orange focus:bg-white transition-colors sharp" placeholder="John Doe">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-xs uppercase tracking-widest font-bold text-gray-500" data-i18n="form_email">Adresă Email</label>
+                        <input type="email" class="w-full bg-[#F9F9F9] border border-[#E5E5E5] p-4 text-sm outline-none focus:border-brand-orange focus:bg-white transition-colors sharp" placeholder="john@company.com">
+                    </div>
+                </div>
+                
+                <div class="space-y-2">
+                    <label class="text-xs uppercase tracking-widest font-bold text-gray-500" data-i18n="form_company">Companie</label>
+                    <input type="text" class="w-full bg-[#F9F9F9] border border-[#E5E5E5] p-4 text-sm outline-none focus:border-brand-orange focus:bg-white transition-colors sharp" placeholder="Nume Companie SRL">
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-xs uppercase tracking-widest font-bold text-gray-500" data-i18n="form_message">Mesaj</label>
+                    <textarea class="w-full bg-[#F9F9F9] border border-[#E5E5E5] p-4 text-sm outline-none focus:border-brand-orange focus:bg-white transition-colors sharp h-32 resize-none" placeholder="Detalii despre solicitarea dumneavoastră..."></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-black text-white h-14 font-bold uppercase tracking-widest text-xs hover:bg-brand-orange transition-colors duration-300 sharp" data-i18n="form_submit">
+                    Trimite Solicitarea
+                </button>
+            </form>
+        </div>
+
+    </div>
+</section>

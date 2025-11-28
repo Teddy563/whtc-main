@@ -1,0 +1,32 @@
+<nav class="fixed top-0 left-0 right-0 z-[100] bg-white text-black h-20 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto h-full flex items-center justify-between px-6">
+        
+        <!-- Left: Logo -->
+        <a href="#">
+            <img src="/logo.svg" alt="WHTC Logo" class="h-16 w-auto">
+        </a>
+
+        <!-- Center: Navigation Links -->
+        <div class="hidden lg:flex gap-12 font-inter font-bold text-xs uppercase tracking-widest flex-shrink-0">
+            <a href="https://safetyacademy.ro" target="_blank" class="nav-link hover:text-brand-orange transition-colors relative group" data-i18n="nav_training">
+                TRAINING
+                <span class="absolute bottom-[-4px] left-0 w-0 h-[2px] bg-brand-orange transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="https://lockout-tagout.ro" target="_blank" class="nav-link hover:text-brand-orange transition-colors relative group" data-i18n="nav_loto">
+                LOTO
+                <span class="absolute bottom-[-4px] left-0 w-0 h-[2px] bg-brand-orange transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#engineering" class="nav-link hover:text-brand-orange transition-colors relative group" data-i18n="nav_eng">
+                ENGINEERING
+                <span class="absolute bottom-[-4px] left-0 w-0 h-[2px] bg-brand-orange transition-all duration-300 group-hover:w-full"></span>
+            </a>
+        </div>
+
+        <!-- Right: RO/EN Toggle -->
+        <div class="flex gap-2 font-inter text-sm font-bold uppercase tracking-widest text-black flex-shrink-0">
+            <button id="btn-ro" class="lang-switch-btn active cursor-pointer" onclick="setLanguage('ro')">RO</button>
+            <span class="opacity-30">/</span>
+            <button id="btn-en" class="lang-switch-btn cursor-pointer" onclick="setLanguage('en')">EN</button>
+        </div>
+    </div>
+</nav>

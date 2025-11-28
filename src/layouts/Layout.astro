@@ -1,0 +1,204 @@
+---
+import PageScripts from '../components/PageScripts.astro';
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ro" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="WHTC - Working at Height Training Centre" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+		
+		<title>{title}</title>
+	</head>
+	<body class="bg-white font-inter text-brand-black antialiased overflow-x-hidden">
+		<slot />
+		
+		<PageScripts />
+		<!-- Client-Side Translation Logic -->
+		<script is:inline>
+			const translations = {
+				ro: {
+					nav_training: "TRAINING",
+					nav_loto: "LOTO",
+					nav_eng: "INGINERIE",
+					hero_line1: "Working at Height",
+					hero_line2: "Training Centre",
+					hero_sub: "Ceea ce lumea are nevoie mâine,<br> noi creăm astăzi.",
+					btn_hero_explore: "Descoperă WHTC",
+					partner_title: "Partener Oficial",
+					partner_role: "Distribuitor Autorizat",
+					partner_desc: "Soluții 3M Fall Protection",
+					ecovadis: "Rating Bronze Sustenabilitate",
+					div_edu_title: "Divizia Educație",
+					safety_academy_head: "Safety<br>Academy",
+					div_edu_desc: "Primul centru de training industrial dedicat lucrului la înălțime din România. Misiunea noastră este să aducem oamenii acasă în siguranță.",
+					list_gwo: "Certificat GWO (Global Wind Organisation)",
+					list_irata: "Certificat ANC Alpinism Utilitar",
+					list_confined: "Ateliere Spații Închise & Salvare",
+					btn_courses: "Vezi Lista Cursuri",
+					div_sys_title: "Divizia Sisteme Siguranță",
+					ltt_lock_head: "LTT Lock<br>Soluții LOTO",
+					div_sys_desc: "Ținta programului nostru: Zero accidente în timpul mentenanței. Oferim soluții complete Lockout Tagout conforme cu OSHA și UE.",
+					list_3principles: "Cele 3 Principii: Un Lacăt, O Cheie, O Viață",
+					list_proc: "15,000+ Proceduri Personalizate Dezvoltate",
+					list_audit: "Audit & Implementare Industrială",
+					btn_loto: "Explorează Produse LOTO",
+					whtc_eng_title: "Inginerie WHTC",
+					whtc_eng_main: "Sisteme<br>Acces Complet",
+					whtc_eng_desc: "Dincolo de instruire și lockout, inginerii WHTC proiectează și instalează infrastructură permanentă de siguranță.",
+					feat_lifeline_t: "Sisteme Linia Vieții",
+					feat_lifeline_d: "Proiectare și instalare linii vieții verticale și orizontale (EN 795).",
+					feat_anchor_t: "Ancore Structurale",
+					feat_anchor_d: "Puncte de ancorare fixe și mobile calculate pentru sarcini specifice.",
+					feat_collective_t: "Protecție Colectivă",
+					feat_collective_d: "Balustrade industriale, mâini curente și pasarele standardizate.",
+					feat_access_t: "Soluții Acces",
+					feat_access_d: "Scări personalizate, platforme și schele pentru acces sigur.",
+					btn_survey: "Solicită Evaluare",
+					vis_vert: "VERTICAL",
+					vis_horiz: "ORIZONTAL",
+					vis_coll: "COLECTIV",
+					vis_besp: "DEDICAT",
+					contact_subtitle: "Contact Rapid",
+					contact_title: "Hai să Discutăm<br>Proiectul Tău",
+					contact_desc: "Echipa noastră de experți este gata să ofere soluții personalizate. Scrie-ne sau sună-ne direct.",
+					lbl_phone: "Telefon",
+					form_name: "Nume Complet",
+					form_email: "Adresă Email",
+					form_company: "Companie",
+					form_message: "Mesaj",
+					form_submit: "Trimite Solicitarea",
+					partners_title: "Parteneri & Branduri de Încredere",
+					footer_about: "Încă de la începutul anilor 2000, ne-am dedicat furnizării celor mai sigure și eficiente servicii de lucru la înălțime din România. Certificați ISO 9001, 14001, 45001.",
+					footer_divs_title: "Diviziile Noastre",
+					footer_div1: "Safety Academy (Training)",
+					footer_div2: "LTT Lock (Sisteme LOTO)",
+					footer_div3: "Inginerie WHTC",
+					footer_div4: "Distribuție Echipamente",
+					footer_contact_title: "Contact",
+					footer_hq: "Sediu Central",
+					footer_touch: "Email & Telefon",
+					footer_privacy: "Politica de Confidențialitate",
+					footer_terms: "Termeni și Condiții"
+				},
+				en: {
+					nav_training: "TRAINING",
+					nav_loto: "LOTO",
+					nav_eng: "ENGINEERING",
+					hero_line1: "Working at Height",
+					hero_line2: "Training Centre",
+					hero_sub: "What the world needs next,<br> we are making now.",
+					btn_hero_explore: "Discover WHTC",
+					partner_title: "Official Partner",
+					partner_role: "Authorized Seller",
+					partner_desc: "3M Fall Protection Solutions",
+					ecovadis: "Bronze Sustainability Rating",
+					div_edu_title: "Education Division",
+					safety_academy_head: "Safety<br>Academy",
+					div_edu_desc: "Romania's first dedicated industrial training center for working at height. We aim to bring people home safely every day.",
+					list_gwo: "GWO (Global Wind Organisation) Certified",
+					list_irata: "ANC Certified Rope Access",
+					list_confined: "Confined Space & Rescue Workshops",
+					btn_courses: "View Course Catalog",
+					div_sys_title: "Safety Systems Division",
+					ltt_lock_head: "LTT Lock<br>LOTO Solutions",
+					div_sys_desc: "Achieving zero accidents during maintenance. Complete Lockout Tagout solutions compliant with OSHA and EU standards.",
+					list_3principles: "The 3 Principles: One Lock, One Key, One Life",
+					list_proc: "15,000+ Custom Procedures Developed",
+					list_audit: "Audits & Implementation for Industry",
+					btn_loto: "Explore LOTO Products",
+					whtc_eng_title: "WHTC Engineering",
+					whtc_eng_main: "Full Access<br>Systems",
+					whtc_eng_desc: "Beyond training and lockout, WHTC engineers and installs permanent safety infrastructure.",
+					feat_lifeline_t: "Lifeline Systems",
+					feat_lifeline_d: "Design and installation of vertical and horizontal lifelines (EN 795).",
+					feat_anchor_t: "Structural Anchors",
+					feat_anchor_d: "Fixed and mobile anchorage points calculated for structural loads.",
+					feat_collective_t: "Collective Protection",
+					feat_collective_d: "Industrial guardrails, handrails, and walkways compliant with European Standards.",
+					feat_access_t: "Access Solutions",
+					feat_access_d: "Custom stairs, platforms, and scaffolding for safe machinery access.",
+					btn_survey: "Request Site Survey",
+					vis_vert: "VERTICAL",
+					vis_horiz: "HORIZONTAL",
+					vis_coll: "COLLECTIVE",
+					vis_besp: "BESPOKE",
+					contact_subtitle: "Quick Contact",
+					contact_title: "Let's Discuss<br>Your Project",
+					contact_desc: "Our team of experts is ready to provide custom safety solutions. Email or call us directly.",
+					lbl_phone: "Phone",
+					form_name: "Full Name",
+					form_email: "Email Address",
+					form_company: "Company",
+					form_message: "Message",
+					form_submit: "Send Request",
+					partners_title: "Trusted Partners & Brands",
+					footer_about: "Since the early 2000s, we have been dedicated to providing the safest working at height services in Romania. ISO 9001, 14001, 45001 Certified.",
+					footer_divs_title: "Our Divisions",
+					footer_div1: "Safety Academy (Training)",
+					footer_div2: "LTT Lock (LOTO Systems)",
+					footer_div3: "WHTC Engineering",
+					footer_div4: "Equipment Distribution",
+					footer_contact_title: "Contact Us",
+					footer_hq: "Headquarters",
+					footer_touch: "Email & Phone",
+					footer_privacy: "Privacy Policy",
+					footer_terms: "Terms of Service"
+				}
+			};
+
+			function setLanguage(lang) {
+				document.querySelectorAll('[data-i18n]').forEach(el => {
+					const key = el.getAttribute('data-i18n');
+					if (translations[lang] && translations[lang][key]) {
+						if (['whtc_eng_main', 'ltt_lock_head', 'safety_academy_head', 'hero_line1', 'hero_line2', 'contact_title', 'hero_sub'].includes(key)) {
+							el.innerHTML = translations[lang][key];
+						} else {
+							el.textContent = translations[lang][key];
+						}
+					}
+				});
+				document.getElementById('btn-ro').classList.toggle('active', lang === 'ro');
+				document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+			}
+
+			// Expose to window for button onclicks
+			window.setLanguage = setLanguage;
+		</script>
+	</body>
+</html>
+
+<style is:global>
+	.sharp { border-radius: 0 !important; }
+	.btn-hover-slide {
+		background-size: 200% 100%;
+		background-image: linear-gradient(to right, #111 50%, #f16215 50%);
+		transition: background-position 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+	.btn-hover-slide:hover { background-position: -100% 0; }
+	
+	.lang-switch-btn {
+		font-weight: 700;
+		opacity: 0.4;
+		transition: opacity 0.3s;
+	}
+	.lang-switch-btn:hover { opacity: 1; }
+	.lang-switch-btn.active {
+		opacity: 1;
+		text-decoration: underline;
+		text-decoration-color: #f16215;
+		text-underline-offset: 4px;
+	}
+</style>

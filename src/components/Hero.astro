@@ -76,7 +76,10 @@
         bgLayers[currentBgIndex].classList.add('active', 'opacity-100');
     }
 
-    setInterval(rotateBackground, 4000);
+    // Defer execution to avoid blocking main thread during initial render
+    window.addEventListener('load', () => {
+        setInterval(rotateBackground, 4000);
+    });
 </script>
 
 <style>

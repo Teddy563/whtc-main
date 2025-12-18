@@ -18,10 +18,18 @@ import FunnelLayout from '../layouts/FunnelLayout.astro';
     </div>
 
     <!-- Form -->
-    <form id="reqForm" class="space-y-4">
+    <iframe name="hidden_iframe_cerere" id="hidden_iframe_cerere" style="display:none;"></iframe>
+    <form 
+      id="reqForm" 
+      action="https://docs.google.com/forms/d/e/1FAIpQLSe1N-Oh2HCEfZWnHQF4y5RfCk9azhTeKkh2EjGq2QTXGAriNA/formResponse" 
+      method="POST"
+      target="hidden_iframe_cerere"
+      class="space-y-4"
+    >
       <div>
         <label class="block text-sm font-bold text-gray-700 mb-2">Numele Tău</label>
         <input
+          name="entry.720529008"
           id="inputName"
           type="text"
           required
@@ -32,16 +40,20 @@ import FunnelLayout from '../layouts/FunnelLayout.astro';
       <div>
         <label class="block text-sm font-bold text-gray-700 mb-2">Email Business</label>
         <input
+          name="entry.576847258"
           id="inputEmail"
           type="email"
           required
           class="w-full p-3 border border-gray-300 bg-white text-gray-900 focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00] outline-none"
+          oninput="document.getElementById('googleEmail').value = this.value"
         />
+        <input type="hidden" name="emailAddress" id="googleEmail" />
       </div>
 
       <div>
         <label class="block text-sm font-bold text-gray-700 mb-2">Telefon</label>
         <input
+          name="entry.2114265590"
           id="inputPhone"
           type="tel"
           required
@@ -52,6 +64,7 @@ import FunnelLayout from '../layouts/FunnelLayout.astro';
       <div>
         <label class="block text-sm font-bold text-gray-700 mb-2">Detalii Solicitare</label>
         <textarea
+          name="entry.1137760832"
           id="inputMsg"
           rows="3"
           required
@@ -59,6 +72,9 @@ import FunnelLayout from '../layouts/FunnelLayout.astro';
           class="w-full p-3 border border-gray-300 bg-white text-gray-900 focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00] outline-none"
         ></textarea>
       </div>
+      
+      <!-- Hidden Source -->
+      <input type="hidden" name="entry.268772384" value="Request Form Medium" />
 
       <button
         type="submit"
@@ -85,56 +101,31 @@ import FunnelLayout from '../layouts/FunnelLayout.astro';
 </FunnelLayout>
 
 <script>
-  // --- CONFIGURARE GOOGLE FORM ---
-  const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSe1N-Oh2HCEfZWnHQF4y5RfCk9azhTeKkh2EjGq2QTXGAriNA/formResponse';
-  const ENTRY_NAME = 'entry.720529008';   // Nume
-  const ENTRY_EMAIL = 'entry.576847258';  // Email
-  const ENTRY_PHONE = 'entry.2114265590';  // Telefon
-  const ENTRY_MSG = 'entry.1137760832';    // Detalii
-  const ENTRY_SRC = 'entry.268772384';    // Sursa
+  const form = document.getElementById('reqForm') as HTMLFormElement;
+  const iframe = document.getElementById('hidden_iframe_cerere') as HTMLIFrameElement;
+  const btn = document.getElementById('reqBtn') as HTMLButtonElement;
 
-  const form = document.getElementById('reqForm');
-  const successDiv = document.getElementById('reqSuccess');
-  const btn = document.getElementById('reqBtn') as HTMLButtonElement | null;
-  
   if (form) {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        if (!btn) return;
+      let submitted = false;
+      form.addEventListener('submit', () => {
+        submitted = true;
+        if(btn) {
+            btn.innerText = 'Se trimite...';
+            btn.disabled = true;
+            btn.style.opacity = '0.7';
+        }
 
-        const nameInput = document.getElementById('inputName') as HTMLInputElement;
-        const emailInput = document.getElementById('inputEmail') as HTMLInputElement;
-        const phoneInput = document.getElementById('inputPhone') as HTMLInputElement;
-        const msgInput = document.getElementById('inputMsg') as HTMLInputElement;
-
-        // UI Feedback
-        btn.innerText = 'Se trimite...';
-        btn.disabled = true;
-        btn.style.opacity = '0.7';
-
-        const formData = new FormData();
-        formData.append(ENTRY_NAME, nameInput.value);
-        formData.append(ENTRY_EMAIL, emailInput.value);
-        formData.append(ENTRY_PHONE, phoneInput ? phoneInput.value : '-');
-        formData.append(ENTRY_MSG, msgInput.value);
-        formData.append(ENTRY_SRC, 'Request Form Medium'); // Auto-filled
-
-        fetch(FORM_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            body: formData
-        })
-        .then(() => {
-            if (typeof (window as any).gtag === 'function') {
-                (window as any).gtag('event', 'generate_lead', { 'event_category': 'form', 'event_label': 'request_2026' });
-            }
-            window.location.href = '/thank-you';
-        })
-        .catch(err => {
-            console.error(err);
-             // Show success anyway on no-cors
-            window.location.href = '/thank-you';
-        });
+        if (typeof (window as any).gtag === 'function') {
+            (window as any).gtag('event', 'generate_lead', { 'event_category': 'form', 'event_label': 'request_2026' });
+        }
       });
+      
+      if(iframe) {
+        iframe.addEventListener('load', () => {
+            if(submitted) {
+                window.location.href = '/thank-you';
+            }
+        });
+      }
   }
 </script>

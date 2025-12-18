@@ -60,7 +60,9 @@ import FunnelLayout from '../layouts/FunnelLayout.astro';
       <!-- STEP 3: CONTACT -->
       <div id="step-3" class="step-card hidden">
         <h2 class="text-xl font-bold text-gray-800 mb-6 text-center">3. Unde trimitem oferta?</h2>
-        <form id="finalForm" class="space-y-4 max-w-sm mx-auto">
+        
+        <!-- Visible Inputs -->
+        <form id="detailsForm" class="space-y-4 max-w-sm mx-auto">
           <div>
             <label class="block text-sm font-bold text-gray-700 mb-1">Numele Tău</label>
             <input id="qName" type="text" required class="w-full p-3 border border-gray-300 bg-white focus:border-[#FF6B00] outline-none" />
@@ -70,8 +72,8 @@ import FunnelLayout from '../layouts/FunnelLayout.astro';
             <input id="qEmail" type="email" required class="w-full p-3 border border-gray-300 bg-white focus:border-[#FF6B00] outline-none" />
           </div>
           <div>
-             <label class="block text-sm font-bold text-gray-700 mb-1">Telefon (Opțional)</label>
-             <input id="qPhone" type="tel" class="w-full p-3 border border-gray-300 bg-white focus:border-[#FF6B00] outline-none" />
+             <label class="block text-sm font-bold text-gray-700 mb-1">Telefon</label>
+             <input id="qPhone" type="tel" required class="w-full p-3 border border-gray-300 bg-white focus:border-[#FF6B00] outline-none" />
           </div>
           
           <button type="submit" id="submitQuiz" class="w-full bg-[#111827] hover:bg-[#FF6B00] text-white font-bold py-4 mt-2 transition-colors duration-300">
@@ -82,14 +84,23 @@ import FunnelLayout from '../layouts/FunnelLayout.astro';
             <button type="button" class="text-sm text-gray-400 hover:text-gray-900 underline" onclick="prevStep(2)">Inapoi</button>
         </div>
       </div>
-
-      <!-- SUCCESS -->
-      <div id="successStep" class="hidden text-center py-10">
-        <div class="text-5xl mb-4">🎉</div>
-        <h2 class="text-2xl font-bold text-gray-900">Cerere Înregistrată!</h2>
-        <p class="text-gray-600 mt-2">Un consultant Safety Academy va prelua detaliile tale.</p>
-        <a href="https://whtc.ro" class="inline-block mt-8 text-[#FF6B00] font-bold hover:underline">Înapoi la site</a>
-      </div>
+    
+    <!-- Hidden Iframe & Form for Submission -->
+    <iframe name="hidden_iframe_quiz" id="hidden_iframe_quiz" style="display:none;"></iframe>
+    <form 
+      id="realForm"
+      action="https://docs.google.com/forms/d/e/1FAIpQLSe1N-Oh2HCEfZWnHQF4y5RfCk9azhTeKkh2EjGq2QTXGAriNA/formResponse" 
+      method="POST" 
+      target="hidden_iframe_quiz"
+      style="display:none;"
+    >
+      <input type="hidden" name="entry.720529008" id="realName" />
+      <input type="hidden" name="entry.576847258" id="realEmail" />
+      <input type="hidden" name="emailAddress" id="realGoogleEmail" /> <!-- Added for 'Collect Email' setting -->
+      <input type="hidden" name="entry.2114265590" id="realPhone" />
+      <input type="hidden" name="entry.1137760832" id="realMsg" />
+      <input type="hidden" name="entry.268772384" value="Quiz Configurator Funnel" />
+    </form>
 
     </div>
   </div>
@@ -137,34 +148,28 @@ import FunnelLayout from '../layouts/FunnelLayout.astro';
   });
 
   // Navigation
-  function goToStep(stepNum) {
+  function goToStep(stepNum: any) {
     document.querySelectorAll('.step-card').forEach(el => el.classList.add('hidden'));
     document.getElementById(`step-${stepNum}`)?.classList.remove('hidden');
-    // Expose prevStep to window not strictly needed if we use inline onclick or add event listeners differently, 
-    // but for simplicity I used onclick in HTML. To make it work in module script:
-    // Actually Astro scripts are modules by default.
-    // I will attach a global function or better, attach listeners to the back buttons dynamically.
   }
 
   // Back Buttons
-  (window as any).prevStep = (stepNum: any) => { // Quick hack for inline onclick
+  (window as any).prevStep = (stepNum: any) => { 
      goToStep(stepNum);
   }
 
-
   // --- FORM SUBMISSION ---
-  const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSe1N-Oh2HCEfZWnHQF4y5RfCk9azhTeKkh2EjGq2QTXGAriNA/formResponse';
-  const ENTRY_NAME = 'entry.720529008';
-  const ENTRY_EMAIL = 'entry.576847258';
-  const ENTRY_PHONE = 'entry.2114265590'; 
-  const ENTRY_MSG = 'entry.1137760832';    // Detailed Message
-  const ENTRY_SRC = 'entry.268772384';    // Source
+  const detailsForm = document.getElementById('detailsForm');
+  const realForm = document.getElementById('realForm') as HTMLFormElement;
+  const iframe = document.getElementById('hidden_iframe_quiz') as HTMLIFrameElement;
+  
+  if (detailsForm && realForm) {
+      let submitted = false;
 
-  const finalForm = document.getElementById('finalForm');
-  if (finalForm) {
-      finalForm.addEventListener('submit', (e) => {
+      detailsForm.addEventListener('submit', (e) => {
           e.preventDefault();
           const btn = document.getElementById('submitQuiz') as HTMLButtonElement;
+          
           if(btn) {
               btn.innerText = 'Se procesează...';
               btn.disabled = true;
@@ -176,32 +181,30 @@ import FunnelLayout from '../layouts/FunnelLayout.astro';
 
           // Compile Message from Quiz Data
           const compiledMsg = `TIP SERVICIU: ${answers.service}\nPERIOADA: ${answers.timing}\n\nNota Contact: Telefonul este ${qPhone ? qPhone : 'Lipsa'}`;
-
-          const formData = new FormData();
-          formData.append(ENTRY_NAME, qName);
-          formData.append(ENTRY_EMAIL, qEmail);
-          formData.append(ENTRY_MSG, compiledMsg); // Put quiz answers in the "Details" paragraph
-          formData.append(ENTRY_SRC, 'Quiz Configurator Funnel');
           
-          // Add Phone: Send value or "-" to satisfy required field
-          formData.append(ENTRY_PHONE, qPhone ? qPhone : '-');
+          // Populate Real Form
+          (document.getElementById('realName') as HTMLInputElement).value = qName;
+          (document.getElementById('realEmail') as HTMLInputElement).value = qEmail;
+          (document.getElementById('realGoogleEmail') as HTMLInputElement).value = qEmail; // Added
+          (document.getElementById('realPhone') as HTMLInputElement).value = qPhone ? qPhone : '-';
+          (document.getElementById('realMsg') as HTMLInputElement).value = compiledMsg;
 
-          fetch(FORM_URL, {
-              method: 'POST',
-              mode: 'no-cors',
-              body: formData
-          })
-          .then(() => {
-              if (typeof (window as any).gtag === 'function') {
-                (window as any).gtag('event', 'generate_lead', { 'event_category': 'form', 'event_label': 'quiz_2026' });
-              }
-              window.location.href = '/thank-you';
-          })
-          .catch(err => {
-              console.error(err);
-              window.location.href = '/thank-you';
-          });
+          // Submit Real Form
+          submitted = true;
+          realForm.submit();
+          
+          // Track
+          if (typeof (window as any).gtag === 'function') {
+            (window as any).gtag('event', 'generate_lead', { 'event_category': 'form', 'event_label': 'quiz_2026' });
+          }
       });
-  }
 
+      if(iframe) {
+        iframe.addEventListener('load', () => {
+            if(submitted) {
+                window.location.href = '/thank-you';
+            }
+        });
+      }
+  }
 </script>

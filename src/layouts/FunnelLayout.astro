@@ -1,0 +1,62 @@
+---
+import Layout from './Layout.astro';
+
+interface Props {
+  title: string;
+  gaId?: string; // Google Analytics 4 Measurement ID (e.g., G-XXXXXXXXXX)
+}
+
+const { title, gaId = "G-XXXXXXXXXX" } = Astro.props; // Default placeholder
+---
+
+<Layout title={title}>
+  <!-- Google Analytics 4 -->
+  {gaId && (
+    <>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+      <script define:vars={{ gaId }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', gaId);
+      </script>
+    </>
+  )}
+
+  <div class="min-h-[100dvh] flex flex-col relative font-inter bg-[#0a192f]">
+    <!-- Background with Overlay -->
+    <div
+      class="absolute inset-0 z-0 bg-cover bg-center opacity-40 mix-blend-overlay"
+      style="background-image: url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80');"
+    >
+    </div>
+    <div class="absolute inset-0 z-0 bg-gradient-to-b from-[#0a192f]/90 to-[#0a192f]/95"></div>
+
+    <!-- Top Logo Bar -->
+    <div class="relative z-10 w-full py-4 flex justify-center shrink-0">
+      <a href="https://safetyacademy.ro" target="_blank" class="hover:opacity-80 transition-opacity">
+        <img src="/safety-top.svg" alt="Safety Academy" class="h-10 md:h-14 w-auto" />
+      </a>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="relative z-10 flex-grow flex items-center justify-center p-4 w-full">
+      <slot />
+    </div>
+
+    <!-- Footer Simple -->
+    <div class="relative z-10 w-full py-3 px-4 text-center text-gray-500 text-xs shrink-0">
+        <a href="https://whtc.ro" target="_blank" class="hover:text-[#FF6B00] transition-colors">WHTC & Safety Academy</a> &copy; 2026
+    </div>
+  </div>
+</Layout>
+
+<style is:global>
+  /* Enforce sharp corners for Industrial Theme */
+  * {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+  
+  /* Input autofill fix for dark theme if needed, though we use white cards */
+</style>

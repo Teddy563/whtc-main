@@ -1,0 +1,112 @@
+---
+import FunnelLayout from '../layouts/FunnelLayout.astro';
+---
+
+<FunnelLayout title="Notificare 2026 - Safety Academy">
+  <div class="bg-white w-full max-w-md p-6 md:p-8 border-t-8 border-[#FF6B00]">
+    <!-- Brand -->
+    <span class="text-[#FF6B00] font-bold text-xs tracking-[0.15em] uppercase block mb-2">
+      Safety Academy
+    </span>
+
+    <!-- Title -->
+    <h1 class="text-3xl font-extrabold text-gray-900 mb-4 leading-tight">
+      Start 2026
+    </h1>
+
+    <!-- Text -->
+    <p class="text-gray-600 mb-6 text-sm leading-relaxed">
+      Lasă-ne adresa de email și te anunțăm când revenim din vacanță cu noul calendar.
+    </p>
+
+    <!-- Form -->
+    <form id="emailForm" class="space-y-4">
+      <div>
+        <input
+          id="emailInput"
+          type="email"
+          required
+          placeholder="Adresa ta de email..."
+          class="w-full p-3 border border-gray-300 bg-white text-gray-900 focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00] outline-none transition-colors"
+        />
+      </div>
+
+      <button
+        type="submit"
+        id="submitBtn"
+        class="w-full bg-[#FF6B00] hover:bg-[#e66000] text-white font-bold py-3 px-4 transition-colors duration-200"
+      >
+        Anunță-mă
+      </button>
+
+      <p class="text-xs text-gray-400 mt-4 text-center">
+        Fără spam. Doar noutăți despre cursuri.
+      </p>
+    </form>
+
+    <!-- Success Message -->
+    <div id="success" class="hidden text-center py-6">
+      <div class="text-green-600 text-4xl mb-2">✓</div>
+      <div class="text-green-600 font-bold text-lg">Ești pe listă!</div>
+      <div class="text-gray-500 text-sm mt-1">Mulțumim.</div>
+    </div>
+  </div>
+</FunnelLayout>
+
+<script>
+  const form = document.getElementById('emailForm');
+  const successDiv = document.getElementById('success');
+  const btn = document.getElementById('submitBtn') as HTMLButtonElement | null;
+  const input = document.getElementById('emailInput') as HTMLInputElement | null;
+
+  // --- CONFIGURARE GOOGLE FORM ---
+  const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSe1N-Oh2HCEfZWnHQF4y5RfCk9azhTeKkh2EjGq2QTXGAriNA/formResponse';
+  const ENTRY_EMAIL = 'entry.576847258'; 
+  const ENTRY_SOURCE = 'entry.268772384';
+  
+  // Hidden but likely required fields
+  const ENTRY_NAME = 'entry.720529008';
+  const ENTRY_PHONE = 'entry.2114265590';
+  const ENTRY_MSG = 'entry.1137760832';
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      if (!input || !btn) return;
+
+      // Visual Feedback
+      const originalText = btn.innerText;
+      btn.innerText = 'Se trimite...';
+      btn.style.opacity = '0.7';
+      btn.disabled = true;
+
+      const formData = new FormData();
+      formData.append(ENTRY_EMAIL, input.value);
+      formData.append(ENTRY_SOURCE, 'Email Low Friction Funnel'); 
+      
+      // Auto-fill hidden required fields to prevent error
+      formData.append(ENTRY_NAME, 'Abonat Newsletter'); // Default name
+      formData.append(ENTRY_PHONE, '-');                // Default phone
+      formData.append(ENTRY_MSG, 'Abonare simpla');     // Default message
+
+      fetch(FORM_URL, {
+        method: 'POST',
+        mode: 'no-cors', // Important for Google Forms
+        body: formData
+      })
+      .then(() => {
+        // Success & Redirect
+        if (typeof (window as any).gtag === 'function') {
+           (window as any).gtag('event', 'generate_lead', { 'event_category': 'form', 'event_label': 'email_2026' });
+        }
+        window.location.href = '/thank-you';
+      })
+      .catch((err) => {
+        console.error('Form Error:', err);
+        // Redirect anyway on no-cors "error" (opaque response)
+        window.location.href = '/thank-you';
+      });
+    });
+  }
+</script>

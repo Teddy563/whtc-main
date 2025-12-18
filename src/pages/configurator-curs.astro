@@ -1,0 +1,207 @@
+---
+import FunnelLayout from '../layouts/FunnelLayout.astro';
+---
+
+<FunnelLayout title="Configurator Curs 2026 - Safety Academy">
+  <div class="bg-white w-full max-w-2xl p-4 md:p-12 border-t-8 border-[#FF6B00]">
+    
+    <!-- Header -->
+    <div class="mb-8 text-center">
+      <span class="text-[#FF6B00] font-bold text-xs tracking-[0.2em] uppercase block mb-2">
+        Safety Academy
+      </span>
+      <h1 class="text-3xl font-extrabold text-gray-900 leading-tight">
+        Configurator Cursuri
+      </h1>
+      <p class="text-gray-500 mt-2">
+        Răspunde la câteva întrebări și îți trimitem oferta personalizată.
+      </p>
+    </div>
+
+    <!-- MAIN FORM CONTAINER -->
+    <div id="quiz-container" class="min-h-[250px] md:min-h-[300px]">
+      
+      <!-- STEP 1: CATEGORY -->
+      <div id="step-1" class="step-card">
+        <h2 class="text-xl font-bold text-gray-800 mb-6 text-center">1. Ce tip de servicii cauți?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <button type="button" class="quiz-option" data-value="Cursuri GWO">
+            <span class="block text-lg font-bold">GWO</span>
+            <span class="text-sm text-gray-500">Global Wind Organisation</span>
+          </button>
+          <button type="button" class="quiz-option" data-value="Certificat ANC">
+            <span class="block text-lg font-bold">Certificat ANC</span>
+            <span class="text-sm text-gray-500">Alpinism Utilitar</span>
+          </button>
+          <button type="button" class="quiz-option" data-value="Standard National">
+            <span class="block text-lg font-bold">Naționale</span>
+            <span class="text-sm text-gray-500">Lucru la Înălțime / Spații Închise</span>
+          </button>
+          <button type="button" class="quiz-option" data-value="Audit si LOTO">
+            <span class="block text-lg font-bold">Audit & LOTO</span>
+            <span class="text-sm text-gray-500">Consultanta & Implementare</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 2: TIMING -->
+      <div id="step-2" class="step-card hidden">
+        <h2 class="text-xl font-bold text-gray-800 mb-6 text-center">2. Când dorești să începi?</h2>
+        <div class="flex flex-col gap-3 max-w-sm mx-auto">
+          <button type="button" class="quiz-option" data-value="Ianuarie 2026">Ianuarie 2026</button>
+          <button type="button" class="quiz-option" data-value="Februarie 2026">Februarie 2026</button>
+          <button type="button" class="quiz-option" data-value="Mai tarziu">Mai târziu</button>
+        </div>
+        <div class="mt-8 text-center">
+            <button type="button" class="text-sm text-gray-400 hover:text-gray-900 underline" onclick="prevStep(1)">Inapoi</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: CONTACT -->
+      <div id="step-3" class="step-card hidden">
+        <h2 class="text-xl font-bold text-gray-800 mb-6 text-center">3. Unde trimitem oferta?</h2>
+        <form id="finalForm" class="space-y-4 max-w-sm mx-auto">
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-1">Numele Tău</label>
+            <input id="qName" type="text" required class="w-full p-3 border border-gray-300 bg-white focus:border-[#FF6B00] outline-none" />
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-1">Email</label>
+            <input id="qEmail" type="email" required class="w-full p-3 border border-gray-300 bg-white focus:border-[#FF6B00] outline-none" />
+          </div>
+          <div>
+             <label class="block text-sm font-bold text-gray-700 mb-1">Telefon (Opțional)</label>
+             <input id="qPhone" type="tel" class="w-full p-3 border border-gray-300 bg-white focus:border-[#FF6B00] outline-none" />
+          </div>
+          
+          <button type="submit" id="submitQuiz" class="w-full bg-[#111827] hover:bg-[#FF6B00] text-white font-bold py-4 mt-2 transition-colors duration-300">
+            Trimite Solicitarea
+          </button>
+        </form>
+         <div class="mt-4 text-center">
+            <button type="button" class="text-sm text-gray-400 hover:text-gray-900 underline" onclick="prevStep(2)">Inapoi</button>
+        </div>
+      </div>
+
+      <!-- SUCCESS -->
+      <div id="successStep" class="hidden text-center py-10">
+        <div class="text-5xl mb-4">🎉</div>
+        <h2 class="text-2xl font-bold text-gray-900">Cerere Înregistrată!</h2>
+        <p class="text-gray-600 mt-2">Un consultant Safety Academy va prelua detaliile tale.</p>
+        <a href="https://whtc.ro" class="inline-block mt-8 text-[#FF6B00] font-bold hover:underline">Înapoi la site</a>
+      </div>
+
+    </div>
+  </div>
+</FunnelLayout>
+
+<style>
+  .quiz-option {
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .quiz-option:hover {
+    border-color: #FF6B00;
+    background-color: #fff7ed; /* light orange tint */
+    transform: translateY(-2px);
+  }
+</style>
+
+<script>
+  // State
+  let answers = {
+    service: '',
+    timing: ''
+  };
+
+  // Setup Step 1 Listeners
+  const step1Options = document.querySelectorAll('#step-1 .quiz-option');
+  step1Options.forEach(btn => {
+    btn.addEventListener('click', () => {
+      answers.service = btn.getAttribute('data-value') || '';
+      goToStep(2);
+    });
+  });
+
+  // Setup Step 2 Listeners
+  const step2Options = document.querySelectorAll('#step-2 .quiz-option');
+  step2Options.forEach(btn => {
+    btn.addEventListener('click', () => {
+      answers.timing = btn.getAttribute('data-value') || '';
+      goToStep(3);
+    });
+  });
+
+  // Navigation
+  function goToStep(stepNum) {
+    document.querySelectorAll('.step-card').forEach(el => el.classList.add('hidden'));
+    document.getElementById(`step-${stepNum}`)?.classList.remove('hidden');
+    // Expose prevStep to window not strictly needed if we use inline onclick or add event listeners differently, 
+    // but for simplicity I used onclick in HTML. To make it work in module script:
+    // Actually Astro scripts are modules by default.
+    // I will attach a global function or better, attach listeners to the back buttons dynamically.
+  }
+
+  // Back Buttons
+  (window as any).prevStep = (stepNum: any) => { // Quick hack for inline onclick
+     goToStep(stepNum);
+  }
+
+
+  // --- FORM SUBMISSION ---
+  const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSe1N-Oh2HCEfZWnHQF4y5RfCk9azhTeKkh2EjGq2QTXGAriNA/formResponse';
+  const ENTRY_NAME = 'entry.720529008';
+  const ENTRY_EMAIL = 'entry.576847258';
+  const ENTRY_PHONE = 'entry.2114265590'; 
+  const ENTRY_MSG = 'entry.1137760832';    // Detailed Message
+  const ENTRY_SRC = 'entry.268772384';    // Source
+
+  const finalForm = document.getElementById('finalForm');
+  if (finalForm) {
+      finalForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const btn = document.getElementById('submitQuiz') as HTMLButtonElement;
+          if(btn) {
+              btn.innerText = 'Se procesează...';
+              btn.disabled = true;
+          }
+
+          const qName = (document.getElementById('qName') as HTMLInputElement).value;
+          const qEmail = (document.getElementById('qEmail') as HTMLInputElement).value;
+          const qPhone = (document.getElementById('qPhone') as HTMLInputElement).value;
+
+          // Compile Message from Quiz Data
+          const compiledMsg = `TIP SERVICIU: ${answers.service}\nPERIOADA: ${answers.timing}\n\nNota Contact: Telefonul este ${qPhone ? qPhone : 'Lipsa'}`;
+
+          const formData = new FormData();
+          formData.append(ENTRY_NAME, qName);
+          formData.append(ENTRY_EMAIL, qEmail);
+          formData.append(ENTRY_MSG, compiledMsg); // Put quiz answers in the "Details" paragraph
+          formData.append(ENTRY_SRC, 'Quiz Configurator Funnel');
+          
+          // Add Phone: Send value or "-" to satisfy required field
+          formData.append(ENTRY_PHONE, qPhone ? qPhone : '-');
+
+          fetch(FORM_URL, {
+              method: 'POST',
+              mode: 'no-cors',
+              body: formData
+          })
+          .then(() => {
+              if (typeof (window as any).gtag === 'function') {
+                (window as any).gtag('event', 'generate_lead', { 'event_category': 'form', 'event_label': 'quiz_2026' });
+              }
+              window.location.href = '/thank-you';
+          })
+          .catch(err => {
+              console.error(err);
+              window.location.href = '/thank-you';
+          });
+      });
+  }
+
+</script>

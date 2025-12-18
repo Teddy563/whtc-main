@@ -1,0 +1,195 @@
+<!-- START SAFETY ACADEMY LANDING PAGE CODE -->
+<style>
+    /* HIDE WORDPRESS HEADER/FOOTER */
+    header,
+    .header,
+    #header,
+    .site-header,
+    #masthead,
+    footer,
+    .footer,
+    #footer,
+    .site-footer,
+    #colophon,
+    .breadcrumbs,
+    .page-header {
+        display: none !important;
+    }
+
+    html,
+    body {
+        margin: 0 !important;
+        padding: 0 !important;
+        font-family: 'Inter', Helvetica, sans-serif;
+    }
+
+    /* CUSTOM LAYOUT */
+    .sa-req-wrapper {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background-image: linear-gradient(rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 0.95)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .sa-req-card {
+        background: white;
+        width: 100%;
+        max-width: 500px;
+        padding: 40px;
+        border-radius: 12px;
+        border-left: 8px solid #FF6B00;
+        /* Safety Orange Border */
+    }
+
+    .sa-req-header {
+        border-bottom: 1px solid #eee;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+    }
+
+    .sa-req-brand {
+        color: #FF6B00;
+        font-weight: bold;
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .sa-req-title {
+        font-size: 24px;
+        font-weight: 800;
+        color: #111827;
+        margin: 5px 0 0 0;
+    }
+
+    .sa-req-label {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 6px;
+    }
+
+    .sa-req-input,
+    .sa-req-textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        font-size: 15px;
+        box-sizing: border-box;
+    }
+
+    .sa-req-btn {
+        width: 100%;
+        background-color: #111827;
+        color: white;
+        padding: 14px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+    .sa-req-btn:hover {
+        background-color: #FF6B00;
+    }
+
+    .sa-footer-link {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 12px;
+        color: #6b7280;
+    }
+
+    .sa-footer-link a {
+        color: #111827;
+        text-decoration: none;
+        border-bottom: 1px dotted #111827;
+    }
+
+    .hidden {
+        display: none;
+    }
+</style>
+
+<!-- TRACKING -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+</script>
+
+<div class="sa-req-wrapper">
+    <div class="sa-req-card">
+        <div class="sa-req-header">
+            <span class="sa-req-brand">Safety Academy</span>
+            <h1 class="sa-req-title">Cerere Ofertă 2026</h1>
+        </div>
+        <p style="color:#666; font-size:14px; margin-bottom:20px;">Echipa este în vacanță. Preluăm cererile pentru
+            Ianuarie.</p>
+
+        <form id="reqForm" onsubmit="submitReq(event)">
+            <label class="sa-req-label">Numele Tău</label>
+            <input id="inputName" type="text" required class="sa-req-input">
+
+            <label class="sa-req-label">Email Business</label>
+            <input id="inputEmail" type="email" required class="sa-req-input">
+
+            <label class="sa-req-label">Detalii Solicitare</label>
+            <textarea id="inputMsg" rows="3" required class="sa-req-textarea"
+                placeholder="Ce cursuri vă interesează?"></textarea>
+
+            <button type="submit" id="reqBtn" class="sa-req-btn">Trimite Cererea</button>
+        </form>
+
+        <div id="reqSuccess" class="hidden" style="text-align:center; padding:20px;">
+            <h3 style="font-size:20px;">👍 Mesaj Primit!</h3>
+            <p style="color:#666;">Te contactăm după 7 Ianuarie.</p>
+        </div>
+
+        <div class="sa-footer-link">
+            <a href="https://safetyacademy.ro" target="_blank">Află mai multe despre Safety Academy &rarr;</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function submitReq(e) {
+        e.preventDefault();
+        const btn = document.getElementById('reqBtn');
+        btn.innerText = 'Se trimite...'; btn.disabled = true;
+
+        // --- UPDATE GOOGLE FORM IDs ---
+        const FORM_URL = 'https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse';
+        const ENTRY_NAME = 'entry.111111';
+        const ENTRY_EMAIL = 'entry.222222';
+        const ENTRY_MSG = 'entry.333333';
+        const ENTRY_SRC = 'entry.444444';
+
+        const formData = new FormData();
+        formData.append(ENTRY_NAME, document.getElementById('inputName').value);
+        formData.append(ENTRY_EMAIL, document.getElementById('inputEmail').value);
+        formData.append(ENTRY_MSG, document.getElementById('inputMsg').value);
+        formData.append(ENTRY_SRC, 'Request Form Medium');
+
+        fetch(FORM_URL, { method: 'POST', mode: 'no-cors', body: formData })
+            .then(() => {
+                gtag('event', 'generate_lead', { 'event_category': 'form', 'event_label': 'request_2026' });
+                document.getElementById('reqForm').style.display = 'none';
+                document.getElementById('reqSuccess').classList.remove('hidden');
+            }).catch(err => {
+                document.getElementById('reqForm').style.display = 'none';
+                document.getElementById('reqSuccess').classList.remove('hidden');
+            });
+    }
+</script>

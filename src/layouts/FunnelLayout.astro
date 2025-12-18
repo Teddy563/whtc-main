@@ -3,25 +3,13 @@ import Layout from './Layout.astro';
 
 interface Props {
   title: string;
-  gaId?: string; // Google Analytics 4 Measurement ID (e.g., G-XXXXXXXXXX)
 }
 
-const { title, gaId = "G-XXXXXXXXXX" } = Astro.props; // Default placeholder
+const { title } = Astro.props;
 ---
 
 <Layout title={title}>
-  <!-- Google Analytics 4 -->
-  {gaId && (
-    <>
-      <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
-      <script define:vars={{ gaId }}>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', gaId);
-      </script>
-    </>
-  )}
+  <!-- Google Analytics 4 removed (now in Layout.astro) -->
 
   <div class="min-h-[100dvh] flex flex-col relative font-inter bg-[#0a192f]">
     <!-- Background with Overlay -->

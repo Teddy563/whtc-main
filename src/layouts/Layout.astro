@@ -32,6 +32,16 @@ const { title } = Astro.props;
 		<link rel="preload" as="image" href="/slide3.webp">
 		
 		<title>{title}</title>
+
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-2RBDXLQV7L"></script>
+		<script is:inline>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'G-2RBDXLQV7L');
+		</script>
 	</head>
 	<body class="bg-white font-inter text-brand-black antialiased overflow-x-hidden">
 		<slot />

@@ -1,0 +1,266 @@
+---
+import FunnelLayout from '../layouts/FunnelLayout.astro';
+import { Image } from 'astro:assets';
+import lttLockLogo from '../assets/ltt_lock.svg';
+---
+
+<FunnelLayout title="LTT Lock - Pregătire 2026">
+  <div class="bg-white w-full max-w-xl p-6 md:p-10 border-t-8 border-[#D91712] shadow-2xl relative overflow-hidden">
+    
+    <!-- Background Decoration -->
+    <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-[#D91712] opacity-5 rounded-full blur-xl pointer-events-none"></div>
+
+    <!-- Header Section -->
+    <div class="text-center mb-8 relative z-10 transition-all duration-300" id="headerSection">
+      <div class="flex justify-center mb-4">
+        <Image src={lttLockLogo} alt="LTT Lock Logo" class="h-16 w-auto" />
+      </div>
+      <h1 class="text-3xl font-black text-gray-900 mb-2 uppercase tracking-tight">
+        LTT LOCK <span class="text-[#D91712]">2026</span>
+      </h1>
+      <p class="text-gray-500 font-medium">
+        Echipa este în vacanță până pe <span class="text-[#D91712] font-bold">7 Ianuarie</span>.
+      </p>
+      <p class="text-sm text-gray-400 mt-2">
+        Lasă-ne detaliile acum și fii primul prioritar la întoarcere!
+      </p>
+    </div>
+
+    <!-- MAIN FORM CONTAINER -->
+    <div class="relative z-10 min-h-[300px]">
+      
+      <iframe name="hidden_iframe_ltt" id="hidden_iframe_ltt" style="display:none;"></iframe>
+      <form 
+        id="quizForm" 
+        action="https://docs.google.com/forms/d/e/1FAIpQLSe1N-Oh2HCEfZWnHQF4y5RfCk9azhTeKkh2EjGq2QTXGAriNA/formResponse" 
+        method="POST"
+        target="hidden_iframe_ltt"
+        class="transition-all duration-500"
+      >
+        <!-- STEP 1: SERVICE SELECTION -->
+        <div id="step1" class="step-container space-y-4">
+          <h2 class="text-lg font-bold text-gray-800 text-center mb-6">
+            Cu ce te putem ajuta în noul an?
+          </h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <label class="cursor-pointer group">
+              <input type="radio" name="service_type" value="Training LOTO" class="peer sr-only" required>
+              <div class="p-4 border-2 border-gray-100 peer-checked:border-[#D91712] peer-checked:bg-[#fff5f5] hover:border-gray-300 transition-all text-center h-full flex flex-col items-center justify-center">
+                <span class="text-3xl mb-2">🎓</span>
+                <span class="font-bold text-gray-700 peer-checked:text-[#D91712]">Training LOTO</span>
+              </div>
+            </label>
+
+            <label class="cursor-pointer group">
+              <input type="radio" name="service_type" value="Produse & Lăcătușerie" class="peer sr-only">
+              <div class="p-4 border-2 border-gray-100 peer-checked:border-[#D91712] peer-checked:bg-[#fff5f5] hover:border-gray-300 transition-all text-center h-full flex flex-col items-center justify-center">
+                <span class="text-3xl mb-2">🔒</span>
+                <span class="font-bold text-gray-700 peer-checked:text-[#D91712]">Produse LOTO</span>
+              </div>
+            </label>
+
+            <label class="cursor-pointer group">
+              <input type="radio" name="service_type" value="Implementare & Audit" class="peer sr-only">
+              <div class="p-4 border-2 border-gray-100 peer-checked:border-[#D91712] peer-checked:bg-[#fff5f5] hover:border-gray-300 transition-all text-center h-full flex flex-col items-center justify-center">
+                <span class="text-3xl mb-2">📋</span>
+                <span class="font-bold text-gray-700 peer-checked:text-[#D91712]">Implementare & Audit</span>
+              </div>
+            </label>
+
+            <label class="cursor-pointer group">
+              <input type="radio" name="service_type" value="Altele" class="peer sr-only">
+              <div class="p-4 border-2 border-gray-100 peer-checked:border-[#D91712] peer-checked:bg-[#fff5f5] hover:border-gray-300 transition-all text-center h-full flex flex-col items-center justify-center">
+                <span class="text-3xl mb-2">🤔</span>
+                <span class="font-bold text-gray-700 peer-checked:text-[#D91712]">Altceva</span>
+              </div>
+            </label>
+          </div>
+
+          <div class="text-center mt-6">
+            <button type="button" id="nextBtn" class="bg-gray-900 text-white font-bold py-3 px-8 hover:bg-[#D91712] transition-colors duration-300 w-full md:w-auto">
+              Pasul Următor &rarr;
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 2: CONTACT DETAILS -->
+        <div id="step2" class="step-container hidden space-y-4 opacity-0 transform translate-x-10 transition-all duration-500">
+          <h2 class="text-lg font-bold text-gray-800 text-center mb-2">
+            Unde trimitem răspunsul?
+          </h2>
+          <p class="text-xs text-gray-500 text-center mb-6">
+            Te vom contacta imediat după sărbători.
+          </p>
+
+          <div class="space-y-4">
+            <div>
+              <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Numele Tău</label>
+              <input
+                name="entry.720529008"
+                type="text"
+                required
+                placeholder="ex: Andrei Popescu"
+                class="w-full p-3 bg-gray-50 border-b-2 border-gray-200 focus:border-[#D91712] outline-none transition-colors"
+              />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Email</label>
+              <input
+                name="entry.576847258"
+                type="email"
+                required
+                placeholder="adresa@companie.ro"
+                class="w-full p-3 bg-gray-50 border-b-2 border-gray-200 focus:border-[#D91712] outline-none transition-colors"
+                oninput="document.getElementById('googleEmail').value = this.value"
+              />
+              <input type="hidden" name="emailAddress" id="googleEmail" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Telefon</label>
+              <input
+                name="entry.2114265590"
+                type="tel"
+                required
+                placeholder="07xx xxx xxx"
+                class="w-full p-3 bg-gray-50 border-b-2 border-gray-200 focus:border-[#D91712] outline-none transition-colors"
+              />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Detalii Extra (Opțional)</label>
+              <textarea
+                name="entry.1137760832"
+                id="finalMessage"
+                rows="2"
+                placeholder="Orice altceva dorești să știm..."
+                class="w-full p-3 bg-gray-50 border-b-2 border-gray-200 focus:border-[#D91712] outline-none transition-colors"
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- Hidden Source Field -->
+          <input type="hidden" name="entry.268772384" id="sourceField" value="LTT Quiz 2026" />
+
+          <div class="flex gap-3 pt-4">
+            <button type="button" id="backBtn" class="px-4 py-3 text-gray-400 hover:text-gray-600 font-bold transition-colors">
+              &larr; Înapoi
+            </button>
+            <button
+              type="submit"
+              id="submitBtn"
+              class="flex-1 bg-[#D91712] hover:bg-[#b0130e] text-white font-bold py-3 px-4 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
+            >
+              Trimite în 2026 🚀
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- Footer removed as requested -->
+  </div>
+</FunnelLayout>
+
+<script>
+  // Elements
+  const step1 = document.getElementById('step1');
+  const step2 = document.getElementById('step2');
+  const nextBtn = document.getElementById('nextBtn');
+  const backBtn = document.getElementById('backBtn');
+  const submitBtn = document.getElementById('submitBtn') as HTMLButtonElement;
+  const form = document.getElementById('quizForm') as HTMLFormElement;
+  const radService = document.querySelectorAll('input[name="service_type"]');
+  const finalMsg = document.getElementById('finalMessage') as HTMLTextAreaElement;
+  const iframe = document.getElementById('hidden_iframe_ltt') as HTMLIFrameElement;
+
+  let selectedService = '';
+
+  // Setup
+  if (step1 && step2 && nextBtn && backBtn) {
+    
+    // Auto-advance if radio selected (optional, maybe better requires explicit click for clarity)
+    // Actually, explicit 'Next' is better to confirm selection
+    
+    nextBtn.addEventListener('click', () => {
+      // Validate Step 1
+      let checked = false;
+      radService.forEach((r: any) => {
+        if(r.checked) {
+          checked = true;
+          selectedService = r.value;
+        }
+      });
+
+      if(!checked) {
+        alert('Te rugăm să alegi o opțiune pentru a continua.');
+        return;
+      }
+
+      // Pre-fill message with service type if needed, or append it
+      if(finalMsg) {
+         // We keep the logic simple, just append service to message on submit or handle silently
+      }
+
+      // Animate transition
+      step1.classList.add('opacity-0', '-translate-x-10');
+      setTimeout(() => {
+        step1.classList.add('hidden');
+        step2.classList.remove('hidden');
+        // small delay to allow display:block to apply before opacity transition
+        requestAnimationFrame(() => {
+            step2.classList.remove('opacity-0', 'translate-x-10');
+        });
+      }, 300);
+    });
+
+    backBtn.addEventListener('click', () => {
+      step2.classList.add('opacity-0', 'translate-x-10');
+      setTimeout(() => {
+        step2.classList.add('hidden');
+        step1.classList.remove('hidden');
+        requestAnimationFrame(() => {
+            step1.classList.remove('opacity-0', '-translate-x-10');
+        });
+      }, 300);
+    });
+  }
+
+  // Submit Handler
+  if (form) {
+      let submitted = false;
+      form.addEventListener('submit', (e) => {
+        // Append service selection to the message field before sending
+        if(finalMsg) {
+            const currentVal = finalMsg.value;
+            finalMsg.value = `[SERVICIU DORIT: ${selectedService}] \n\n ${currentVal}`;
+        }
+        
+        submitted = true;
+        if(submitBtn) {
+            submitBtn.innerHTML = 'Se trimite...';
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.7';
+        }
+        
+        // Track
+        if (typeof (window as any).gtag === 'function') {
+            (window as any).gtag('event', 'generate_lead', { 
+                'event_category': 'quiz', 
+                'event_label': selectedService 
+            });
+        }
+      });
+      
+      if(iframe) {
+        iframe.addEventListener('load', () => {
+            if(submitted) {
+                window.location.href = '/thank-you';
+            }
+        });
+      }
+  }
+</script>

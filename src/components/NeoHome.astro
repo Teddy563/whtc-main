@@ -1,0 +1,870 @@
+---
+// Neo-Brutalist homepage design
+import { Image, getImage } from "astro:assets";
+import trainingImg from "../assets/training.webp";
+import sistemeImg from "../assets/sisteme.webp";
+import lotoImg from "../assets/loto.webp";
+import iso3mImg from "../assets/iso_3m.webp";
+
+import safetyVideo from "../assets/safety.mp4";
+import npcImg from "../assets/npc1.webp";
+import whtcLogo from "../assets/whtc.svg";
+import SharedContactDrawer from "./SharedContactDrawer.astro";
+
+const trainingBg = await getImage({
+    src: trainingImg,
+    format: "webp",
+    width: 600,
+    quality: 60,
+});
+const sistemeBg = await getImage({
+    src: sistemeImg,
+    format: "webp",
+    width: 600,
+    quality: 60,
+});
+const lotoBg = await getImage({
+    src: lotoImg,
+    format: "webp",
+    width: 900,
+    quality: 60,
+});
+---
+
+<main
+    class="flex flex-col lg:flex-row min-h-screen lg:h-screen lg:overflow-hidden w-full bg-black gap-[2px]"
+>
+    <div
+        class="order-2 lg:order-1 w-full lg:w-1/2 h-[100dvh] lg:h-full flex flex-col gap-[2px] bg-black"
+    >
+        <!-- Desktop Nav -->
+        <nav class="hidden lg:grid grid-cols-2 gap-[2px] flex-shrink-0">
+            <a
+                href="/"
+                class="brutal-block py-4 px-6 flex items-center justify-start bg-white hover:!bg-white group"
+            >
+                <Image
+                    src={whtcLogo}
+                    alt="WHTC Logo"
+                    class="h-16 w-auto"
+                    loading="eager"
+                    fetchpriority="high"
+                />
+            </a>
+            <!-- Desktop Meniu Button -->
+            <div class="relative">
+                <button
+                    id="desk-nav-btn"
+                    onclick="toggleDeskNav()"
+                    class="brutal-block w-full h-full !flex-row !justify-center !items-center gap-3 bg-white hover:bg-black hover:text-white group transition-colors duration-200 cursor-pointer"
+                    aria-label="Navigare"
+                >
+                    <svg
+                        id="desk-nav-icon-menu"
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2.5"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg
+                        id="desk-nav-icon-close"
+                        class="w-5 h-5 hidden"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2.5"
+                            d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                    <span
+                        class="font-black font-montserrat text-sm uppercase tracking-widest"
+                        >Meniu</span
+                    >
+                </button>
+                <!-- Desktop Panel: right-anchored, ~400px, overlays video -->
+                <div
+                    id="desk-nav-panel"
+                    class="desk-nav-panel-closed fixed top-0 right-0 h-full bg-white border-l-2 border-black z-[300] flex flex-col pointer-events-none overflow-y-auto"
+                    style="font-family:'Montserrat',sans-serif; width:min(400px,40vw);"
+                >
+                    <!-- Soluții Protecție — flat always-visible category list -->
+                    <div class="flex-shrink-0">
+                        <div
+                            class="flex items-center justify-between px-6 pt-7 pb-3"
+                        >
+                            <span
+                                class="font-black text-[9px] uppercase tracking-[.3em] text-gray-400"
+                                >Soluții Protecție</span
+                            >
+                        </div>
+                        <div>
+                            <a
+                                href="/solutii/linia-vietii/"
+                                class="flex items-center gap-4 px-6 py-4 border-t border-gray-100 hover:bg-gray-50 transition-colors"
+                            >
+                                <span
+                                    class="w-1 h-8 rounded-full flex-shrink-0"
+                                    style="background:#1e3a8a;"></span>
+                                <div>
+                                    <span
+                                        class="block font-black text-[19px] uppercase leading-none tracking-tight text-gray-900"
+                                        >Linia Vieții</span
+                                    >
+                                    <span
+                                        class="block text-[10px] font-bold uppercase tracking-wider mt-0.5"
+                                        style="color:#1e3a8a;">Inginerie</span
+                                    >
+                                </div>
+                            </a>
+                            <a
+                                href="/solutii/verificari-recertificari/"
+                                class="flex items-center gap-4 px-6 py-4 border-t border-gray-100 hover:bg-gray-50 transition-colors"
+                            >
+                                <span
+                                    class="w-1 h-8 rounded-full flex-shrink-0"
+                                    style="background:#16a34a;"></span>
+                                <div>
+                                    <span
+                                        class="block font-black text-[19px] uppercase leading-none tracking-tight text-gray-900"
+                                        >Verificări EIP</span
+                                    >
+                                    <span
+                                        class="block text-[10px] font-bold uppercase tracking-wider mt-0.5"
+                                        style="color:#16a34a;">Inspecție</span
+                                    >
+                                </div>
+                            </a>
+                            <a
+                                href="/solutii/acces/"
+                                class="flex items-center gap-4 px-6 py-4 border-t border-gray-100 hover:bg-gray-50 transition-colors"
+                            >
+                                <span
+                                    class="w-1 h-8 rounded-full flex-shrink-0"
+                                    style="background:#7c3aed;"></span>
+                                <div>
+                                    <span
+                                        class="block font-black text-[19px] uppercase leading-none tracking-tight text-gray-900"
+                                        >Scări &amp; Platforme</span
+                                    >
+                                    <span
+                                        class="block text-[10px] font-bold uppercase tracking-wider mt-0.5"
+                                        style="color:#7c3aed;"
+                                        >Acces Industrial</span
+                                    >
+                                </div>
+                            </a>
+                            <a
+                                href="/solutii/3m/"
+                                class="flex items-center gap-4 px-6 py-4 border-t border-gray-100 hover:bg-gray-50 transition-colors"
+                            >
+                                <span
+                                    class="w-1 h-8 rounded-full flex-shrink-0"
+                                    style="background:#D32F2F;"></span>
+                                <div>
+                                    <span
+                                        class="block font-black text-[19px] uppercase leading-none tracking-tight text-gray-900"
+                                        >Echipamente 3M™</span
+                                    >
+                                    <span
+                                        class="block text-[10px] font-bold uppercase tracking-wider mt-0.5"
+                                        style="color:#D32F2F;"
+                                        >Distribuitor Autorizat</span
+                                    >
+                                </div>
+                            </a>
+                            <a
+                                href="/solutii/custom/"
+                                class="flex items-center gap-4 px-6 py-4 border-t border-b-2 border-gray-100 hover:bg-gray-50 transition-colors"
+                                style="border-bottom: 2px solid #000;"
+                            >
+                                <span
+                                    class="w-1 h-8 rounded-full flex-shrink-0"
+                                    style="background:#f16215;"></span>
+                                <div>
+                                    <span
+                                        class="block font-black text-[19px] uppercase leading-none tracking-tight text-gray-900"
+                                        >Implementare Custom</span
+                                    >
+                                    <span
+                                        class="block text-[10px] font-bold uppercase tracking-wider mt-0.5"
+                                        style="color:#f16215;"
+                                        >Full Service</span
+                                    >
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Training & Control Energii -->
+                    <div class="flex-shrink-0">
+                        <div class="px-6 pt-5 pb-2">
+                            <span
+                                class="font-black text-[9px] uppercase tracking-[.3em] text-gray-400"
+                                >Servicii</span
+                            >
+                        </div>
+                        <a
+                            href="/training-lucru-la-inaltime/"
+                            class="flex items-center justify-between px-6 py-4 border-t border-gray-100 border-b border-gray-100 hover:bg-gray-50 transition-colors group"
+                        >
+                            <span
+                                class="font-black text-[19px] uppercase leading-none tracking-tight text-gray-900"
+                                >Training</span
+                            >
+                            <svg
+                                class="w-4 h-4 text-gray-300 group-hover:text-gray-600 transition-colors"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                ><path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2.5"
+                                    d="M9 5l7 7-7 7"></path></svg
+                            >
+                        </a>
+                        <a
+                            href="/control-energii-lockout-tagout/"
+                            class="flex items-center justify-between px-6 py-4 border-b-2 border-black hover:bg-gray-50 transition-colors group"
+                        >
+                            <span
+                                class="font-black text-[19px] uppercase leading-none tracking-tight text-gray-900"
+                                >Control Energii</span
+                            >
+                            <svg
+                                class="w-4 h-4 text-gray-300 group-hover:text-gray-600 transition-colors"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                ><path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2.5"
+                                    d="M9 5l7 7-7 7"></path></svg
+                            >
+                        </a>
+                    </div>
+
+                    <!-- Contact at bottom -->
+                    <div class="mt-auto flex-shrink-0 p-5 space-y-2">
+                        <button
+                            onclick="openContactDrawer(); toggleDeskNav();"
+                            class="w-full bg-black text-white py-4 font-black text-[12px] uppercase tracking-[.2em] hover:bg-gray-800 transition-colors cursor-pointer"
+                        >
+                            Contact Expert
+                        </button>
+                        <a
+                            href="tel:+40749225956"
+                            class="block w-full text-center border border-gray-200 py-3 font-bold text-[11px] uppercase tracking-widest text-gray-500 hover:border-black hover:text-black transition-colors"
+                        >
+                            +40 749 225 956
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Nav - Fixed -->
+        <nav
+            class="lg:hidden fixed top-0 left-0 right-0 z-[150] grid grid-cols-2 gap-[2px] bg-black border-b-2 border-black"
+        >
+            <a
+                href="/"
+                class="brutal-block py-4 px-4 flex items-center justify-start bg-white hover:!bg-white group"
+            >
+                <Image
+                    src={whtcLogo}
+                    alt="WHTC Logo"
+                    class="h-10 w-auto"
+                    loading="eager"
+                    fetchpriority="high"
+                />
+            </a>
+            <button
+                id="mob-nav-btn"
+                onclick="toggleMobNav()"
+                class="brutal-block !flex-row !justify-center !items-center gap-3 bg-white hover:bg-black hover:text-white transition-colors duration-200 cursor-pointer"
+                aria-label="Navigare"
+            >
+                <svg
+                    id="mob-nav-icon-menu"
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2.5"
+                        d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+                <svg
+                    id="mob-nav-icon-close"
+                    class="w-5 h-5 hidden"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2.5"
+                        d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+                <span
+                    class="font-black font-montserrat text-sm uppercase tracking-widest"
+                    >Meniu</span
+                >
+            </button>
+        </nav>
+
+        <!-- Mobile Full-Screen Nav Overlay -->
+        <div
+            id="mob-nav-overlay"
+            class="hidden fixed inset-0 z-[140] bg-white flex flex-col"
+            style="font-family:'Montserrat',sans-serif; padding-top: 64px;"
+        >
+            <div class="flex-1 overflow-y-auto">
+                <!-- Soluții Protecție — always expanded on mobile -->
+                <div class="border-b-2 border-black">
+                    <div
+                        class="flex items-center justify-between px-5 py-4 bg-black"
+                    >
+                        <span
+                            class="font-black text-[13px] uppercase tracking-wider text-white"
+                            >Soluții Protecție</span
+                        >
+                    </div>
+                    <div class="bg-gray-50">
+                        <a
+                            href="/solutii/linia-vietii/"
+                            class="flex items-center gap-4 px-6 py-4 border-b border-gray-100 hover:bg-white transition-colors"
+                        >
+                            <span
+                                class="w-2.5 h-2.5 rounded-full flex-shrink-0"
+                                style="background:#1e3a8a;"></span>
+                            <div>
+                                <span
+                                    class="block font-black text-[13px] uppercase tracking-wide text-gray-800"
+                                    >Linia Vieții</span
+                                >
+                                <span
+                                    class="block text-[9px] font-bold uppercase tracking-wider"
+                                    style="color:#1e3a8a;">Inginerie</span
+                                >
+                            </div>
+                        </a>
+                        <a
+                            href="/solutii/verificari-recertificari/"
+                            class="flex items-center gap-4 px-6 py-4 border-b border-gray-100 hover:bg-white transition-colors"
+                        >
+                            <span
+                                class="w-2.5 h-2.5 rounded-full flex-shrink-0"
+                                style="background:#16a34a;"></span>
+                            <div>
+                                <span
+                                    class="block font-black text-[13px] uppercase tracking-wide text-gray-800"
+                                    >Verificări EIP</span
+                                >
+                                <span
+                                    class="block text-[9px] font-bold uppercase tracking-wider"
+                                    style="color:#16a34a;">Inspecție</span
+                                >
+                            </div>
+                        </a>
+                        <a
+                            href="/solutii/acces/"
+                            class="flex items-center gap-4 px-6 py-4 border-b border-gray-100 hover:bg-white transition-colors"
+                        >
+                            <span
+                                class="w-2.5 h-2.5 rounded-full flex-shrink-0"
+                                style="background:#7c3aed;"></span>
+                            <div>
+                                <span
+                                    class="block font-black text-[13px] uppercase tracking-wide text-gray-800"
+                                    >Scări &amp; Platforme</span
+                                >
+                                <span
+                                    class="block text-[9px] font-bold uppercase tracking-wider"
+                                    style="color:#7c3aed;"
+                                    >Acces Industrial</span
+                                >
+                            </div>
+                        </a>
+                        <a
+                            href="/solutii/3m/"
+                            class="flex items-center gap-4 px-6 py-4 border-b border-gray-100 hover:bg-white transition-colors"
+                        >
+                            <span
+                                class="w-2.5 h-2.5 rounded-full flex-shrink-0"
+                                style="background:#D32F2F;"></span>
+                            <div>
+                                <span
+                                    class="block font-black text-[13px] uppercase tracking-wide text-gray-800"
+                                    >Echipamente 3M™</span
+                                >
+                                <span
+                                    class="block text-[9px] font-bold uppercase tracking-wider"
+                                    style="color:#D32F2F;"
+                                    >Distribuitor Autorizat</span
+                                >
+                            </div>
+                        </a>
+                        <a
+                            href="/solutii/custom/"
+                            class="flex items-center gap-4 px-6 py-4 border-b border-gray-100 hover:bg-white transition-colors"
+                        >
+                            <span
+                                class="w-2.5 h-2.5 rounded-full flex-shrink-0"
+                                style="background:#f16215;"></span>
+                            <div>
+                                <span
+                                    class="block font-black text-[13px] uppercase tracking-wide text-gray-800"
+                                    >Implementare Custom</span
+                                >
+                                <span
+                                    class="block text-[9px] font-bold uppercase tracking-wider"
+                                    style="color:#f16215;">Full Service</span
+                                >
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Training -->
+                <a
+                    href="/training-lucru-la-inaltime/"
+                    class="flex items-center justify-between px-5 py-5 border-b-2 border-black hover:bg-gray-50 transition-colors"
+                >
+                    <span
+                        class="font-black text-[14px] uppercase tracking-wider text-black"
+                        >Training</span
+                    >
+                    <svg
+                        class="w-5 h-5 text-gray-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        ><path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2.5"
+                            d="M9 5l7 7-7 7"></path></svg
+                    >
+                </a>
+
+                <!-- Control Energii -->
+                <a
+                    href="/control-energii-lockout-tagout/"
+                    class="flex items-center justify-between px-5 py-5 border-b-2 border-black hover:bg-gray-50 transition-colors"
+                >
+                    <span
+                        class="font-black text-[14px] uppercase tracking-wider text-black"
+                        >Control Energii</span
+                    >
+                    <svg
+                        class="w-5 h-5 text-gray-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        ><path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2.5"
+                            d="M9 5l7 7-7 7"></path></svg
+                    >
+                </a>
+            </div>
+
+            <!-- Contact at the bottom -->
+            <div
+                class="flex-shrink-0 p-5 border-t-2 border-black space-y-3 bg-white"
+            >
+                <button
+                    onclick="openContactDrawer(); toggleMobNav();"
+                    class="w-full bg-black text-white py-4 font-black text-[12px] uppercase tracking-[.2em] hover:bg-gray-800 transition-colors cursor-pointer"
+                >
+                    Contact Expert
+                </button>
+                <a
+                    href="tel:+40749225956"
+                    class="block w-full text-center border-2 border-black py-3 font-black text-[11px] uppercase tracking-widest text-black hover:bg-black hover:text-white transition-colors"
+                >
+                    +40 749 225 956
+                </a>
+            </div>
+        </div>
+
+        <!-- Mobile spacer -->
+        <div class="lg:hidden h-16"></div>
+
+        <div
+            class="order-4 lg:order-2 flex flex-col md:grid md:grid-cols-2 flex-grow gap-[2px] bg-black lg:min-h-0"
+        >
+            <!-- Soluții Protecție -->
+            <a
+                href="/solutii"
+                class="hero-vertical brutal-block p-4 lg:p-6 xl:p-8 flex-1 lg:flex-none lg:min-h-0 group"
+            >
+                <div
+                    class="bg-overlay-bw group-hover:opacity-0"
+                    style={`background-image: url('${sistemeBg.src}');`}
+                >
+                </div>
+                <div
+                    class="bg-overlay-color"
+                    style={`background-image: url('${sistemeBg.src}');`}
+                >
+                </div>
+                <div class="relative z-20">
+                    <span
+                        class="bg-brand-blue text-white text-[9px] font-black px-2 py-0.5 mb-3 inline-block font-montserrat uppercase"
+                        >Lucru La Inaltime</span
+                    >
+                    <h2
+                        class="text-2xl lg:text-3xl xl:text-4xl font-black font-montserrat leading-[0.85] uppercase mb-3"
+                    >
+                        Soluții<br />Protecție
+                    </h2>
+                    <div class="w-12 h-2 bg-brand-blue"></div>
+                </div>
+            </a>
+
+            <!-- Training Industrial -->
+            <a
+                href="/training-lucru-la-inaltime/"
+                class="hero-vertical brutal-block p-4 lg:p-6 xl:p-8 flex-1 lg:flex-none lg:min-h-0 group"
+            >
+                <div
+                    class="bg-overlay-bw"
+                    style={`background-image: url('${trainingBg.src}');`}
+                >
+                </div>
+                <div
+                    class="bg-overlay-color"
+                    style={`background-image: url('${trainingBg.src}');`}
+                >
+                </div>
+                <div class="relative z-20">
+                    <span
+                        class="bg-brand-orange-alt text-white text-[9px] font-black px-2 py-0.5 mb-3 inline-block font-montserrat uppercase"
+                        >Safety Academy</span
+                    >
+                    <h2
+                        class="text-2xl lg:text-3xl xl:text-4xl font-black font-montserrat leading-[0.85] uppercase mb-3"
+                    >
+                        Training<br />Industrial
+                    </h2>
+                    <div class="w-12 h-2 bg-brand-orange-alt"></div>
+                </div>
+            </a>
+
+            <!-- Loto Services - Full Width -->
+            <a
+                href="/control-energii-lockout-tagout/"
+                class="hero-vertical brutal-block md:col-span-2 p-4 lg:p-6 xl:p-8 flex-1 lg:flex-none lg:min-h-0 group"
+            >
+                <div
+                    class="bg-overlay-bw"
+                    style={`background-image: url('${lotoBg.src}');`}
+                >
+                </div>
+                <div
+                    class="bg-overlay-color"
+                    style={`background-image: url('${lotoBg.src}');`}
+                >
+                </div>
+                <div class="relative z-20">
+                    <span
+                        class="bg-brand-red text-white text-[9px] font-black px-2 py-0.5 mb-2 inline-block font-montserrat uppercase"
+                        >Lockout Tagout</span
+                    >
+                    <h2
+                        class="text-2xl lg:text-3xl xl:text-4xl font-black font-montserrat leading-none uppercase mb-3"
+                    >
+                        Control Energii<br />Periculoase
+                    </h2>
+                    <div class="w-24 h-2 bg-brand-red"></div>
+                </div>
+            </a>
+        </div>
+
+        <!-- 3M/ISO Section - Image Only, Full Color -->
+        <a
+            href="/contact"
+            class="order-5 lg:order-3 brutal-block bg-white hover:!bg-white min-h-[120px] lg:min-h-0 flex items-center justify-center p-0 overflow-hidden group flex-shrink-0"
+        >
+            <Image
+                src={iso3mImg}
+                alt="ISO & 3M Certifications"
+                width={800}
+                quality={70}
+                format="webp"
+                loading="eager"
+                fetchpriority="high"
+                class="w-full h-full object-contain p-3 md:p-8 lg:p-6 xl:p-10 transition-transform duration-300 group-hover:scale-[1.02]"
+            />
+        </a>
+    </div>
+
+    <!-- Right Side: Fixed Image -->
+    <div
+        class="hidden lg:block lg:order-2 w-full lg:w-1/2 lg:h-screen lg:fixed lg:right-0 bg-gray-900 relative lg:border-l-2 lg:border-black"
+    >
+        <video
+            id="hero-video"
+            src={safetyVideo}
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="none"
+            class="w-full h-full object-cover aspect-square lg:aspect-auto opacity-0 transition-opacity duration-700"
+        ></video>
+
+        <div
+            class="absolute bottom-6 right-6 text-white font-montserrat font-light text-xs lg:text-sm bg-black/50 backdrop-blur-sm px-3 py-1.5 border border-white/20 hidden lg:block uppercase leading-none tracking-tighter"
+        >
+            Siguranța pe Primul Loc.<br />Fără Compromisuri.
+        </div>
+    </div>
+
+    <!-- Combined Shared Contact Drawer Component -->
+    <SharedContactDrawer />
+</main>
+
+<script is:inline>
+    // Smooth video fade-in when ready (existing)
+    const heroVideo = document.getElementById("hero-video");
+    if (heroVideo) {
+        heroVideo.addEventListener(
+            "canplay",
+            function () {
+                heroVideo.classList.remove("opacity-0");
+                heroVideo.classList.add("opacity-100");
+            },
+            { once: true },
+        );
+    }
+
+    // Cycle "signal" hover effect on hero verticals
+    const verticals = document.querySelectorAll(".hero-vertical");
+    let currentVerticalIndex = 0;
+
+    function cycleVerticals() {
+        if (!verticals.length) return;
+
+        // Remove signal class from all
+        verticals.forEach((v) => v.classList.remove("signal-hover"));
+
+        // Add signal class to current
+        verticals[currentVerticalIndex].classList.add("signal-hover");
+
+        // Prepare next index
+        currentVerticalIndex = (currentVerticalIndex + 1) % verticals.length;
+    }
+
+    // Start the cycle
+    if (verticals.length > 0) {
+        // Run immediately first time
+        cycleVerticals();
+        // Then every 3 seconds
+        setInterval(cycleVerticals, 3000);
+    }
+
+    // ── Desktop dropdown nav (smooth, no backdrop, no scroll lock) ──────
+    window.toggleDeskNav = function () {
+        const panel = document.getElementById("desk-nav-panel");
+        const iconMenu = document.getElementById("desk-nav-icon-menu");
+        const iconClose = document.getElementById("desk-nav-icon-close");
+        if (!panel) return;
+        const isOpen = panel.classList.contains("desk-nav-panel-open");
+        panel.classList.toggle("desk-nav-panel-open", !isOpen);
+        panel.classList.toggle("desk-nav-panel-closed", isOpen);
+        if (iconMenu) iconMenu.classList.toggle("hidden", !isOpen);
+        if (iconClose) iconClose.classList.toggle("hidden", isOpen);
+    };
+
+    // Close desktop panel when clicking outside
+    document.addEventListener("click", function (e) {
+        const panel = document.getElementById("desk-nav-panel");
+        const btn = document.getElementById("desk-nav-btn");
+        if (
+            panel &&
+            panel.classList.contains("desk-nav-panel-open") &&
+            !panel.contains(e.target) &&
+            btn &&
+            !btn.contains(e.target)
+        ) {
+            window.toggleDeskNav();
+        }
+    });
+
+    window.toggleSolutiiSub = function () {
+        const sub = document.getElementById("solutii-sub");
+        const chevron = document.getElementById("solutii-chevron");
+        if (!sub) return;
+        const isOpen = !sub.classList.contains("hidden");
+        sub.classList.toggle("hidden", isOpen);
+        if (chevron) chevron.style.transform = isOpen ? "" : "rotate(180deg)";
+    };
+
+    // ── Mobile full-screen nav ──────────────────────────────────────────
+    window.toggleMobNav = function () {
+        const overlay = document.getElementById("mob-nav-overlay");
+        const iconMenu = document.getElementById("mob-nav-icon-menu");
+        const iconClose = document.getElementById("mob-nav-icon-close");
+        if (!overlay) return;
+        const isHidden = overlay.classList.contains("hidden");
+        overlay.classList.toggle("hidden", !isHidden);
+        iconMenu.classList.toggle("hidden", isHidden);
+        iconClose.classList.toggle("hidden", !isHidden);
+        document.body.style.overflow = isHidden ? "hidden" : "";
+    };
+
+    window.toggleMobSolutii = function () {
+        const sub = document.getElementById("mob-solutii-sub");
+        const chevron = document.getElementById("mob-solutii-chevron");
+        if (!sub) return;
+        const isOpen = !sub.classList.contains("hidden");
+        sub.classList.toggle("hidden", isOpen);
+        if (chevron) chevron.style.transform = isOpen ? "" : "rotate(180deg)";
+    };
+</script>
+
+<style>
+    /* Smooth side-panel open/close (slides in from right over video) */
+    .desk-nav-panel-closed {
+        opacity: 0;
+        transform: translateX(20px);
+        transition:
+            opacity 0.22s ease,
+            transform 0.22s ease;
+        pointer-events: none;
+    }
+    .desk-nav-panel-open {
+        opacity: 1;
+        transform: translateX(0);
+        transition:
+            opacity 0.22s ease,
+            transform 0.22s ease;
+        pointer-events: auto;
+    }
+
+    /* Brutal-block base styling */
+    .brutal-block {
+        background: #fff;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        text-decoration: none;
+        color: inherit;
+        border: 1px solid #000;
+        transition:
+            color 0.5s ease-in-out,
+            background-color 0.5s ease-in-out;
+    }
+
+    .brutal-block-btn {
+        background: #fff;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        transition: background-color 0.15s ease;
+        text-decoration: none;
+        color: inherit;
+        border: 1px solid #000;
+    }
+
+    /* Signal/Pulse animation state - milder version of hover */
+    .brutal-block.signal-hover {
+        background-color: #1a1a1a;
+        color: #fff;
+    }
+
+    .brutal-block.signal-hover .bg-overlay-bw {
+        opacity: 0;
+        transform: scale(1);
+    }
+
+    .brutal-block.signal-hover .bg-overlay-color {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+
+    .brutal-block:hover {
+        background-color: #000;
+        color: #fff;
+        transition:
+            color 0.3s ease-out,
+            background-color 0.3s ease-out;
+    }
+
+    /* Overlay images - B&W default at 10% */
+    .bg-overlay-bw {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        opacity: 0.1;
+        z-index: 10;
+        filter: grayscale(75%) contrast(130%);
+        pointer-events: none;
+        transition:
+            opacity 0.5s ease-in-out,
+            transform 0.5s ease-in-out;
+        transform: scale(1);
+    }
+
+    /* Overlay images - Color on hover at 60% */
+    .bg-overlay-color {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        z-index: 10;
+        filter: grayscale(0%);
+        pointer-events: none;
+        transition:
+            opacity 0.5s ease-in-out,
+            transform 0.5s ease-in-out;
+        transform: scale(1);
+    }
+
+    .group:hover .bg-overlay-bw {
+        opacity: 0;
+        transform: scale(1.05);
+        transition:
+            opacity 0.3s ease-out,
+            transform 0.3s ease-out;
+    }
+
+    .group:hover .bg-overlay-color {
+        opacity: 0.75;
+        transform: scale(1.05);
+        transition:
+            opacity 0.3s ease-out,
+            transform 0.3s ease-out;
+    }
+
+    /* Fix for desktop - console-like aspect */
+    @media (min-width: 1024px) {
+        body {
+            overflow: hidden;
+            height: 100vh;
+        }
+    }
+</style>

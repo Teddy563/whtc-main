@@ -1,10 +1,15 @@
 <script is:inline>
-  document.addEventListener('DOMContentLoaded', function() {
-    if ('scrollBehavior' in document.documentElement.style === false) {
-      // Fallback for browsers that do not support scroll-behavior
-      import('smoothscroll-polyfill').then(smoothscroll => {
-        smoothscroll.polyfill();
-      });
-    }
-  });
+  /* Smooth-scroll polyfill — native inline, no external dependency */
+  if (!("scrollBehavior" in document.documentElement.style)) {
+    var origScrollTo = Element.prototype.scrollTo;
+    Element.prototype.scrollTo = function (options) {
+      if (typeof options === "object" && options.behavior === "smooth") {
+        origScrollTo && origScrollTo.call(this, options);
+      } else {
+        origScrollTo
+          ? origScrollTo.apply(this, arguments)
+          : (this.scrollTop = options);
+      }
+    };
+  }
 </script>

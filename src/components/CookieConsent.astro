@@ -1,0 +1,142 @@
+---
+// CookieConsent.astro
+import { Icon } from "astro-icon/components";
+---
+
+<div
+    id="cookie-consent-popup"
+    class="fixed bottom-4 left-4 w-[calc(100%-2rem)] md:left-6 md:w-[380px] bg-white border border-gray-200 z-[200] transform translate-y-[150%] opacity-0 transition-all duration-700 ease-[cubic-bezier(0.87,0,0.13,1)] shadow-2xl flex flex-col pointer-events-none p-4 rounded-none"
+>
+    <!-- Close Button Top Right -->
+    <button
+        id="cookie-close-btn"
+        aria-label="Închide fereastra cookie-uri"
+        class="absolute top-4 right-4 text-gray-400 hover:text-black transition-colors"
+    >
+        <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+    </button>
+
+    <div class="flex items-start gap-4">
+        <!-- Corporate Cookie Icon using mdi:cookie-alert -->
+        <div class="text-[#f16215] flex-shrink-0 mt-0.5">
+            <Icon name="mdi:cookie-alert" class="w-8 h-8" />
+        </div>
+
+        <div class="flex-1 w-full pr-2">
+            <h3
+                class="text-[11px] font-black uppercase tracking-[0.1em] text-black font-montserrat mb-1.5 flex items-center gap-2"
+            >
+                Gestionare Cookie-uri
+            </h3>
+
+            <p
+                class="text-[10px] font-medium text-gray-500 mb-3 leading-relaxed"
+            >
+                Acest site utilizează cookie-uri pentru a asigura
+                funcționalitatea optimă și a analiza traficul.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center gap-3 w-full">
+                <button
+                    id="cookie-accept-btn"
+                    class="w-full sm:w-auto bg-[#f16215] border border-[#f16215] text-white px-4 py-2 text-[9px] font-black uppercase tracking-[0.1em] hover:bg-black hover:border-black transition-colors rounded-none"
+                >
+                    Acceptă Toate
+                </button>
+                <button
+                    id="cookie-necessary-btn"
+                    class="w-full sm:w-auto text-gray-400 hover:text-black py-2 text-[9px] font-bold uppercase tracking-[0.1em] transition-colors text-center sm:text-left rounded-none"
+                >
+                    Doar Necesare
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+        const popup = document.getElementById("cookie-consent-popup");
+        const acceptBtn = document.getElementById("cookie-accept-btn");
+        const necessaryBtn = document.getElementById("cookie-necessary-btn");
+        const closeBtn = document.getElementById("cookie-close-btn");
+
+        const COOKIE_NAME = "whtc_cookie_consent";
+
+        function checkCookie() {
+            // Check if user has already set preferences
+            if (localStorage.getItem(COOKIE_NAME)) {
+                return;
+            }
+
+            // Show popup with a slight delay for better UX
+            setTimeout(() => {
+                if (popup) {
+                    popup.classList.remove(
+                        "translate-y-[150%]",
+                        "opacity-0",
+                        "pointer-events-none",
+                    );
+                }
+            }, 1000);
+        }
+
+        function hidePopup() {
+            if (popup) {
+                popup.classList.add(
+                    "translate-y-[150%]",
+                    "opacity-0",
+                    "pointer-events-none",
+                );
+            }
+        }
+
+        function saveConsent(level) {
+            localStorage.setItem(COOKIE_NAME, level);
+            hidePopup();
+
+            console.log(`Cookie consent saved: ${level}`);
+
+            if (level === "all") {
+                if (typeof window.gtag === "function") {
+                    window.gtag("consent", "update", {
+                        analytics_storage: "granted",
+                        ad_storage: "granted",
+                        ad_user_data: "granted",
+                        ad_personalization: "granted",
+                    });
+                }
+                if (typeof window.clarity === "function") {
+                    window.clarity("consent");
+                }
+            }
+        }
+
+        if (acceptBtn) {
+            acceptBtn.addEventListener("click", () => saveConsent("all"));
+        }
+
+        if (necessaryBtn) {
+            necessaryBtn.addEventListener("click", () =>
+                saveConsent("necessary"),
+            );
+        }
+
+        if (closeBtn) {
+            closeBtn.addEventListener("click", () => hidePopup());
+        }
+
+        checkCookie();
+    });
+</script>

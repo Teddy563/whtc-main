@@ -1,0 +1,354 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+/**
+ * ContentSection — 2-column layout: image grid (left or right) + copy block.
+ *
+ * Props:
+ *   badge        — small coloured label above the heading
+ *   heading      — H2 text (HTML allowed)
+ *   lead         — bold italic lead paragraph
+ *   body         — regular body paragraph(s) — HTML allowed
+ *   color        — hex for the category accent colour
+ *   imageGrid    — array of { src, alt, badge? } for the 2x2 image grid (2–4 items)
+ *   imageRight   — if true, image grid goes on the right (default: left)
+ *   bgGray       — if true, section bg is gray-50 with border-y-2 border-black
+ *   chips        — optional string[] for feature chips
+ *   featureBoxes — optional string[] for feature-box grid items
+ *   listItems    — optional string[] for bullet list
+ *   ctaLabel     — CTA button label (default: "Solicită Ofertă")
+ *   ctaSubject   — subject passed to openContactDrawer()
+ *   moreHref     — "Află mai mult" link URL
+ *   moreLabel    — "Află mai mult" link label (default: "Află mai mult →")
+ */
+
+interface ImageItem {
+    src: string | ImageMetadata;
+    alt?: string;
+    badge?: string;
+    wide?: boolean; // row-span-2 (tall cell in a 2x2 grid)
+}
+
+interface Props {
+    badge?: string;
+    heading: string;
+    lead?: string;
+    body?: string;
+    color?: string;
+    imageGrid?: ImageItem[];
+    imageRight?: boolean;
+    bgGray?: boolean;
+    chips?: string[];
+    featureBoxes?: string[];
+    listItems?: string[];
+    ctaLabel?: string;
+    ctaSubject?: string;
+    moreHref?: string;
+    moreLabel?: string;
+    secondaryBtnLabel?: string;
+    secondaryBtnSubject?: string;
+}
+
+const {
+    badge,
+    heading,
+    lead,
+    body,
+    color = "#f16215",
+    imageGrid = [],
+    imageRight = false,
+    bgGray = false,
+    chips = [],
+    featureBoxes = [],
+    listItems = [],
+    ctaLabel = "Solicită Ofertă",
+    ctaSubject = "General Inquiry",
+    moreHref,
+    moreLabel = "Află mai mult →",
+    secondaryBtnLabel,
+    secondaryBtnSubject,
+} = Astro.props;
+
+const sectionClass = bgGray
+    ? "py-8 lg:py-12 bg-white"
+    : "py-8 lg:py-12 bg-white";
+
+const imgColClass = imageRight ? "order-1 md:order-2" : "";
+const copyColClass = imageRight ? "order-2 md:order-1" : "";
+---
+
+<section class={sectionClass}>
+    <div class="px-5 lg:px-8">
+        <div
+            class="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 lg:gap-20 items-center"
+        >
+            {/* ===== Image Block ===== */}
+            {
+                imageGrid.length > 0 && (
+                    <div
+                        class={`relative h-[300px] md:h-[400px] lg:h-[450px] border-4 p-1 ${imgColClass}`}
+                        style={`border-color:${color};`}
+                    >
+                        <div class="relative w-full h-full overflow-hidden group">
+                            {typeof imageGrid[0].src === "string" ? (
+                                <img
+                                    src={imageGrid[0].src}
+                                    alt={imageGrid[0].alt ?? ""}
+                                    class="w-full h-full object-cover transition-all duration-700 hover:scale-105"
+                                    loading="lazy"
+                                    width="800"
+                                    height="600"
+                                />
+                            ) : (
+                                <Image
+                                    src={imageGrid[0].src}
+                                    alt={imageGrid[0].alt ?? ""}
+                                    width={800}
+                                    class="w-full h-full object-cover transition-all duration-700 hover:scale-105"
+                                    loading="lazy"
+                                    quality={70}
+                                    format="webp"
+                                />
+                            )}
+                            {imageGrid[0].badge && (
+                                <div
+                                    class="absolute bottom-4 left-4 text-white text-[12px] font-black uppercase px-3 py-1.5 tracking-widest shadow-lg"
+                                    style={`background:${color};`}
+                                >
+                                    {imageGrid[0].badge}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                )
+            }
+
+            {/* ===== Copy Block ===== */}
+            <div class={copyColClass}>
+                {
+                    badge && (
+                        <span
+                            class="section-tag"
+                            style={`background:${color};`}
+                        >
+                            {badge}
+                        </span>
+                    )
+                }
+
+                <h2 class="section-heading" set:html={heading} />
+
+                <div class="section-rule" style={`background:${color};`}></div>
+
+                {
+                    lead && (
+                        <p
+                            class="font-montserrat font-black text-sm md:text-base uppercase tracking-tight italic mb-4"
+                            style={`color:${color};`}
+                        >
+                            {lead}
+                        </p>
+                    )
+                }
+
+                {body && <p class="section-body" set:html={body} />}
+
+                {/* Slot for extra custom content */}
+                <slot />
+
+                {/* Feature Chips */}
+                {
+                    chips.length > 0 && (
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            {chips.map((chip) => (
+                                <div
+                                    class="feature-chip"
+                                    style={`border-color:${color};color:${color};`}
+                                >
+                                    {chip}
+                                </div>
+                            ))}
+                        </div>
+                    )
+                }
+
+                {/* Feature Boxes (2-col grid) */}
+                {
+                    featureBoxes.length > 0 && (
+                        <div class="grid grid-cols-2 gap-2 mb-8">
+                            {featureBoxes.map((f) => (
+                                <div
+                                    class="feature-box"
+                                    style={`--bc:${color};`}
+                                >
+                                    <span
+                                        class="fbox-dot"
+                                        style={`background:${color};`}
+                                    />
+                                    {f}
+                                </div>
+                            ))}
+                        </div>
+                    )
+                }
+
+                {/* Bullet List */}
+                {
+                    listItems.length > 0 && (
+                        <ul class="space-y-3 mb-8">
+                            {listItems.map((item) => (
+                                <li class="flex items-center gap-3 font-montserrat font-bold text-[12px] md:text-[14px] uppercase tracking-tight">
+                                    <span
+                                        class="w-2 h-2 flex-shrink-0 rotate-45"
+                                        style={`background:${color};`}
+                                    />
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    )
+                }
+
+                {/* CTA Row */}
+                <div class="flex flex-wrap gap-3">
+                    <button
+                        onclick={`openContactDrawer('${ctaSubject}', '${color}')`}
+                        class="section-cta-btn"
+                        style={`--cta:${color};`}
+                    >
+                        {ctaLabel}
+                    </button>
+                    {
+                        secondaryBtnLabel && (
+                            <button
+                                onclick={`openContactDrawer('${secondaryBtnSubject || ctaSubject}', '${color}')`}
+                                class="section-more"
+                                style={`--cta:${color};`}
+                            >
+                                {secondaryBtnLabel}
+                            </button>
+                        )
+                    }
+                    {
+                        moreHref && (
+                            <a
+                                href={moreHref}
+                                class="section-more"
+                                style={`--cta:${color};`}
+                            >
+                                {moreLabel}
+                            </a>
+                        )
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .section-tag {
+        display: inline-block;
+        color: #fff;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        padding: 4px 10px;
+        margin-bottom: 1rem;
+    }
+    .section-heading {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: clamp(2rem, 3.5vw, 3rem);
+        text-transform: uppercase;
+        line-height: 0.9;
+        margin-bottom: 1rem;
+    }
+    .section-rule {
+        width: 3rem;
+        height: 4px;
+        margin-bottom: 1.25rem;
+    }
+    .section-body {
+        color: #6b7280;
+        font-size: 1rem;
+        line-height: 1.75;
+        margin-bottom: 1.5rem;
+    }
+    .section-cta-btn {
+        display: inline-block;
+        background: var(--cta);
+        color: #fff;
+        border: 3px solid var(--cta);
+        padding: 10px 22px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        cursor: pointer;
+        transition:
+            background 0.25s,
+            color 0.25s,
+            border-color 0.25s;
+    }
+    .section-cta-btn:hover {
+        background: #111;
+        border-color: #111;
+        color: #fff;
+    }
+    .section-more {
+        display: inline-block;
+        border: 3px solid var(--cta);
+        color: var(--cta);
+        padding: 10px 22px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        text-decoration: none;
+        transition:
+            background 0.25s,
+            color 0.25s;
+    }
+    .section-more:hover {
+        background: var(--cta);
+        color: #fff;
+    }
+    .feature-chip {
+        display: inline-block;
+        border: 2px solid;
+        padding: 4px 10px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+    .feature-box {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #fff;
+        border: 2px solid #e5e7eb;
+        padding: 9px 12px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        transition: border-color 0.2s;
+    }
+    .feature-box:hover {
+        border-color: var(--bc);
+    }
+    .fbox-dot {
+        width: 7px;
+        height: 7px;
+        flex-shrink: 0;
+    }
+</style>

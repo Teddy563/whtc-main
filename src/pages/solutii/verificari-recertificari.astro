@@ -1,0 +1,173 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import GlobalNavbar from "../../components/GlobalNavbar.astro";
+import PageFooter from "../../components/PageFooter.astro";
+import SubPageHero from "../../components/blocks/SubPageHero.astro";
+import ContentSection from "../../components/blocks/ContentSection.astro";
+import StatsStrip from "../../components/blocks/StatsStrip.astro";
+import CTABlock from "../../components/blocks/CTABlock.astro";
+import RelatedPages from "../../components/blocks/RelatedPages.astro";
+import { Image } from "astro:assets";
+import verificareEipImg from "../../assets/solutii/verificare_eip.webp";
+import verificariImg from "../../assets/solutii/verificari.webp";
+import eipImg from "../../assets/solutii/eip.webp";
+
+import liniaVietiiImgRelated from "../../assets/solutii/linia-vietii/linia-vietii-orizontala.webp";
+import accesImgRelated from "../../assets/solutii/schela_mobila.webp";
+import customImgRelated from "../../assets/solutii/solutii_custom.webp";
+import echipamente3mImgRelated from "../../assets/solutii/3m.webp";
+import verificariImgRelated from "../../assets/solutii/verificari-recertificari.webp";
+
+// ─── Category Theme ──────────────────────────────────────────────────────────
+const color = "#16a34a"; // Green — EIP / Verificări
+---
+
+<Layout title="Verificări Periodice EIP | Soluții Protecție | WHTC">
+    <head slot="head">
+        <meta
+            name="description"
+            content="Inspecție tehnică autorizată pentru echipamentul de protecție individuală (EIP). Audit flotă, marcare & etichetare, raport conformitate. WHTC România."
+        />
+    </head>
+
+    <GlobalNavbar />
+
+    <SubPageHero
+        badge="Inspecție & Certificare"
+        title="Verificări<br/>Periodice EIP"
+        subtitle="Siguranță certificată pentru echipamentul tău de protecție individuală"
+        color={color}
+        bgImage={verificareEipImg}
+        ctaPrimary={{
+            label: "Solicită Audit EIP",
+            subject: "EIP: Audit Flotă",
+        }}
+        ctaScroll={{ label: "Cum funcționează", anchor: "content-eip" }}
+    />
+
+    <!-- Main content section -->
+    <div id="content-eip">
+        <ContentSection
+            badge="Verificări EIP"
+            heading="Inspecție Anuală<br/>Obligatorie"
+            lead="Conform EN 365 & Legislației Române în Vigoare"
+            body="Conform legislației în vigoare, toate echipamentele EIP trebuie verificate cel puțin o dată la 12 luni de către o persoană competentă. Oferim servicii complete de audit, marcare și recertificare pentru flote de echipamente: de la hamuri și longe până la blocatoare și dispozitive anticădere."
+            color={color}
+            imageGrid={[
+                {
+                    src: verificariImg,
+                    alt: "Inspecție echipamente EIP",
+                    wide: true,
+                    badge: "Inspecție",
+                },
+            ]}
+            chips={[
+                "Audit Flotă",
+                "Marcare & Etichetare",
+                "Raport Conformitate",
+                "Recertificare Anuală",
+            ]}
+            ctaLabel="Solicită Audit EIP"
+            ctaSubject="EIP / Verificări Periodice"
+        />
+
+        <!-- What we check -->
+        <ContentSection
+            badge="Ce Verificăm"
+            heading="Procesul de<br/>Inspecție"
+            body="Fiecare echipament este supus unui set riguros de verificări tehnice și funcționale, documentate complet într-un raport de conformitate."
+            color={color}
+            imageRight={true}
+            bgGray={true}
+            imageGrid={[
+                {
+                    src: eipImg,
+                    alt: "Verificare EIP",
+                    wide: true,
+                    badge: "EN 365",
+                },
+            ]}
+            listItems={[
+                "Inspecție vizuală detaliată: identificarea uzurii și defectelor",
+                "Testare funcțională: verificarea mecanismelor de blocare",
+                "Raport de conformitate: documentație completă pentru audit",
+                "Marcare individuală: număr unic de identificare per echipament",
+                "Programare reinspecție: gestionare calendar scadențe",
+            ]}
+            ctaLabel="Solicită Program Verificări"
+            ctaSubject="Program Verificări EIP"
+        />
+    </div><!-- /content-eip -->
+
+    <!-- Stats -->
+    <StatsStrip
+        stats={[
+            {
+                num: "12 luni",
+                label: "Interval Obligatoriu",
+                sub: "Conform EN 365 & HG 1048/2006",
+            },
+            {
+                num: "100%",
+                label: "Raport Conformitate",
+                sub: "Documentat & arhivat digital",
+            },
+            {
+                num: "20+",
+                label: "Ani Experiență",
+                sub: "Competență dovedită pe teren",
+            },
+            {
+                num: "EN 365",
+                label: "Standard European",
+                sub: "Inspecție autorizată",
+            },
+        ]}
+    />
+
+    <CTABlock
+        heading="Programează Auditul<br/>Flotei Tale"
+        body="Venim la sediul dvs. pentru inspecție completă. Raport detaliat inclus."
+        ctaLabel="Solicită Audit EIP"
+        ctaSubject="EIP: Audit Flotă"
+        emailHref="office@whtc.ro"
+        color={color}
+        accentBackground={true}
+    />
+
+    <RelatedPages
+        heading="Servicii Conexe"
+        pages={[
+            {
+                label: "Sisteme Linia Vieții",
+                desc: "Verticale, Orizontale & Temporare",
+                href: "/solutii/linia-vietii/",
+                color: "#1e3a8a",
+                image: liniaVietiiImgRelated,
+            },
+            {
+                label: "Sisteme de Acces",
+                desc: "Scări, platforme și schele mobile",
+                href: "/solutii/acces/",
+                color: "#7c3aed",
+                image: accesImgRelated,
+            },
+            {
+                label: "Implementare Custom",
+                desc: "Proiectare și execuție la comandă",
+                href: "/solutii/custom/",
+                color: "#f16215",
+                image: customImgRelated,
+            },
+            {
+                label: "Echipamente 3M™",
+                desc: "EIP, SRL-uri & blocatoare",
+                href: "/solutii/3m/",
+                color: "#D32F2F",
+                image: echipamente3mImgRelated,
+            },
+        ]}
+    />
+
+    <PageFooter />
+</Layout>

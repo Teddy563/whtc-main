@@ -1,0 +1,1255 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import GlobalNavbar from "../../components/GlobalNavbar.astro";
+import PageFooter from "../../components/PageFooter.astro";
+import ContentSection from "../../components/blocks/ContentSection.astro";
+import ProcessSteps from "../../components/blocks/ProcessSteps.astro";
+import StatsStrip from "../../components/blocks/StatsStrip.astro";
+import CTABlock from "../../components/blocks/CTABlock.astro";
+import RelatedPages from "../../components/blocks/RelatedPages.astro";
+import { Image } from "astro:assets";
+
+import heroImg from "../../assets/solutii/sisteme_linia_vietii.gif";
+import cablocImg from "../../assets/solutii/linia-vietii/cabloc.webp";
+import scaraCrinolinaImg from "../../assets/solutii/linia-vietii/scara_crinolina.webp";
+import ks9000Img from "../../assets/solutii/linia-vietii/ks9000.webp";
+import liniaVietiiOrizontalaImg from "../../assets/solutii/linia-vietii/linia-vietii-orizontala.webp";
+import rampaAutoImg from "../../assets/solutii/linia-vietii/sistem_orizontal_rampa_auto.webp";
+import ezlineImg from "../../assets/solutii/linia-vietii/ezline.webp";
+import chingaImg from "../../assets/solutii/linia-vietii/chinga.webp";
+import sinaAluminiuImg from "../../assets/solutii/linia-vietii/sina_aluminiu.webp";
+import factorCadereImg from "../../assets/solutii/linia-vietii/factorul_de_cadere.webp";
+
+import liniaVietiiImgRelated from "../../assets/solutii/linia-vietii/linia-vietii-orizontala.webp";
+import accesImgRelated from "../../assets/solutii/schela_mobila.webp";
+import customImgRelated from "../../assets/solutii/solutii_custom.webp";
+import echipamente3mImgRelated from "../../assets/solutii/3m.webp";
+import verificariImgRelated from "../../assets/solutii/verificari-recertificari.webp";
+
+const color = "#1e3a8a";
+
+// ─── Category shades ──────────────────────────────────────────────────────────
+const VERT = "#1e3a8a"; // main blue
+const HORIZ = "#0f2266"; // darker blue
+const TEMP = "#122680"; // mid blue
+---
+
+<Layout
+    title="Sisteme Linia Vieții: Verticale, Orizontale si Temporare | WHTC Inginerie"
+>
+    <head slot="head">
+        <meta
+            name="description"
+            content="Proiectăm, instalăm și certificăm sisteme Linia Vieții EN 795 și EN 353-1. Verticale, orizontale și temporare, din Inox 316, cu verificare anuală inclusă."
+        />
+        <meta
+            name="keywords"
+            content="linia vietii, sisteme linia vietii, protectie la inaltime, sisteme anticadere, EN 795, EN 353-1, WHTC, siguranta la inaltime, linie de viata, ancorare"
+        />
+        <meta
+            property="og:title"
+            content="Sisteme Linia Vieții: Verticale, Orizontale si Temporare | WHTC"
+        />
+        <meta
+            property="og:description"
+            content="Proiectare, montaj și verificare anuală pentru sisteme Linia Vieții. Lucrăm cu Inox 316 și ancore calculate pe structura reală a clădirii, conform EN 795 și EN 353-1."
+        />
+        <meta property="og:type" content="service" />
+        <meta
+            property="og:image"
+            content="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=1200"
+        />
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "Service",
+                "serviceType": "Instalare Sisteme Linia Vieții și Protecție la Înălțime",
+                "provider": {
+                    "@type": "LocalBusiness",
+                    "name": "WHTC - Working at Height Training Centre",
+                    "image": "https://whtc.ro/assets/solutii/linia-vietii/linia-vietii-orizontala.webp",
+                    "description": "Expert în sisteme de protecție anticădere, WHTC proiectează, instalează și certifică sisteme Linia Vieții conforme EN 795 și EN 353-1."
+                },
+                "areaServed": {
+                    "@type": "Country",
+                    "name": "România"
+                },
+                "hasOfferCatalog": {
+                    "@type": "OfferCatalog",
+                    "name": "Sisteme Anticădere",
+                    "itemListElement": [
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Sisteme Linia Vieții Verticale (EN 353-1)"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Sisteme Linia Vieții Orizontale (EN 795)"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Sisteme Linia Vieții Temporare (EN 16415)"
+                            }
+                        }
+                    ]
+                }
+            }
+        </script>
+    </head>
+
+    <GlobalNavbar />
+
+    <!-- ===== CUSTOM FULL HEIGHT HERO ===== -->
+    <section
+        class="relative flex flex-col justify-between bg-black text-white overflow-hidden pt-20"
+        style="min-height: 100svh;"
+    >
+        <!-- Tinted colour wash & Background Image -->
+        <div
+            class="absolute inset-0 z-0 pointer-events-none"
+            style={`background:${color}; opacity:0.12;`}
+        >
+        </div>
+        <div class="absolute inset-0 z-0 pointer-events-none">
+            <Image
+                src={ezlineImg}
+                alt=""
+                aria-hidden="true"
+                width={1600}
+                quality={60}
+                format="webp"
+                class="w-full h-full object-cover"
+                style="opacity:0.25; filter:grayscale(80%) contrast(1.2);"
+                loading="eager"
+                fetchpriority="high"
+            />
+            <div
+                class="absolute inset-0"
+                style="background:linear-gradient(to bottom,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.1) 50%,rgba(0,0,0,0.95) 100%);"
+            >
+            </div>
+        </div>
+        <!-- Accent line -->
+        <div
+            class="absolute top-0 left-0 right-0 h-[3px] z-10"
+            style={`background:${color};`}
+        >
+        </div>
+
+        <!-- MAIN CONTENT (Centered flex-grow) -->
+        <div
+            class="relative z-10 flex-grow flex flex-col justify-center w-full px-5 lg:px-8 py-6 lg:py-10 text-center min-h-0"
+        >
+            <div class="max-w-5xl mx-auto w-full">
+                <span
+                    class="inline-block py-1 px-3 mb-3 lg:mb-6 font-montserrat font-black text-[9px] uppercase tracking-widest text-white"
+                    style={`background:${color};`}
+                >
+                    Inginerie · EN 795 · EN 353-1
+                </span>
+
+                <h1
+                    class="font-montserrat font-black uppercase tracking-tighter mb-3 lg:mb-5 mx-auto leading-none"
+                    style="font-size: clamp(2.8rem, 7vw, 6rem);"
+                >
+                    Sisteme<br />Linia Vieții
+                </h1>
+
+                <p
+                    class="text-white/60 max-w-2xl mx-auto font-montserrat font-bold uppercase tracking-widest text-[10px] md:text-xs"
+                >
+                    Verticale, Orizontale, Temporare: proiectare, montaj,<br
+                        class="hidden md:block"
+                    /> instruire și verificare anuală
+                </p>
+
+                <!-- Dual CTA Row -->
+                <div
+                    class="flex flex-col sm:flex-row flex-wrap gap-3 justify-center mt-6 lg:mt-8"
+                >
+                    <button
+                        onclick={`openContactDrawer('Cerere Ofertă Sisteme Linia Vieții', '${color}')`}
+                        class="lv-hero-cta-primary flex items-center justify-center gap-2 px-7 py-3.5 font-montserrat font-black text-[11px] uppercase tracking-widest text-white transition-all duration-300"
+                        style={`--lhc:${color};`}
+                    >
+                        <svg
+                            class="w-4 h-4 flex-shrink-0"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                            ></path>
+                        </svg>
+                        Solicită Ofertă
+                    </button>
+                    <a
+                        href="#verticala"
+                        class="flex items-center justify-center gap-2 px-7 py-3.5 font-montserrat font-black text-[11px] uppercase tracking-widest text-white border-2 border-white/30 hover:border-white hover:bg-white/10 transition-all duration-300"
+                    >
+                        Descoperă Sistemele
+                        <svg
+                            class="w-4 h-4 flex-shrink-0"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTTOM PORTION / QUICK NAV + OVERVIEW -->
+        <div class="relative z-10 w-full mt-auto">
+            <!-- QUICK NAV STRIP -->
+            <nav class="border-b border-white/10 bg-black/50 backdrop-blur-sm">
+                <div class="max-w-7xl mx-auto px-5 lg:px-8">
+                    <div class="flex flex-wrap">
+                        {
+                            [
+                                {
+                                    label: "Verticale",
+                                    sub: "EN 353-1",
+                                    anchor: "#verticala",
+                                },
+                                {
+                                    label: "Orizontale",
+                                    sub: "EN 795 C & D",
+                                    anchor: "#orizontala",
+                                },
+                                {
+                                    label: "Temporare",
+                                    sub: "EN 16415",
+                                    anchor: "#temporara",
+                                },
+                                {
+                                    label: "Cum Aleg?",
+                                    sub: "Ghid de selecție",
+                                    anchor: "#ghid",
+                                },
+                            ].map((t) => (
+                                <a
+                                    href={t.anchor}
+                                    class="qnav-item flex flex-col px-4 lg:px-6 py-2.5 lg:py-3 hover:bg-white/5 transition-colors border-r border-white/5 last:border-0"
+                                >
+                                    <span class="font-montserrat font-black text-[16px] uppercase tracking-widest text-white leading-none mb-1">
+                                        {t.label}
+                                    </span>
+                                    <span
+                                        class="text-[9px] uppercase tracking-[.18em]"
+                                        style="color:rgba(255,255,255,0.35);"
+                                    >
+                                        {t.sub}
+                                    </span>
+                                </a>
+                            ))
+                        }
+                    </div>
+                </div>
+            </nav>
+
+            <!-- OVERVIEW STRIP -->
+            <div
+                class="bg-black/95 backdrop-blur-md text-white py-4 lg:py-6 border-t-[3px]"
+                style={`border-color:${color};`}
+            >
+                <div
+                    class="max-w-7xl mx-auto px-5 lg:px-8 grid md:grid-cols-3 gap-4 lg:gap-10"
+                >
+                    <!-- Description Left -->
+                    <div class="md:col-span-2">
+                        <h2
+                            class="font-montserrat font-black text-lg lg:text-2xl uppercase leading-none mb-2 lg:mb-3"
+                        >
+                            Ce facem concret<br class="hidden md:block" />și de
+                            ce contează
+                        </h2>
+                        <p
+                            class="text-white/60 leading-snug text-xs lg:text-sm max-w-xl hidden md:block"
+                        >
+                            Mentenanță pe acoperiș, inspecție cisterne, urcare
+                            pe turn. Fiecare situație cere un alt tip de
+                            ancorare. WHTC calculează sarcina pe structura
+                            existentă, alege ancora potrivită și montează
+                            sistemul cu echipă proprie. Predăm cartea tehnică,
+                            instruim echipa și revenim anual pentru verificare.
+                        </p>
+                        <p
+                            class="text-white/60 leading-snug text-xs max-w-xl md:hidden"
+                        >
+                            Proiectare, montaj, instruire și verificare anuală.
+                            Totul dintr-o singură sursă.
+                        </p>
+                    </div>
+
+                    <!-- Grid Right -->
+                    <div
+                        class="hidden md:grid grid-cols-2 gap-px bg-white/10 border border-white/10 self-start"
+                    >
+                        {
+                            [
+                                { v: "EN 795", l: "Standard certificare" },
+                                { v: "< 1 m", l: "Cădere liberă maximă" },
+                                { v: "6 kN", l: "Forță max. pe corp" },
+                                { v: "INOX 316", l: "Material standard" },
+                            ].map((s) => (
+                                <div class="bg-black px-3 py-2.5 lg:px-4 lg:py-3 hover:bg-white/5 transition-colors">
+                                    <div class="font-montserrat font-black text-base lg:text-xl leading-none mb-1 text-white">
+                                        {s.v}
+                                    </div>
+                                    <div
+                                        class="text-[9px] uppercase tracking-widest"
+                                        style="color:rgba(255,255,255,0.4);"
+                                    >
+                                        {s.l}
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<!-- FLOATING NAV (Mobile Bottom, Desktop Right) -->
+<div
+    id="floating-nav-container"
+    class="fixed z-50 bottom-4 left-1/2 -translate-x-1/2 lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 lg:left-auto lg:right-6 lg:translate-x-0 pointer-events-none"
+>
+    <nav
+        id="floating-nav"
+        class="flex flex-row lg:flex-col gap-2 transition-all duration-500 opacity-0 translate-y-12 lg:translate-y-0 lg:translate-x-12 pointer-events-none"
+    >
+        {
+            [
+                {
+                    label: "Verticale",
+                    sub: "EN 353-1",
+                    anchor: "#verticala",
+                    char: "V",
+                },
+                {
+                    label: "Orizontale",
+                    sub: "EN 795",
+                    anchor: "#orizontala",
+                    char: "O",
+                },
+                {
+                    label: "Temporare",
+                    sub: "EN 16415",
+                    anchor: "#temporara",
+                    char: "T",
+                },
+                {
+                    label: "Selecție",
+                    sub: "Ghid",
+                    anchor: "#ghid",
+                    char: "S",
+                },
+            ].map((t) => (
+                <a
+                    href={t.anchor}
+                    class="group relative flex items-center justify-center pointer-events-auto floating-nav-link"
+                    data-anchor={t.anchor.substring(1)}
+                >
+                    <div
+                        class="hidden lg:block absolute right-full mr-4 bg-black/90 backdrop-blur px-4 py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded border-r-4 whitespace-nowrap pointer-events-none"
+                        style={`border-color: ${color};`}
+                    >
+                        <span class="font-montserrat font-black text-xs uppercase tracking-widest text-white leading-none block mb-1 text-right">
+                            {t.label}
+                        </span>
+                        <span class="text-[10px] uppercase tracking-widest text-white/50 text-right block">
+                            {t.sub}
+                        </span>
+                    </div>
+                    <div class="nav-bubble w-10 h-10 lg:w-11 lg:h-11 rounded-full flex items-center justify-center transition-all bg-black group-hover:scale-110">
+                        <span class="text-white font-montserrat font-bold text-sm relative z-10">
+                            {t.char}
+                        </span>
+                    </div>
+                </a>
+            ))
+        }
+    </nav>
+</div>
+
+<style>
+    .nav-bubble {
+        background-color: #000;
+    }
+    .floating-nav-link.active .nav-bubble {
+        background-color: #1e3a8a; /* Blue */
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const hero = document.querySelector("section"); // First section is hero
+        const fnav = document.getElementById("floating-nav");
+
+        if (hero && fnav) {
+            window.addEventListener(
+                "scroll",
+                () => {
+                    if (
+                        window.scrollY >
+                        (hero as HTMLElement).offsetHeight * 0.75
+                    ) {
+                        fnav.classList.remove(
+                            "opacity-0",
+                            "translate-y-12",
+                            "lg:translate-x-12",
+                            "pointer-events-none",
+                        );
+                    } else {
+                        fnav.classList.add(
+                            "opacity-0",
+                            "translate-y-12",
+                            "lg:translate-x-12",
+                            "pointer-events-none",
+                        );
+                    }
+                },
+                { passive: true },
+            );
+        }
+
+        // Intersection Observer for highlighting active section
+        const sections = document.querySelectorAll("div[id]");
+        const navLinks = document.querySelectorAll(".floating-nav-link");
+
+        const observerOptions = {
+            root: null,
+            rootMargin: "-20% 0px -60% 0px",
+            threshold: 0,
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute("id");
+                    navLinks.forEach((link) => {
+                        if (link.getAttribute("data-anchor") === id) {
+                            link.classList.add("active");
+                        } else {
+                            link.classList.remove("active");
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach((section) => {
+            observer.observe(section);
+        });
+    });
+</script>
+
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!--  SECȚIUNEA 1 — VERTICALE                                            -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<div id="verticala" class="scroll-mt-20">
+    <div class="type-band py-3 px-5 lg:px-8" style={`background:${VERT};`}>
+        <div class="max-w-7xl mx-auto flex items-center gap-5">
+            <span class="type-band-num">01</span>
+            <div>
+                <p class="type-band-sub">EN 353-1 · Protecție Individuală</p>
+                <h2 class="type-band-title">Sisteme Linia Vieții Verticale</h2>
+            </div>
+            <span class="type-band-aside">Scări fixe · Turnuri · Șahturi</span>
+        </div>
+    </div>
+
+    <!-- Intro vertical -->
+    <div class="bg-white py-6 px-5 lg:px-8">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8 items-start">
+            <div class="md:col-span-2">
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    Operatorul se leagă o singură dată, la baza scării. Naveta
+                    glisează automat pe cablu în sus și în jos. Nu trebuie să
+                    facă nicio manevră pe parcurs. Asta contează adevărat,
+                    fiindcă oboseala și manevrele repetitive sunt cauza
+                    principală a erorilor la înălțime.
+                </p>
+                <p class="text-gray-700 leading-relaxed">
+                    Dacă alunecă, naveta blochează cablul instantaneu.
+                    Amortizorul integrat absoarbe șocul și limitează forța pe
+                    corp sub 6 kN (conform EN 355). Folosim Inox AISI 316 peste
+                    tot, tocmai pentru că în România umiditatea și sarea din aer
+                    distrug oțelul galvanizat în 3-5 ani.
+                </p>
+            </div>
+            <div class="space-y-2">
+                {
+                    [
+                        "Standard: EN 353-1:2014",
+                        "Material: Inox AISI 316",
+                        "Blocare automată la cadere",
+                        "Naveta glisantă: fără manevre",
+                        "Extensie superioară disponibilă",
+                    ].map((item) => (
+                        <div class="flex items-center gap-3 text-[16px] font-semibold text-gray-700">
+                            <span
+                                class="w-[6px] h-[6px] flex-shrink-0 rotate-45"
+                                style={`background:${VERT};`}
+                            />
+                            {item}
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- V-1: Cablu oțel (CABLOC) -->
+
+    <ContentSection
+        badge="EN 353-1 · Cablu Inox"
+        heading="3M™ Cabloc™: Navetă pentru sistemul vertical"
+        lead="Sistemul pe care îl montăm cel mai des. Te conectezi o dată la bază și urci fără griji."
+        body="La vârf avem ancora cu absorbitor de șoc integrat. Pe parcurs, punctele intermediare ghidează cablul și împiedică alunecarea laterală. Tensioner-ul de la bază are martor vizual: dacă tensiunea scade, vezi imediat. Naveta glisează liber în sus, dar la orice mișcare bruscă în jos blochează instant."
+        color={VERT}
+        imageGrid={[
+            {
+                src: cablocImg,
+                alt: "Sistem Cabloc pe scară fixă",
+                wide: true,
+                badge: "CABLOC",
+            },
+        ]}
+        listItems={[
+            "AC 340: Punct ancorare superior / inferior universal",
+            "AC 325: Absorbitor de șoc integrat în consolă",
+            "AC 330: Tensioner cu martor de tensionare conform",
+            "AC 320: Puncte ancorare intermediare cablu",
+            "AC 3000S: Cablu inox cu etichetă obligatorie",
+            "Cărucior glisant 6180200",
+        ]}
+        ctaLabel="Solicită Ofertă CABLOC"
+        ctaSubject="Sistem Cabloc, Linia Vieții Vertical"
+    />
+
+    <!-- V-2: Scară cu Crinolină -->
+
+    <ContentSection
+        badge="Acces Vertical · Custom"
+        heading="Scară Fixă cu<br/>Crinolină și Linia Vieții"
+        lead="Configurăm scara, montăm crinolina și instalăm linia vieții. Totul dintr-o singură sursă."
+        body="Scările tip pisică se fixează direct pe perete sau pe utilaj. Crinolina (colivia metalică) protejează lateral, dar nu oprește o cădere pe verticală. De aceea adăugăm opțional linia vieții pe șina scării. La înălțimi mari punem platforme de odihnă la fiecare 6 m, conform normativului."
+        color={VERT}
+        bgGray={true}
+        imageRight={true}
+        imageGrid={[
+            {
+                src: scaraCrinolinaImg,
+                alt: "Scară cu crinolină industrială",
+                wide: true,
+                badge: "Custom",
+            },
+        ]}
+        chips={[
+            "Fabricat la Comandă",
+            "Platforme Intermediare",
+            "+ Sistem LV Vertical",
+            "Orice Înălțime",
+        ]}
+        ctaLabel="Solicită Proiectare Scară"
+        ctaSubject="Scară cu Crinolină: Linia Vieții"
+    />
+
+    <!-- V-3: Șină Rigidă -->
+
+    <ContentSection
+        badge="EN 353-2 · Șină Aluminiu"
+        heading="KS9000: Șină<br/>din Aluminiu cu Trepte"
+        lead="Când nu ai scară, montezi direct sistemul KS9000 pe structură. Trepte + șină + cărucior, gata."
+        body="Șina din aluminiu anodizat e fixată pe structură. Treptele galvanizate se montează direct pe ea. Căruciorul se blochează automat la cădere prin arc. Extensia curbată de la vârf ține operatorul conectat inclusiv la trecerea peste margine. Sistemul anti-inversare face imposibilă montarea greșită a căruciorului."
+        color={VERT}
+        imageGrid={[
+            {
+                src: ks9000Img,
+                alt: "Montaj șină KS9000",
+                wide: true,
+                badge: "KS9000",
+            },
+        ]}
+        featureBoxes={[
+            "Șină Aluminiu Anodizat",
+            "Cărucior Inox 316",
+            "Blocare cu Arc",
+            "Anti-inversare",
+        ]}
+        ctaLabel="Solicită Ofertă KS9000"
+        ctaSubject="Sistem Șină Verticală KS9000"
+    />
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!--  SECȚIUNEA 2 — ORIZONTALE                                           -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<div id="orizontala" class="scroll-mt-20">
+    <div class="type-band py-3 px-5 lg:px-8" style={`background:${HORIZ};`}>
+        <div class="max-w-7xl mx-auto flex items-center gap-5">
+            <span class="type-band-num">02</span>
+            <div>
+                <p class="type-band-sub">
+                    EN 795 Clasa C & D · Multi-Utilizator
+                </p>
+                <h2 class="type-band-title">Sisteme Linia Vieții Orizontale</h2>
+            </div>
+            <span class="type-band-aside"
+                >Acoperișuri · Rampe Auto · Rampe CF</span
+            >
+        </div>
+    </div>
+
+    <!-- Intro orizontal -->
+    <div class="bg-white py-6 px-5 lg:px-8">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8 items-start">
+            <div class="md:col-span-2">
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    Când lucrezi pe acoperiș la mai puțin de 2 m de margine, ai
+                    nevoie de linia vieții orizontală. Te legi, mergi de-a
+                    lungul cablului, și nu te deconectezi niciodată. Naveta
+                    trece singură de punctele intermediare.
+                </p>
+                <p class="text-gray-700 leading-relaxed">
+                    Două lucruri contează aici. Primul: <strong
+                        >efectul de pendul</strong
+                    >. Dacă cazi departe de axul cablului, te balansezi lateral
+                    și poți lovi un obstacol. Al doilea:
+                    <strong>sarcina pe structură</strong>. La cădere, ancora
+                    transmite forța în acoperiș. Dacă structura nu e calculată
+                    corect, se poate rupe fix acolo unde e fixat postul.
+                </p>
+            </div>
+            <div class="space-y-2">
+                {
+                    [
+                        "Standard: EN 795C:2012 / EN 795D",
+                        "Material: Inox AISI 316",
+                        "Până la 4 utilizatori simultan",
+                        "Naveta glisantă continuă",
+                        "Factor de cădere 0–2",
+                    ].map((item) => (
+                        <div class="flex items-center gap-3 text-[16px] font-semibold text-gray-700">
+                            <span
+                                class="w-[6px] h-[6px] flex-shrink-0 rotate-45"
+                                style={`background:${HORIZ};`}
+                            />
+                            {item}
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- H-1a: Cablu — Acoperiș -->
+
+    <ContentSection
+        badge="EN 795 Clasa C · Acoperiș"
+        heading="Cablu Orizontal<br/>pe Acoperiș"
+        lead="Funcționează pe membrană bituminoasă, tablă cutată sau panou sandwich. Adaptăm postul la fiecare tip."
+        body="Cablul e din Inox Ø 8 mm, montat pe posturi proiectate specific pentru structura acoperișului tău. De ce contează asta? Fiindcă un post montat greșit pe panou sandwich străpunge membrana, creează infiltrații și, la cădere, poate smulge fixarea. Noi calculăm sarcina reală pe fiecare post, conform EN 795:2012 Tip C."
+        color={HORIZ}
+        imageGrid={[
+            {
+                src: liniaVietiiOrizontalaImg,
+                alt: "Cablu orizontal acoperiș",
+                wide: true,
+                badge: "EN 795 C",
+            },
+        ]}
+        listItems={[
+            "Inox 316 integral: nu ruginește în climat românesc",
+            "Testat și certificat EN 795:2012 Tip C",
+            "Post adaptat la tipul de acoperiș (membrană / metalic)",
+            "Cablu Inox Ø 8 mm cu navetă continuă",
+            "Max. 4 utilizatori, max. 2 pe interval",
+            "Amortizor integrat: reduce sarcina pe structură la cădere",
+        ]}
+        ctaLabel="Solicită Ofertă Acoperiș"
+        ctaSubject="Sistem LV Orizontal Cablu, Acoperiș"
+    />
+
+    <!-- H-1b: Cablu — Rampe Auto/CF -->
+
+    <ContentSection
+        badge="EN 795 Clasa C · Factor Cădere 0"
+        heading="Sistem Orizontal<br/>Rampe Auto și CF"
+        lead="Structuri metalice proiectate de la zero, ancorate în fundație de beton, fabricate în România."
+        body="La rampe de încărcare, lucrătorul urcă pe cisternă sau vagon. Dacă alunecă, cade 3-4 m pe beton. Sistemul nostru e montat deasupra zonei de lucru (factor de cădere 0), deci căderea liberă e aproape zero. Proiectăm structura metalică complet, de la fundație până la ultimul post de ancorare."
+        color={HORIZ}
+        bgGray={true}
+        imageRight={true}
+        imageGrid={[
+            {
+                src: rampaAutoImg,
+                alt: "Rampă auto cu sistem LV",
+                wide: true,
+                badge: "FF = 0",
+            },
+        ]}
+        chips={[
+            "Factor Cădere 0",
+            "Fabricat în România",
+            "Rampe Auto & CF",
+            "Până la 4 utilizatori",
+        ]}
+        ctaLabel="Solicită Proiectare Rampă"
+        ctaSubject="Sistem LV Orizontal Cablu: Rampe"
+    />
+
+    <!-- H-2: Șină rigidă orizontală -->
+
+    <ContentSection
+        badge="EN 795 Clasa D · CEN/TS 16415"
+        heading="Șină Aluminiu<br/>pe Tavan, Perete sau Sol"
+        lead="Căruciorul trece prin curbe și joncțiuni fără deconectare. 5 utilizatori simultan."
+        body="Când traseul nu e drept, cablul nu mai funcționează eficient. Șina din aluminiu anodizat rezolvă asta: monteaz-o pe tavan, pe perete sau chiar la sol, cu curbe la orice unghi. Căruciorul trece fluid prin fiecare joncțiune. Rezistă la medii corozive, necesită mentenanță minimă și suportă 300 kg pe utilizator."
+        color={HORIZ}
+        imageGrid={[
+            {
+                src: sinaAluminiuImg,
+                alt: "Montaj pe tavan",
+                wide: true,
+                badge: "Clasa D",
+            },
+        ]}
+        listItems={[
+            "5 persoane ancorate simultan, permanent",
+            "Aluminiu anodizat: rezistă în medii corozive",
+            "Se montează pe tavan, perete sau pardoseală",
+            "Funcționează și pe trasee curbe sau cilindrice",
+            "Suportă 300 kg pe utilizator",
+            "Certificat EN 795:2012 Clasa D, CEN/TS 16415",
+        ]}
+        ctaLabel="Solicită Ofertă Șină"
+        ctaSubject="Sistem LV Orizontal Șină Clasa D"
+    />
+
+    <!-- Fall factor explainer -->
+    <div id="factor-cadere" class="bg-white py-12 px-5 lg:px-8 overflow-hidden">
+        <div
+            class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 lg:gap-14 items-center"
+        >
+            <!-- Text on Left -->
+            <div class="flex-1 w-full relative z-10 lg:pl-4">
+                <h3
+                    class="font-montserrat font-black text-xs md:text-sm uppercase tracking-[.2em] mb-6"
+                    style={`color:${HORIZ};`}
+                >
+                    Factorul de cădere: de ce contează unde fixezi ancora
+                </h3>
+                <div class="space-y-4">
+                    {
+                        [
+                            {
+                                ff: "FF 0",
+                                label: "Deasupra capului",
+                                desc: "Ancora e deasupra capului. Căderea liberă e aproape zero. Cel mai sigur scenariu.",
+                                color: "#16a34a",
+                            },
+                            {
+                                ff: "FF 1",
+                                label: "Nivelul pieptului",
+                                desc: "Ancora e la nivelul pieptului sau umerilor. Cazi distanța până la ea + lungimea lonjei. Forță moderată.",
+                                color: HORIZ,
+                            },
+                            {
+                                ff: "FF 2",
+                                label: "Sub picioare",
+                                desc: "Ancora e sub picioare. Cazi dublu față de lungimea lonjei. Obligatoriu amortizor puternic și distanță liberă mare sub tine.",
+                                color: "#D32F2F",
+                            },
+                        ].map((f) => (
+                            <div
+                                class="flex flex-col sm:flex-row sm:items-center gap-4 border-l-4 pl-4 py-4 bg-gray-50/50 hover:bg-gray-100/50 transition-colors"
+                                style={`border-color:${f.color};`}
+                            >
+                                <span
+                                    class="font-montserrat font-black text-2xl lg:text-3xl w-20 lg:w-24 flex-shrink-0 whitespace-nowrap"
+                                    style={`color:${f.color};`}
+                                >
+                                    {f.ff}
+                                </span>
+                                <div>
+                                    <h4 class="font-bold text-xs uppercase text-gray-800 tracking-wider">
+                                        {f.label}
+                                    </h4>
+                                    <p class="text-[12px] text-gray-500 max-w-sm mt-1 leading-relaxed">
+                                        {f.desc}
+                                    </p>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- Image on Right -->
+            <div
+                class="flex-1 w-full flex justify-center lg:justify-end relative"
+            >
+                <Image
+                    src={factorCadereImg}
+                    alt="Grafic Factor de Cădere 0, 1, 2"
+                    width={800}
+                    class="w-full max-w-[650px] lg:scale-[1.15] lg:origin-right h-auto object-contain"
+                    loading="lazy"
+                    quality={75}
+                    format="webp"
+                />
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!--  SECȚIUNEA 3 — TEMPORARE                                            -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<div id="temporara" class="scroll-mt-20">
+    <div class="type-band py-3 px-5 lg:px-8" style={`background:${TEMP};`}>
+        <div class="max-w-7xl mx-auto flex items-center gap-5">
+            <span class="type-band-num">03</span>
+            <div>
+                <p class="type-band-sub">EN 16415:2013 · Portabil & Rapid</p>
+                <h2 class="type-band-title">Sisteme Linia Vieții Temporare</h2>
+            </div>
+            <span class="type-band-aside"
+                >Șantiere · Zone fără sistem permanent</span
+            >
+        </div>
+    </div>
+
+    <!-- Intro temporar -->
+    <div class="bg-white py-6 px-5 lg:px-8">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8 items-start">
+            <div class="md:col-span-2">
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    Uneori nu ai nevoie de un sistem permanent. Poate intervii
+                    pe acel acoperiș o dată pe an. Sau ești pe șantier și
+                    structura nu e gata pentru montaj fix. În aceste cazuri,
+                    sistemul temporar e răspunsul corect.
+                </p>
+                <p class="text-gray-700 leading-relaxed">
+                    Ai două variante: <strong>cablu de oțel</strong> pe tambur retractabil
+                    (până la 18 m) sau <strong>chingă textilă</strong>
+                    (până la 25 m). Se instalează în câteva secunde între două puncte
+                    de ancorare existente. Le strângi în husă și le muți pe alt șantier.
+                </p>
+            </div>
+            <div class="space-y-2">
+                {
+                    [
+                        "Standard: EN 16415:2013 Tip C",
+                        "Montaj în câteva secunde",
+                        "Cablu oțel sau chingă textilă",
+                        "Lungime max. 25 m",
+                        "Până la 4 utilizatori simultan",
+                    ].map((item) => (
+                        <div class="flex items-center gap-3 text-[16px] font-semibold text-gray-700">
+                            <span
+                                class="w-[6px] h-[6px] flex-shrink-0 rotate-45"
+                                style={`background:${TEMP};`}
+                            />
+                            {item}
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- T-1: EZ-Line cablu oțel -->
+
+    <ContentSection
+        badge="EN 16415 · EZ-Line"
+        heading="3M™ EZ-Line™: <br/>Cablu Retractabil <br/>de 2 la 18 m"
+        lead="Scoți din husă, fixezi capetele, tensionezi. Gata. Timp de instalare: sub un minut."
+        body="Cablul e rulat pe un tambur în carcasă. Tragi de mâner, reglezi lungimea (2 la 18 m) și tensionezi. Nu rămân bucle libere pe cablu. Când termini, rulezi totul înapoi și pui în husă. Ai indicatori vizuali de tensiune și de impact, ca să știi dacă sistemul a fost solicitat."
+        color={TEMP}
+        imageGrid={[
+            {
+                src: ezlineImg,
+                alt: "EZ-Line tambur retractabil",
+                wide: true,
+                badge: "EZ-Line",
+            },
+        ]}
+        listItems={[
+            "Lungime reglabilă 2 la 18 m, tambur retractabil",
+            "Indicatori vizuali de tensiune și impact",
+            "Versiune ATEX disponibilă pentru zone Ex",
+            "Se fixează la orice ancoră de min. 22 kN",
+            "2 utilizatori simultan cu mobilitate orizontală",
+            "Husă de transport inclusă, compact și portabil",
+        ]}
+        ctaLabel="Solicită Ofertă EZ-Line"
+        ctaSubject="Sistem EZ-Line Temporar"
+    />
+
+    <!-- T-2: Chingă textilă -->
+
+    <ContentSection
+        badge="EN 16415 · Chingă Textilă"
+        heading="3M™ PROTECTA® Rope Line"
+        lead="Când distanța e mare și bugetul e limitat, chinga textilă e alegerea rațională."
+        body="Acoperă până la 25 m între două puncte de ancorare. Se conectează simultan mai mulți operatori. Geanta de transport protejează chinga de murdărie, umiditate și razele UV care o degradează în timp. Amortizorul integrat limitează forța la cădere, iar indicatorul vizual de impact îți arată dacă a fost folosit."
+        color={TEMP}
+        bgGray={true}
+        imageRight={true}
+        imageGrid={[
+            {
+                src: chingaImg,
+                alt: "Chingă textilă Rope Line",
+                wide: true,
+                badge: "Rope Line",
+            },
+        ]}
+        chips={[
+            "Lungime 2–25 m",
+            "Până la 4 utilizatori",
+            "Geantă transport",
+            "Amortizor integrat",
+        ]}
+        ctaLabel="Solicită Ofertă Chingă"
+        ctaSubject="Sistem Temporar Chingă Textilă"
+    />
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<!--  GHID DE SELECȚIE                                                   -->
+<!-- ════════════════════════════════════════════════════════════════════ -->
+<div id="ghid" class="scroll-mt-20">
+    <div class="type-band py-5 px-5 lg:px-8" style="background:#374151;">
+        <div class="max-w-7xl mx-auto flex items-center gap-5">
+            <span class="type-band-num">⚙</span>
+            <div>
+                <p class="type-band-sub">EN 795: Ghid Practic</p>
+                <h2 class="type-band-title">Cum alegi sistemul corect?</h2>
+            </div>
+            <span class="type-band-aside">Ghid WHTC pentru clienți</span>
+        </div>
+    </div>
+
+    <div class="bg-white py-12 px-5 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-10">
+                <div>
+                    <h3
+                        class="font-montserrat font-black text-xl lg:text-2xl uppercase mb-4"
+                    >
+                        Tipuri de Puncte de Ancorare EN 795
+                    </h3>
+                    <div class="space-y-3">
+                        {
+                            [
+                                {
+                                    tip: "Tip A",
+                                    desc: "Ancoră care necesită fixarea de o altă ancoră structurală",
+                                },
+                                {
+                                    tip: "Tip B",
+                                    desc: "Ancoră independentă care nu necesită o structură existentă",
+                                },
+                                {
+                                    tip: "Tip C",
+                                    desc: "Linie de ancorare flexibilă orizontală (cablu)",
+                                },
+                                {
+                                    tip: "Tip D",
+                                    desc: "Linie de ancorare rigidă orizontală (șină aluminiu)",
+                                },
+                                {
+                                    tip: "Tip E",
+                                    desc: "Ancoră tip deadweight (sac de nisip calibrat)",
+                                },
+                            ].map((a) => (
+                                <div class="flex gap-3 items-start py-2 border-b border-gray-100">
+                                    <span
+                                        class="font-montserrat font-black text-[14px] uppercase tracking-widest min-w-[64px] mt-0.5"
+                                        style={`color:${color};`}
+                                    >
+                                        {a.tip}
+                                    </span>
+                                    <span class="text-base text-gray-600 leading-snug">
+                                        {a.desc}
+                                    </span>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+                <div>
+                    <h3
+                        class="font-montserrat font-black text-xl lg:text-2xl uppercase mb-4"
+                    >
+                        La ce ne uităm noi
+                    </h3>
+                    <div class="space-y-4">
+                        {
+                            [
+                                {
+                                    label: "Rezistența structurii gazdă",
+                                    desc: "12 kN static, minim. Dacă structura nu duce, ancora nu ține. Verificăm asta înainte de orice altceva.",
+                                },
+                                {
+                                    label: "Distanța liberă sub tine",
+                                    desc: "Cazi, lonja se tensionează, amortizorul se întinde. Trebuie suficient spațiu sub tine ca să nu lovești nimic. Calculăm asta exact.",
+                                },
+                                {
+                                    label: "Efectul de pendul",
+                                    desc: "Dacă lucrezi departe lateral de axul cablului, la cădere te balansezi ca un pendul. Poți lovi un perete sau o margine. Minimizăm riscul prin amplasarea corectă a posturilor.",
+                                },
+                                {
+                                    label: "Permanent sau temporar?",
+                                    desc: "Dacă urci pe acel acoperiș lunar, pune sistem permanent. Dacă intervii de 2 ori pe an, temporarul e mai logic și mai ieftin.",
+                                },
+                            ].map((c) => (
+                                <div
+                                    class="border-l-2 pl-4"
+                                    style={`border-color:${color};`}
+                                >
+                                    <div class="font-montserrat font-black text-lg lg:text-xl uppercase tracking-wider mb-1">
+                                        {c.label}
+                                    </div>
+                                    <p class="text-base text-gray-500 leading-relaxed">
+                                        {c.desc}
+                                    </p>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── HOW WE WORK ───────────────────────────────────────────────────── -->
+<ProcessSteps
+    heading="Cum lucrăm împreună"
+    subtitle="Fiecare sistem trece prin aceleași 6 etape"
+    steps={[
+        {
+            num: "01",
+            title: "Evaluare Risc",
+            color,
+            desc: "Venim la tine, ne uităm la structură, identificăm riscurile și stabilim ce tip de sistem ai nevoie. Vizita e gratuită.",
+        },
+        {
+            num: "02",
+            title: "Calcul Structural",
+            color,
+            desc: "Calculăm dacă acoperișul sau structura ta duce sarcina de la o cădere. Dacă nu, propunem consolidare sau alt tip de ancoră.",
+        },
+        {
+            num: "03",
+            title: "Proiect Tehnic",
+            color,
+            desc: "Calcule detaliate, specificații de materiale, planuri de montaj. Totul documentat, tot ce ai nevoie pentru un audit ISU.",
+        },
+        {
+            num: "04",
+            title: "Montaj Certificat",
+            color,
+            desc: "Echipa noastră montează, testează sarcina pe fiecare post și emite certificatul de conformitate. Totul inclus în preț.",
+        },
+        {
+            num: "05",
+            title: "Instruire Utilizatori",
+            color,
+            desc: "Îi învățăm pe oamenii tăi cum se echipează, cum trec de joncțiuni și ce fac dacă un coleg rămâne suspendat.",
+        },
+        {
+            num: "06",
+            title: "Verificare Anuală",
+            color,
+            desc: "Revenim anual, verificăm fiecare componentă și re-certificăm sistemul. Fără verificare valabilă, sistemul nu poate fi folosit legal.",
+        },
+    ]}
+    cols="3"
+    bgWhite={false}
+/>
+
+<StatsStrip
+    stats={[
+        {
+            num: "3",
+            label: "Tipuri de Sisteme",
+            sub: "Verticale · Orizontale · Temporare",
+        },
+        {
+            num: "EN 795",
+            label: "Standard Complet",
+            sub: "Clase A / C / D + EN 353-1",
+        },
+        {
+            num: "500+",
+            label: "Sisteme Instalate",
+            sub: "În toată România",
+        },
+        {
+            num: "100%",
+            label: "Documentat",
+            sub: "Carte tehnică completă predată la finalizare",
+        },
+    ]}
+/>
+
+<RelatedPages
+    heading="Servicii Conexe"
+    pages={[
+        {
+            label: "Sisteme de Acces",
+            desc: "Scări, platforme și schele mobile",
+            href: "/solutii/acces/",
+            color: "#7c3aed",
+            image: accesImgRelated,
+        },
+        {
+            label: "Implementare Custom",
+            desc: "Proiectare și execuție la comandă",
+            href: "/solutii/custom/",
+            color: "#f16215",
+            image: customImgRelated,
+        },
+        {
+            label: "Echipamente 3M™",
+            desc: "EIP, SRL-uri & blocatoare",
+            href: "/solutii/3m/",
+            color: "#D32F2F",
+            image: echipamente3mImgRelated,
+        },
+        {
+            label: "Verificări & Recertificări",
+            desc: "Inspecție periodică EIP și sisteme",
+            href: "/solutii/verificari-recertificari/",
+            color: "#16a34a",
+            image: verificariImgRelated,
+        },
+    ]}
+/>
+
+<CTABlock
+    heading="Hai să ne uităm<br/>împreună la structura ta"
+    body="Trimite-ne o poză cu acoperișul sau structura. Sau sună-ne și stabilim o vizită. Inginerul nostru vine, măsoară, verifică rezistența și îți spune exact ce ai nevoie. Propunere tehnică în 5 zile."
+    ctaLabel="Programează o vizită gratuită"
+    ctaSubject="Cerere vizită, Evaluare Linia Vieții"
+    emailHref="office@whtc.ro"
+    color={VERT}
+    accentBackground={true}
+/>
+
+<PageFooter />
+
+<style>
+    /* ── Quick nav ────────────────────────────────────────────────────── */
+    .qnav-item {
+        min-width: 140px;
+    }
+    @media (max-width: 640px) {
+        .qnav-item {
+            flex: 1 1 50%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    }
+
+    /* ── Hero CTA buttons ─────────────────────────────────────────────── */
+    .lv-hero-cta-primary {
+        background: var(--lhc);
+        border: 2px solid var(--lhc);
+        cursor: pointer;
+    }
+    .lv-hero-cta-primary:hover {
+        background: #111;
+        border-color: #111;
+    }
+
+    /* ── Section-header bands (type-band) ────────────────────────────── */
+    .type-band-num {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: 2.8rem;
+        line-height: 1;
+        color: rgba(255, 255, 255, 0.25);
+        user-select: none;
+        flex-shrink: 0;
+    }
+    .type-band-sub {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 3px;
+    }
+    .type-band-title {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: clamp(1rem, 2.5vw, 1.5rem);
+        text-transform: uppercase;
+        line-height: 1;
+        color: #fff;
+    }
+    .type-band-aside {
+        margin-left: auto;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: rgba(255, 255, 255, 0.6);
+        display: none;
+    }
+    @media (min-width: 1024px) {
+        .type-band-aside {
+            display: block;
+        }
+    }
+
+    /* ── Sub-section dividers typography ─────────────────────────────────────────── */
+    .type-sub-num {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: 11px;
+        min-width: 22px;
+    }
+    .type-sub-title {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #111;
+    }
+
+    /* smooth scroll */
+    html {
+        scroll-behavior: smooth;
+    }
+</style>

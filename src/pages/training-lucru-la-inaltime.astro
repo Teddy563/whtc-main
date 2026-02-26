@@ -1,0 +1,189 @@
+---
+import Layout from "../layouts/Layout.astro";
+import GlobalNavbar from "../components/GlobalNavbar.astro";
+import PageFooter from "../components/PageFooter.astro";
+import SubPageHero from "../components/blocks/SubPageHero.astro";
+import ContentSection from "../components/blocks/ContentSection.astro";
+import StatsStrip from "../components/blocks/StatsStrip.astro";
+import CTABlock from "../components/blocks/CTABlock.astro";
+import RelatedPages from "../components/blocks/RelatedPages.astro";
+import trainingImg from "../assets/training.webp";
+
+import lotoImgRelated from "../assets/loto.webp";
+import liniaVietiiImgRelated from "../assets/solutii/linia-vietii/linia-vietii-orizontala.webp";
+import verificariImgRelated from "../assets/solutii/verificari-recertificari.webp";
+import echipamente3mImgRelated from "../assets/solutii/3m.webp";
+
+const color = "#f16215"; // Orange — Training
+---
+
+<Layout
+    title="Training Lucru la Înălțime | WHTC Safety Academy"
+    description="Cursuri și training acreditat pentru lucrul la înălțime: Alpinism Utilitar, GWO și cursuri de perfecționare. Safety Academy, primul centru dedicat din România."
+>
+    <GlobalNavbar />
+
+    <SubPageHero
+        badge="Safety Academy · WHTC"
+        title="Training<br/>Lucru la<br/>Înălțime"
+        subtitle="Formare practică pentru lucrul la înălțime cu instructori activi de teren. Cursuri acreditate Alpinism Utilitar și GWO."
+        color={color}
+        bgImage={trainingImg}
+        ctaPrimary={{
+            label: "Solicită Informații",
+            subject: "Training Lucru la Înălțime",
+        }}
+        ctaScroll={{ label: "Vezi Cursurile", anchor: "cursuri" }}
+    />
+
+    <!-- Courses Overview -->
+    <div id="cursuri">
+        <ContentSection
+            badge="ANC"
+            heading="Alpinism<br/>Utilitar"
+            lead="Acces pe frânghie în medii industriale complexe"
+            body="Oferim programe acreditate ANC pentru alpinism utilitar industrial. Acoperim instruire esențială pentru munca la înălțime și includem proceduri complete și tehnici esențiale de salvare din coardă."
+            color={color}
+            imageRight={false}
+            bgGray={false}
+            imageGrid={[
+                {
+                    src: trainingImg,
+                    alt: "Alpinism utilitar",
+                    wide: true,
+                    badge: "Alpinism Utilitar",
+                },
+            ]}
+            listItems={[
+                "Inițiere în alpinism utilitar",
+                "Certificare acreditată ANC",
+                "Tehnici avansate de salvare",
+                "Lucru sigur pe structuri industriale",
+            ]}
+            ctaLabel="Înscrie-te la Curs"
+            ctaSubject="Alpinism Utilitar"
+        />
+
+        <ContentSection
+            badge="Certificare Internațională"
+            heading="Cursuri GWO"
+            lead="Standardul de excelență în energia eoliană"
+            body="Livrăm programe de formare acreditate de Global Wind Organisation, axate pe procedurile de siguranță la înălțime. Aceste cursuri recunoscute la nivel internațional sunt predate de instructori experimentați, direct din teren, unde ai ocazia să practici în medii atent controlate."
+            color="#111"
+            imageRight={true}
+            bgGray={true}
+            imageGrid={[
+                {
+                    src: trainingImg,
+                    alt: "Training GWO lucru la înălțime",
+                    wide: true,
+                    badge: "GWO",
+                },
+            ]}
+            listItems={[
+                "Lucru la înălțime (Working at Heights)",
+                "Tehnici avansate de salvare (Advanced Rescue Training)",
+                "Utilizarea corectă a echipamentelor",
+                "Evaluarea și managementul riscului",
+            ]}
+            ctaLabel="Înscrie-te la GWO"
+            ctaSubject="Cursuri GWO"
+        />
+
+        <ContentSection
+            badge="Personalizat"
+            heading="Cursuri de<br/>Perfecționare"
+            lead="Training adaptat echipelor și locației tale"
+            body="Organizăm workshop-uri și cursuri interne (inhouse), perfect adaptate riscurilor specifice din zona ta de lucru. Punem accent pe practica la sediul tău, unde simulăm inclusiv scenarii de urgență și salvare."
+            color="#1e3a8a"
+            imageGrid={[
+                {
+                    src: trainingImg,
+                    alt: "Safety Academy curs custom",
+                    wide: true,
+                    badge: "Custom",
+                },
+            ]}
+            chips={[
+                "Lucru la înălțime (SSM)",
+                "Utilizare corectă EIP",
+                "Salvare și evacuare",
+                "Spații închise",
+                "Training Inhouse",
+            ]}
+            ctaLabel="Solicită Ofertă Customizată"
+            ctaSubject="Safety Academy / Curs Custom"
+        />
+    </div>
+
+    <StatsStrip
+        stats={[
+            {
+                num: "20+",
+                label: "Ani de Experiență",
+                sub: "Instructori activi de teren",
+            },
+            {
+                num: "5000+",
+                label: "Cursanți Formați",
+                sub: "Alpinism Utilitar, GWO, Inhouse",
+            },
+            {
+                num: "GWO",
+                label: "Certificare Internațională",
+                sub: "Global Wind Organisation",
+            },
+            {
+                num: "ISO",
+                label: "45001 Certificat",
+                sub: "Management sănătate și securitate",
+            },
+        ]}
+    />
+
+    <CTABlock
+        heading="Pregătit să investești<br/>în siguranța echipei tale?"
+        body="Contactează-ne pentru un calendar actualizat al cursurilor sau o ofertă customizată pentru echipa ta."
+        ctaLabel="Solicită Calendar Cursuri"
+        ctaSubject="Training Lucru la Înălțime"
+        emailHref="office@whtc.ro"
+        color={color}
+        accentBackground={true}
+    />
+
+    <RelatedPages
+        heading="Alte Servicii WHTC"
+        pages={[
+            {
+                label: "Control Energii LOTO",
+                desc: "Lockout-Tagout pentru mentenanță sigură",
+                href: "/control-energii-lockout-tagout/",
+                color: "#D32F2F",
+                image: lotoImgRelated,
+            },
+            {
+                label: "Linia Vieții",
+                desc: "Sisteme verticale, orizontale, temporare",
+                href: "/solutii/linia-vietii/",
+                color: "#1e3a8a",
+                image: liniaVietiiImgRelated,
+            },
+            {
+                label: "Verificări Periodice EIP",
+                desc: "Inspecție și recertificare echipamente",
+                href: "/solutii/verificari-recertificari/",
+                color: "#16a34a",
+                image: verificariImgRelated,
+            },
+            {
+                label: "Echipamente 3M™",
+                desc: "Distribuitor autorizat România",
+                href: "/solutii/3m/",
+                color: "#f16215",
+                image: echipamente3mImgRelated,
+            },
+        ]}
+    />
+
+    <PageFooter />
+</Layout>

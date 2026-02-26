@@ -1,0 +1,827 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PageFooter from "../components/PageFooter.astro";
+import { Image, getImage } from "astro:assets";
+
+import GlobalNavbar from "../components/GlobalNavbar.astro";
+import ContentSection from "../components/blocks/ContentSection.astro";
+import ClientsShowcase from "../components/blocks/ClientsShowcase.astro";
+import GoogleReviewsStripe from "../components/blocks/GoogleReviewsStripe.astro";
+
+import protectieImg from "../assets/solutii/solutii_protectie_lucru_la_inaltime.webp";
+import verificareEipImg from "../assets/solutii/verificare_eip.webp";
+import sistemeLiniaVietiiImg from "../assets/solutii/sisteme_linia_vietii.gif";
+import scaraImg from "../assets/solutii/scara.webp";
+import treiMImg from "../assets/solutii/3m.webp";
+import customImg from "../assets/solutii/solutii_custom.webp";
+import cablocImg from "../assets/solutii/linia-vietii/cabloc.webp";
+import clientiImg from "../assets/whtc_clienti.webp";
+
+const verificareEipBg = await getImage({
+    src: verificareEipImg,
+    format: "webp",
+    width: 600,
+    quality: 65,
+});
+const sistemeLiniaVietiiBg = await getImage({
+    src: sistemeLiniaVietiiImg,
+    width: 600,
+});
+const scaraBg = await getImage({
+    src: scaraImg,
+    format: "webp",
+    width: 600,
+    quality: 65,
+});
+const treiMBg = await getImage({
+    src: treiMImg,
+    format: "webp",
+    width: 600,
+    quality: 65,
+});
+const customBg = await getImage({
+    src: customImg,
+    format: "webp",
+    width: 600,
+    quality: 65,
+});
+---
+
+<Layout title="Soluții Protecție Industrială | WHTC">
+    <!-- ===== NAVBAR ===== -->
+    <!-- ===== NAVBAR ===== -->
+    <GlobalNavbar />
+
+    <!-- ===== HERO (viewport-locked) ===== -->
+    <section
+        class="hero-section relative flex flex-col bg-black overflow-hidden pt-20"
+    >
+        <!-- Background photo -->
+        <div class="absolute inset-0 z-0">
+            <Image
+                src={protectieImg}
+                alt=""
+                aria-hidden="true"
+                width={1600}
+                quality={60}
+                format="webp"
+                class="w-full h-full object-cover"
+                style="opacity:0.25; filter:grayscale(80%) contrast(1.2);"
+                loading="eager"
+                fetchpriority="high"
+            />
+            <div
+                class="absolute inset-0"
+                style="background:linear-gradient(to bottom,rgba(0,0,0,0.82) 0%,rgba(0,0,0,0.1) 50%,rgba(0,0,0,0.98) 100%);"
+            >
+            </div>
+        </div>
+
+        <!-- Hero text -->
+        <div
+            class="relative z-10 flex-grow flex flex-col items-center justify-center text-center px-4"
+        >
+            <h1
+                class="hero-heading font-montserrat font-black text-white uppercase leading-[0.88] tracking-tighter mb-4"
+            >
+                Soluții<br />Protecție
+            </h1>
+            <div class="flex items-center gap-4">
+                <div class="h-px flex-1 max-w-[60px] bg-white/15"></div>
+                <span
+                    class="font-montserrat font-black lg:text-[14px] md:text-[10px] sm:text-[8px] uppercase tracking-[0.4em] text-white/70"
+                    >Industrială · La Înălțime</span
+                >
+                <div class="h-px flex-1 max-w-[60px] bg-white/15"></div>
+            </div>
+        </div>
+
+        <!-- Service cards strip -->
+        <div class="relative z-10 w-full">
+            <div
+                class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 w-full gap-[2px] bg-black border-t-2 border-black"
+            >
+                <a
+                    href="/solutii/verificari-recertificari"
+                    class="svc-card"
+                    data-index="0"
+                >
+                    <div
+                        class="svc-bw"
+                        style={`background-image:url('${verificareEipBg.src}');`}
+                    >
+                    </div>
+                    <div
+                        class="svc-col"
+                        style={`background-image:url('${verificareEipBg.src}');`}
+                    >
+                    </div>
+                    <div class="svc-content">
+                        <span class="svc-tag" style="background:#16a34a;"
+                            >Verificări EIP</span
+                        >
+                        <h3 class="svc-title">
+                            Verificări<br />& Recertificări
+                        </h3>
+                        <div class="svc-bar" style="background:#16a34a;"></div>
+                    </div>
+                </a>
+
+                <a href="/solutii/linia-vietii" class="svc-card" data-index="1">
+                    <div
+                        class="svc-bw"
+                        style={`background-image:url('${sistemeLiniaVietiiBg.src}');`}
+                    >
+                    </div>
+                    <div
+                        class="svc-col"
+                        style={`background-image:url('${sistemeLiniaVietiiBg.src}');`}
+                    >
+                    </div>
+                    <div class="svc-content">
+                        <span class="svc-tag" style="background:#1e3a8a;"
+                            >Inginerie</span
+                        >
+                        <h3 class="svc-title">Sisteme<br />Linia Vieții</h3>
+                        <div class="svc-bar" style="background:#1e3a8a;"></div>
+                    </div>
+                </a>
+
+                <a href="/solutii/acces" class="svc-card" data-index="2">
+                    <div
+                        class="svc-bw"
+                        style={`background-image:url('${scaraBg.src}');`}
+                    >
+                    </div>
+                    <div
+                        class="svc-col"
+                        style={`background-image:url('${scaraBg.src}');`}
+                    >
+                    </div>
+                    <div class="svc-content">
+                        <span class="svc-tag" style="background:#7c3aed;"
+                            >Acces Industrial</span
+                        >
+                        <h3 class="svc-title">Scări &amp;<br />Platforme</h3>
+                        <div class="svc-bar" style="background:#7c3aed;"></div>
+                    </div>
+                </a>
+
+                <a href="/solutii/3m" class="svc-card" data-index="3">
+                    <div
+                        class="svc-bw"
+                        style={`background-image:url('${treiMBg.src}');`}
+                    >
+                    </div>
+                    <div
+                        class="svc-col"
+                        style={`background-image:url('${treiMBg.src}');`}
+                    >
+                    </div>
+                    <div class="svc-content">
+                        <span class="svc-tag" style="background:#D32F2F;"
+                            >Distribuție</span
+                        >
+                        <h3 class="svc-title">Echipamente<br />3M™</h3>
+                        <div class="svc-bar" style="background:#D32F2F;"></div>
+                    </div>
+                </a>
+
+                <a
+                    href="/solutii/custom"
+                    class="svc-card col-span-2 sm:col-span-1"
+                    data-index="4"
+                >
+                    <div
+                        class="svc-bw"
+                        style={`background-image:url('${customBg.src}');`}
+                    >
+                    </div>
+                    <div
+                        class="svc-col"
+                        style={`background-image:url('${customBg.src}');`}
+                    >
+                    </div>
+                    <div class="svc-content">
+                        <span class="svc-tag" style="background:#f16215;"
+                            >Full Service</span
+                        >
+                        <h3 class="svc-title">Implementare<br />Custom</h3>
+                        <div class="svc-bar" style="background:#f16215;"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== STATS STRIP (after hero fold) ===== -->
+    <div class="stats-strip bg-black border-b-2 border-black text-white">
+        <div
+            class="max-w-7xl mx-auto px-5 lg:px-8 py-8 lg:py-10 grid grid-cols-2 lg:grid-cols-4 gap-y-6 gap-x-4 lg:gap-0 lg:divide-x-2 divide-black/20"
+        >
+            {
+                [
+                    {
+                        num: "20+",
+                        label: "Ani de Experiență",
+                        sub: "Din 2004 pe piața din România",
+                    },
+                    {
+                        num: "500+",
+                        label: "Proiecte Finalizate",
+                        sub: "Hale, acoperișuri, structuri",
+                    },
+                    {
+                        num: "3M",
+                        label: "Distribuitor Autorizat",
+                        sub: "Partener Certificat în România",
+                    },
+                    {
+                        num: "ISO",
+                        label: "9001 · 14001 · 45001",
+                        sub: "Certificări Internaționale",
+                    },
+                ].map((s) => (
+                    <div class="lg:px-10 first:pl-0 last:pr-0">
+                        <div class="font-montserrat font-black text-2xl lg:text-4xl leading-none mb-1">
+                            {s.num}
+                        </div>
+                        <div class="font-montserrat font-black text-[10px] lg:text-xs uppercase tracking-widest mb-1 opacity-90">
+                            {s.label}
+                        </div>
+                        <div class="text-white/70 text-[9px] lg:text-[10px] leading-snug">
+                            {s.sub}
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+
+    <!-- ===== CONTENT SECTIONS ===== -->
+
+    <!-- EIP — Green -->
+    <ContentSection
+        badge="Verificări EIP"
+        heading="Verificări Periodice<br/>ȘI RECERTIFICĂRI EIP"
+        lead="Inspecție tehnică autorizată pentru echipamentul de protecție individuală împotriva căderii de la înălțime."
+        body="Conform legislației în vigoare, toate echipamentele individuale de protecție trebuie verificate cel puțin o dată la 12 luni de către o persoană competentă. Oferim servicii complete de audit, marcare și recertificare pentru flote de echipamente."
+        color="#16a34a"
+        imageGrid={[
+            {
+                src: verificareEipImg,
+                alt: "Verificări EIP",
+                badge: "Inspecție",
+                wide: true,
+            },
+        ]}
+        chips={["Audit Flotă", "Marcare & Etichetare", "Raport Conformitate"]}
+        ctaLabel="Solicită Audit"
+        ctaSubject="EIP / Verificări periodice"
+        moreHref="/solutii/verificari-recertificari"
+    />
+
+    <!-- Lifelines — Blue -->
+    <ContentSection
+        badge="Engineering"
+        heading="Sisteme<br />Linia Vieții"
+        lead="Orizontale & Verticale (EN 795)"
+        body="Proiectăm și instalăm sisteme permanente de asigurare pentru hale industriale, acoperișuri și structuri complexe. Utilizăm tehnologie de ultimă oră pentru a garanta siguranța operatorilor în orice mediu de lucru."
+        color="#1e3a8a"
+        bgGray={true}
+        imageRight={true}
+        imageGrid={[
+            {
+                src: sistemeLiniaVietiiImg,
+                alt: "Sisteme Linia Vieții",
+                badge: "EN 795",
+                wide: true,
+            },
+        ]}
+        featureBoxes={[
+            "Sisteme pe Cablu",
+            "Sisteme pe Șină",
+            "Ancore Structurale",
+            "Certificare EN 795",
+        ]}
+        ctaLabel="Solicită Proiectare"
+        ctaSubject="Sisteme Linia Vieții"
+        moreHref="/solutii/linia-vietii"
+    />
+
+    <!-- Access — Purple -->
+    <ContentSection
+        badge="Acces Industrial"
+        heading="Scări &<br />Platforme"
+        lead="Acces securizat prin structuri metalice certificate."
+        body="De la scări cu colivie de protecție la platforme de lucru la înălțime custom-made. Toate soluțiile noastre de acces sunt proiectate pentru a minimiza riscul și a maximiza eficiența operațională."
+        color="#7c3aed"
+        imageGrid={[
+            {
+                src: scaraImg,
+                alt: "Scări și Platforme",
+                badge: "Access Solutions",
+                wide: true,
+            },
+        ]}
+        listItems={[
+            "Scări fixe cu Sistem Linia Vieții integrat",
+            "Platforme de mentenanță suspendate",
+            "Sisteme de schele mobile autorizate",
+            "Pasarele industriale certificate",
+        ]}
+        ctaLabel="Solicită Ofertă"
+        ctaSubject="Scări & Platforme"
+        moreHref="/solutii/acces"
+    />
+
+    <!-- 3M — Red -->
+    <ContentSection
+        badge="Authorized Partner"
+        heading="Echipamente<br/>3M™ PPE"
+        lead="Distribuitor autorizat de soluții pentru lucru la înălțime."
+        body="Oferim exclusiv soluții avansate pentru lucrul la înălțime (WAH - Working at Height) de la 3M Fall Protection, asigurând ergonomie și siguranță fără compromisuri în cele mai solicitante medii industriale."
+        color="#D32F2F"
+        bgGray={true}
+        imageRight={true}
+        imageGrid={[
+            {
+                src: cablocImg,
+                alt: "Echipamente 3M",
+                badge: "DISTRIBUȚIE",
+                wide: true,
+            },
+        ]}
+        listItems={[
+            "Harnașamente ExoFit™ pentru oprirea căderii",
+            "Mijloace de legătură și dispozitive retractabile Nano-Lok™",
+            "Soluții de acces și salvare din spații închise",
+            "Sisteme Python Safety™ pentru prevenirea căderii obiectelor",
+        ]}
+        ctaLabel="Solicită Catalog"
+        ctaSubject="Catalog 3M / Echipamente"
+        moreHref="/solutii/3m"
+    />
+
+    <!-- Clients Showcase -->
+    <ClientsShowcase
+        heading="Clienți de Încredere"
+        lead="Companii cu care am muncit împreună pentru siguranța echipelor de la audit inițial până la instruire și verificare periodică"
+        color="#111"
+        image={clientiImg}
+    />
+
+    <!-- Custom — Orange -->
+    <section id="custom" class="py-20 lg:py-28 bg-white">
+        <div class="px-5 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-10">
+                    <span
+                        class="inline-block bg-brand-orange text-white font-montserrat font-black text-[9px] uppercase tracking-widest px-3 py-1 mb-5"
+                        >Full Service</span
+                    >
+                    <h2
+                        class="font-montserrat font-black text-4xl lg:text-5xl uppercase leading-none mb-3 tracking-tighter"
+                    >
+                        Implementare Sisteme Custom
+                    </h2>
+                    <p
+                        class="font-montserrat font-black text-sm md:text-base uppercase tracking-tight italic mb-4 lg:mb-0"
+                        style="color:#f16215;"
+                    >
+                        De la proiectare la montaj și instruire.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-4 lg:gap-6 mb-10">
+                    {
+                        [
+                            {
+                                num: "01",
+                                title: "Audit",
+                                color: "#f16215",
+                                desc: "Evaluăm riscurile specifice locației și propunem soluțiile tehnice optime conform standardelor EN.",
+                            },
+                            {
+                                num: "02",
+                                title: "Design",
+                                color: "#1e3a8a",
+                                desc: "Inginerii noștri proiectează sistemul conform standardelor internaționale EN și cerințelor specifice.",
+                            },
+                            {
+                                num: "03",
+                                title: "Montaj",
+                                color: "#111111",
+                                desc: "Instalare profesională și instruirea personalului pentru utilizare corectă și în deplină siguranță.",
+                            },
+                        ].map((step) => (
+                            <div
+                                class="step-card"
+                                style={`--sc:${step.color};`}
+                            >
+                                <span class="step-num">{step.num}</span>
+                                <h4 class="step-title">{step.title}</h4>
+                                <p class="step-desc">{step.desc}</p>
+                            </div>
+                        ))
+                    }
+                </div>
+                <div
+                    class="border-2 border-black p-6 lg:p-8 grid md:grid-cols-5 gap-6 items-center bg-gray-50"
+                >
+                    <div class="md:col-span-3">
+                        <h3
+                            class="font-montserrat font-black text-2xl lg:text-3xl uppercase leading-none mb-2"
+                        >
+                            Hai să discutăm<br />proiectul tău
+                        </h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">
+                            Evaluare gratuită la sediul dumneavoastră. Fără
+                            obligații.
+                        </p>
+                    </div>
+                    <div class="md:col-span-2 flex flex-col gap-3">
+                        <button
+                            onclick="openContactDrawer('Implementare Custom', '#f16215')"
+                            class="flex items-center justify-center gap-3 bg-brand-black text-white px-6 py-4 font-montserrat font-black uppercase text-xs tracking-widest hover:bg-brand-orange transition-colors duration-300 cursor-pointer"
+                        >
+                            <svg
+                                class="w-4 h-4 flex-shrink-0"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                ><path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                                ></path></svg
+                            >
+                            Solicită Evaluare
+                        </button>
+                        <a
+                            href="mailto:office@whtc.ro"
+                            class="flex items-center justify-center gap-3 border-2 border-black px-6 py-4 font-montserrat font-black uppercase text-xs tracking-widest hover:bg-black hover:text-white transition-colors duration-300"
+                        >
+                            <svg
+                                class="w-4 h-4 flex-shrink-0"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                ><path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                ></path></svg
+                            >
+                            office@whtc.ro
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Google Reviews social proof stripe -->
+    <GoogleReviewsStripe />
+
+    <PageFooter />
+</Layout>
+
+<style>
+    /* ---- Hero ---- */
+    .hero-section {
+        min-height: 100svh;
+    }
+    @media (min-width: 1024px) {
+        .hero-section {
+            height: 100svh;
+            min-height: unset;
+        }
+    }
+    .hero-heading {
+        font-size: clamp(3.2rem, 9.5vw, 8.5rem);
+    }
+
+    /* ---- Nav pills ---- */
+    .nav-pill {
+        padding: 5px 11px;
+        font-size: 9px;
+        letter-spacing: 0.12em;
+        color: var(--c);
+        transition:
+            background 0.2s,
+            color 0.2s;
+        border: 1px solid transparent;
+        text-decoration: none;
+    }
+    .nav-pill:hover {
+        background: var(--c);
+        color: #fff;
+        border-color: var(--c);
+    }
+
+    /* ---- Service cards ---- */
+    .svc-card {
+        background: #fff;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        text-decoration: none;
+        color: #111;
+        border: 1px solid #000;
+        height: 190px;
+        padding: 1.25rem 1.5rem;
+        transition:
+            background-color 0.5s ease,
+            color 0.5s ease;
+    }
+    /* B&W overlay at 25% */
+    /* B&W overlay at 25% */
+    .svc-bw {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        opacity: 0.1;
+        filter: grayscale(75%) contrast(130%);
+        pointer-events: none;
+        transition:
+            opacity 0.3s ease-out,
+            transform 0.3s ease-out;
+        z-index: 1;
+        transform: scale(1);
+    }
+    /* Color overlay hidden at rest */
+    .svc-col {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        pointer-events: none;
+        transition:
+            opacity 0.3s ease-out,
+            transform 0.3s ease-out;
+        z-index: 1;
+        transform: scale(1);
+    }
+    .svc-content {
+        position: relative;
+        z-index: 2;
+    }
+    .svc-tag {
+        display: inline-block;
+        color: #fff;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        padding: 3px 8px;
+        margin-bottom: 0.5rem;
+    }
+    .svc-title {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: clamp(1rem, 2vw, 1.35rem);
+        text-transform: uppercase;
+        line-height: 0.9;
+        margin-bottom: 0.6rem;
+    }
+    .svc-bar {
+        width: 2.5rem;
+        height: 3px;
+        transition: width 0.3s ease;
+    }
+
+    /* Hover / signal: darken + color image + zoom */
+    .svc-card:hover {
+        background-color: #000;
+        color: #fff;
+    }
+    .svc-card:hover .svc-bw {
+        opacity: 0;
+        transform: scale(1.05);
+    }
+    .svc-card:hover .svc-col {
+        opacity: 0.75;
+        transform: scale(1.05);
+    }
+    .svc-card:hover .svc-bar {
+        width: 4rem;
+    }
+
+    /* ---- Stats strip ---- */
+    .stats-strip {
+        border-bottom: 2px solid #000;
+    }
+
+    /* ---- Section shared styles ---- */
+    .section-img-wrap {
+        position: relative;
+        border: 4px solid;
+        padding: 3px;
+        overflow: hidden;
+    }
+    .section-img {
+        width: 100%;
+        height: 320px;
+        object-fit: cover;
+        display: block;
+        filter: grayscale(25%);
+        transition: filter 0.5s ease; /* NO scale/zoom */
+    }
+    .section-img-wrap:hover .section-img {
+        filter: grayscale(0%);
+    }
+    .img-badge {
+        position: absolute;
+        bottom: 12px;
+        left: 12px;
+        color: #fff;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        padding: 4px 10px;
+    }
+    .section-tag {
+        display: inline-block;
+        color: #fff;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        padding: 4px 10px;
+        margin-bottom: 1rem;
+    }
+    .section-heading {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: clamp(2rem, 3.5vw, 3rem);
+        text-transform: uppercase;
+        line-height: 0.9;
+        margin-bottom: 1rem;
+    }
+    .section-rule {
+        width: 3rem;
+        height: 4px;
+        margin-bottom: 1.25rem;
+    }
+    .section-lead {
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+    }
+    .section-body {
+        color: #6b7280;
+        font-size: 0.875rem;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+    }
+
+    /* CTA button (opens drawer) */
+    .section-cta-btn {
+        display: inline-block;
+        background: var(--cta);
+        color: #fff;
+        border: 3px solid var(--cta);
+        padding: 10px 22px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        cursor: pointer;
+        transition:
+            background 0.25s,
+            color 0.25s;
+    }
+    .section-cta-btn:hover {
+        background: #111;
+        border-color: #111;
+        color: #fff;
+    }
+
+    /* "Află mai mult" link */
+    .section-more {
+        display: inline-block;
+        border: 3px solid var(--cta);
+        color: var(--cta);
+        padding: 10px 22px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        text-decoration: none;
+        transition:
+            background 0.25s,
+            color 0.25s;
+    }
+    .section-more:hover {
+        background: var(--cta);
+        color: #fff;
+    }
+
+    .feature-chip {
+        display: inline-block;
+        border: 2px solid;
+        padding: 6px 14px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 800;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+    .feature-box {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #fff;
+        border: 2px solid #e5e7eb;
+        padding: 12px 16px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 800;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        transition: border-color 0.2s;
+    }
+    .feature-box:hover {
+        border-color: var(--bc);
+    }
+    .fbox-dot {
+        width: 7px;
+        height: 7px;
+        flex-shrink: 0;
+    }
+
+    /* Step cards */
+    .step-card {
+        border: 3px solid #000;
+        padding: 1.5rem;
+        cursor: default;
+        position: relative;
+        overflow: hidden;
+        transition: color 0.3s;
+    }
+    .step-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--sc);
+        transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .step-card:hover::before {
+        height: 100%;
+    }
+    .step-num {
+        display: block;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: 3rem;
+        line-height: 1;
+        color: rgba(0, 0, 0, 0.07);
+        margin-bottom: 0.5rem;
+        transition: color 0.3s;
+        position: relative;
+        z-index: 1;
+    }
+    .step-card:hover .step-num {
+        color: rgba(255, 255, 255, 0.12);
+    }
+    .step-title {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: 1.4rem;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+        position: relative;
+        z-index: 1;
+        transition: color 0.3s;
+    }
+    .step-card:hover .step-title {
+        color: #fff;
+    }
+    .step-desc {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #6b7280;
+        line-height: 1.6;
+        position: relative;
+        z-index: 1;
+        transition: color 0.3s;
+    }
+    .step-card:hover .step-desc {
+        color: rgba(255, 255, 255, 0.8);
+    }
+</style>

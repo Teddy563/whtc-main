@@ -1,48 +1,75 @@
-<footer id="footer" class="bg-brand-black text-white py-20 px-6">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-        
-        <!-- Col 1: Brand -->
-        <div class="col-span-1 md:col-span-2">
-            <h2 class="font-anton text-4xl mb-6">WHTC</h2>
-            <h3 class="sr-only">About WHTC</h3>
-            <p class="text-gray-400 max-w-sm text-sm leading-relaxed mb-6" data-i18n="footer_about">
-                Încă de la începutul anilor 2000, ne-am dedicat furnizării celor mai sigure și eficiente servicii de lucru la înălțime din România.
+---
+import { Image } from "astro:assets";
+import safetyLogo from "../assets/whtc_white.svg";
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer id="footer" class="bg-brand-black text-white py-8 px-6">
+    <div
+        class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6"
+    >
+        <!-- Brand & About -->
+        <div class="max-w-xs">
+            <Image
+                src={safetyLogo}
+                alt="Safety Academy Logo"
+                class="h-10 w-auto mb-3"
+            />
+            <p
+                class="text-gray-400 text-xs leading-relaxed"
+                data-i18n="footer_about"
+            >
+                Încă de la începutul anilor 2000, ne-am dedicat furnizării celor
+                mai sigure și eficiente servicii de lucru la înălțime din
+                România. Certificați ISO 9001, 14001, 45001.
             </p>
         </div>
 
-        <!-- Col 2: Divisions -->
-        <div>
-            <h3 class="font-bold uppercase tracking-wider mb-6 text-xs text-brand-orange" data-i18n="footer_divs_title">Diviziile Noastre</h3>
-            <ul class="space-y-4 text-gray-400 text-sm">
-                <li><a href="https://safetyacademy.ro" target="_blank" class="hover:text-white transition-colors" data-i18n="footer_div1">Safety Academy</a></li>
-                <li><a href="https://lockout-tagout.ro" target="_blank" class="hover:text-white transition-colors" data-i18n="footer_div2">LTT Lock</a></li>
-                <li><a href="#" class="hover:text-white transition-colors" data-i18n="footer_div3">Inginerie WHTC</a></li>
-            </ul>
-        </div>
-
-        <!-- Col 3: Contact -->
-        <div>
-            <h3 class="font-bold uppercase tracking-wider mb-6 text-xs text-brand-orange" data-i18n="footer_contact_title">Contact</h3>
-            <ul class="space-y-4 text-gray-400 text-sm">
-                <li class="flex flex-col">
-                    <span class="text-white font-bold" data-i18n="footer_hq">Sediu Central</span>
-                    <span>Str. Intrarea Craiovei, nr. 43</span>
-                    <span>Sector 6, București</span>
-                </li>
-                <li class="flex flex-col mt-4">
-                    <span class="text-white font-bold" data-i18n="footer_touch">Email & Telefon</span>
-                    <span>office@whtc.ro</span>
-                    <span>+40 749 225 956</span>
-                </li>
-            </ul>
+        <!-- Contact -->
+        <div
+            class="flex flex-col md:flex-row gap-6 md:gap-12 text-sm text-gray-400"
+        >
+            <div class="flex flex-col">
+                <span class="text-white font-bold" data-i18n="footer_hq"
+                    >Sediu Central</span
+                >
+                <span>Str. Intrarea Craiovei, nr. 43, Sector 6, București</span>
+            </div>
+            <div class="flex flex-col">
+                <span class="text-white font-bold" data-i18n="footer_touch"
+                    >Email &amp; Telefon</span
+                >
+                <a
+                    href="mailto:office@whtc.ro"
+                    class="hover:text-white transition-colors">office@whtc.ro</a
+                >
+                <a
+                    href="tel:+40749225956"
+                    class="hover:text-white transition-colors"
+                    >+40 749 225 956</a
+                >
+            </div>
         </div>
     </div>
-    
-    <div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600">
-        <p>&copy; 2025 Working at Height Training Center SRL.</p>
-        <div class="flex gap-6 mt-4 md:mt-0">
-            <a href="#" data-i18n="footer_privacy">Politica de Confidențialitate</a>
-            <a href="#" data-i18n="footer_terms">Termeni și Condiții</a>
+
+    <div
+        class="max-w-7xl mx-auto mt-8 pt-4 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 gap-4"
+    >
+        <p>&copy; {currentYear} Working at Height Training Center SRL.</p>
+        <div class="flex gap-6">
+            <a
+                href="/politica-confidentialitate/"
+                data-i18n="footer_privacy"
+                class="hover:text-gray-400 transition-colors"
+                >Politica de Confidențialitate</a
+            >
+            <a
+                href="/termeni-si-conditii/"
+                data-i18n="footer_terms"
+                class="hover:text-gray-400 transition-colors"
+                >Termeni și Condiții</a
+            >
         </div>
     </div>
 </footer>

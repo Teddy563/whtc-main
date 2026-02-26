@@ -1,0 +1,203 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import GlobalNavbar from "../../components/GlobalNavbar.astro";
+import PageFooter from "../../components/PageFooter.astro";
+import SubPageHero from "../../components/blocks/SubPageHero.astro";
+import ContentSection from "../../components/blocks/ContentSection.astro";
+import StatsStrip from "../../components/blocks/StatsStrip.astro";
+import CTABlock from "../../components/blocks/CTABlock.astro";
+import RelatedPages from "../../components/blocks/RelatedPages.astro";
+import { Image } from "astro:assets";
+import scaraImg from "../../assets/solutii/scara.webp";
+import platformaImg from "../../assets/solutii/platforma.webp";
+import schelaMobilaImg from "../../assets/solutii/schela_mobila.webp";
+import cablocImg from "../../assets/solutii/linia-vietii/cabloc.webp";
+
+import liniaVietiiImgRelated from "../../assets/solutii/linia-vietii/linia-vietii-orizontala.webp";
+import accesImgRelated from "../../assets/solutii/schela_mobila.webp";
+import customImgRelated from "../../assets/solutii/solutii_custom.webp";
+import echipamente3mImgRelated from "../../assets/solutii/3m.webp";
+import verificariImgRelated from "../../assets/solutii/verificari-recertificari.webp";
+
+// ─── Category Theme ──────────────────────────────────────────────────────────
+const color = "#7c3aed"; // Purple — Access / Scări & Platforme
+---
+
+<Layout title="Scări & Platforme Industriale | Acces Industrial WHTC">
+    <head slot="head">
+        <meta
+            name="description"
+            content="Scări fixe cu cușcă de protecție, platforme industriale permanente și temporare, step-over și treceri tehnologice. Proiectare și montaj WHTC."
+        />
+    </head>
+
+    <GlobalNavbar />
+
+    <SubPageHero
+        badge="Acces Industrial"
+        title="Scări &<br/>Platforme"
+        subtitle="Acces securizat prin structuri metalice certificate pentru orice tip de clădire industrială"
+        color={color}
+        bgImage={scaraImg}
+        ctaPrimary={{
+            label: "Solicită Proiectare",
+            subject: "Scări & Platforme: Ofertă",
+        }}
+        ctaScroll={{ label: "Vezi Soluțiile", anchor: "content-acces" }}
+    />
+
+    <!-- Scări fixe -->
+    <div id="content-acces">
+        <ContentSection
+            badge="Acces Industrial"
+            heading="Scări Fixe &<br/>Scări cu Cușcă"
+            lead="Soluții Permanente de Acces Vertical"
+            body="De la scări simple la platforme de lucru la înălțime custom-made. Pentru scările fixe (cu sau fără cușcă de protecție), noi vă recomandăm opțiunea FĂRĂ cușcă, preferând asigurarea printr-un sistem complet anticădere. Această abordare minimizează riscurile și respectă cele mai exigente standarde de siguranță."
+            color={color}
+            imageGrid={[
+                {
+                    src: cablocImg,
+                    alt: "Sistem anticădere pe scară fixă Cabloc 3M",
+                },
+                {
+                    src: "https://images.unsplash.com/photo-1590483734743-98925501f054?auto=format&fit=crop&q=80&w=400",
+                    alt: "Scară fixă acces",
+                },
+                {
+                    src: "https://images.unsplash.com/photo-1621905238294-4841d397602e?auto=format&fit=crop&q=80&w=800",
+                    alt: "Platforme industriale",
+                    wide: false,
+                    badge: "Access Solutions",
+                },
+            ]}
+            listItems={[
+                "Scări fixe cu Sistem Linia Vieții integrat",
+                "Platforme de mentenanță suspendate",
+                "Sisteme de schele mobile autorizate",
+                "Pasarele industriale certificate",
+            ]}
+            ctaLabel="Solicită Ofertă"
+            ctaSubject="Scări & Platforme"
+        />
+
+        <!-- Platforme -->
+        <ContentSection
+            badge="Platforme Industriale"
+            heading="Platforme Mobile sau Permanente"
+            body="Platformele industriale WHTC sunt proiectate special pentru nevoile dumneavoastră, fabricate din oțel galvanizat sau inox. Oferă acces permanent și sigur în jurul utilajelor sau funcționează ca treceri tehnologice eficiente."
+            color={color}
+            imageRight={true}
+            bgGray={true}
+            imageGrid={[
+                {
+                    src: platformaImg,
+                    alt: "Platforme permanente industriale",
+                    wide: true,
+                    badge: "Platforme",
+                },
+                {
+                    src: "https://images.unsplash.com/photo-1590483734743-98925501f054?auto=format&fit=crop&q=80&w=400",
+                    alt: "Pasarele industriale",
+                },
+            ]}
+            chips={[
+                "Platforme Fixe & Modulare",
+                "Treceri Tehnologice",
+                "Pasarele Industriale",
+            ]}
+            ctaLabel="Solicită Proiectare"
+            ctaSubject="Platforme Industriale"
+        />
+
+        <!-- Schele -->
+        <ContentSection
+            badge="Schele Mobile"
+            heading="Schele Mobile<br/>pentru Intervenții"
+            body="Pentru reparații, inspecții și intervenții rapide la înălțime, punem la dispoziție schele mobile autorizate. Sunt ușoare, extrem de flexibile și asigură o soluție completă pentru accesul temporar pe orice amplasament."
+            color={color}
+            imageGrid={[
+                {
+                    src: schelaMobilaImg,
+                    alt: "Schele mobile de lucru la înălțime",
+                    wide: true,
+                    badge: "Schele Autorizate",
+                },
+            ]}
+            chips={["Schele Mobile", "Acces Temporar", "Inspecții & Reparații"]}
+            ctaLabel="Solicită Ofertă"
+            ctaSubject="Schele Mobile"
+        />
+    </div><!-- /content-acces -->
+
+    <!-- Stats -->
+    <StatsStrip
+        stats={[
+            {
+                num: "S235",
+                label: "Oțel Certificat",
+                sub: "Galvanizat la cald sau vopsit",
+            },
+            {
+                num: "EN 14122",
+                label: "Standard European",
+                sub: "Scări & platforme accces",
+            },
+            {
+                num: "Custom",
+                label: "Fabricat la Comandă",
+                sub: "Adaptat după planul clădirii",
+            },
+            {
+                num: "20+",
+                label: "Ani Experiență",
+                sub: "Instalări în toată România",
+            },
+        ]}
+    />
+
+    <CTABlock
+        heading="Solicită Ofertă<br/>Personalizată"
+        body="Trimiteți planurile clădirii sau invitați-ne la o evaluare pe teren. Ofertă rapidă, fără obligații."
+        ctaLabel="Solicită Ofertă"
+        ctaSubject="Scări & Platforme: Ofertă"
+        emailHref="office@whtc.ro"
+        color={color}
+        accentBackground={true}
+    />
+
+    <RelatedPages
+        heading="Servicii Conexe"
+        pages={[
+            {
+                label: "Sisteme Linia Vieții",
+                desc: "Verticale, Orizontale & Temporare",
+                href: "/solutii/linia-vietii/",
+                color: "#1e3a8a",
+                image: liniaVietiiImgRelated,
+            },
+            {
+                label: "Implementare Custom",
+                desc: "Proiectare și execuție la comandă",
+                href: "/solutii/custom/",
+                color: "#f16215",
+                image: customImgRelated,
+            },
+            {
+                label: "Echipamente 3M™",
+                desc: "EIP, SRL-uri & blocatoare",
+                href: "/solutii/3m/",
+                color: "#D32F2F",
+                image: echipamente3mImgRelated,
+            },
+            {
+                label: "Verificări & Recertificări",
+                desc: "Inspecție periodică EIP și sisteme",
+                href: "/solutii/verificari-recertificari/",
+                color: "#16a34a",
+                image: verificariImgRelated,
+            },
+        ]}
+    />
+
+    <PageFooter />
+</Layout>

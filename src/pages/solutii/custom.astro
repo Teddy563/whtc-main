@@ -1,0 +1,215 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import GlobalNavbar from "../../components/GlobalNavbar.astro";
+import PageFooter from "../../components/PageFooter.astro";
+import SubPageHero from "../../components/blocks/SubPageHero.astro";
+import ContentSection from "../../components/blocks/ContentSection.astro";
+import ProcessSteps from "../../components/blocks/ProcessSteps.astro";
+import StatsStrip from "../../components/blocks/StatsStrip.astro";
+import CTABlock from "../../components/blocks/CTABlock.astro";
+import RelatedPages from "../../components/blocks/RelatedPages.astro";
+import ClientsShowcase from "../../components/blocks/ClientsShowcase.astro";
+import GoogleReviewsStripe from "../../components/blocks/GoogleReviewsStripe.astro";
+import { Image } from "astro:assets";
+import customImg from "../../assets/solutii/solutii_custom.webp";
+import roofSafeImg from "../../assets/solutii/roof_safe.webp";
+import safetyTrainingImg from "../../assets/solutii/safety_training.webp";
+import clientiImg from "../../assets/whtc_clienti.webp";
+
+import liniaVietiiImgRelated from "../../assets/solutii/linia-vietii/linia-vietii-orizontala.webp";
+import accesImgRelated from "../../assets/solutii/schela_mobila.webp";
+import customImgRelated from "../../assets/solutii/solutii_custom.webp";
+import echipamente3mImgRelated from "../../assets/solutii/3m.webp";
+import verificariImgRelated from "../../assets/solutii/verificari-recertificari.webp";
+
+// ─── Category Theme ──────────────────────────────────────────────────────────
+const color = "#f16215"; // Orange — Implementare Custom
+---
+
+<Layout
+    title="Implementare Custom: Full Service Protectie Inaltime | Solutii WHTC"
+>
+    <head slot="head">
+        <meta
+            name="description"
+            content="Serviciu complet WHTC: site survey, proiectare, montaj și instruire pentru sisteme de siguranță la înălțime. One-stop-shop pentru lucrul la înălțime."
+        />
+    </head>
+
+    <GlobalNavbar />
+
+    <SubPageHero
+        badge="Full Service"
+        title="Implementare<br/>Custom"
+        subtitle="De la audit și proiectare, la montaj și instruirea echipei: un singur partener, zero compromisuri"
+        color={color}
+        bgImage={customImg}
+        ctaPrimary={{
+            label: "Solicită Evaluare Gratuită",
+            subject: "Implementare Custom — Evaluare",
+        }}
+        ctaScroll={{ label: "Cum lucrăm", anchor: "servicii-custom" }}
+    />
+
+    <!-- Overview -->
+    <div id="servicii-custom">
+        <ContentSection
+            badge="Full Service"
+            heading="Un Partener<br/>Complet"
+            lead="De la prima vizită la certificatul final"
+            body="WHTC este singurul furnizor din România care acoperă întregul ciclu: evaluarea riscurilor, proiectarea sistemelor, distribuția echipamentelor 3M, instalarea soluțiilor permanente și instruirea personalului. Nu aveți nevoie de alți furnizori."
+            color={color}
+            imageGrid={[
+                {
+                    src: roofSafeImg,
+                    alt: "Acoperis sigur — sistem protecție lucru la înălțime",
+                    wide: true,
+                    badge: "Full Service",
+                },
+            ]}
+            chips={[
+                "Site Survey Gratuit",
+                "Proiectare Tehnică",
+                "Montaj Certificat",
+                "Instruire Echipă",
+            ]}
+            ctaLabel="Solicită Evaluare Gratuită"
+            ctaSubject="Implementare Custom — Evaluare"
+        />
+
+        <!-- Process steps -->
+        <ProcessSteps
+            heading="Procesul Nostru"
+            subtitle="3 pași simpli de la problemă la soluție certificată"
+            steps={[
+                {
+                    num: "01",
+                    title: "Audit",
+                    color,
+                    desc: "Evaluăm riscurile specifice locației și propunem soluțiile tehnice optime conform standardelor EN. Vizita inițială este gratuită.",
+                },
+                {
+                    num: "02",
+                    title: "Design",
+                    color: "#1e3a8a",
+                    desc: "Inginerii noștri proiectează sistemul conform standardelor internaționale EN și cerințelor specifice ale clientului.",
+                },
+                {
+                    num: "03",
+                    title: "Montaj",
+                    color: "#111111",
+                    desc: "Instalare profesională și instruirea personalului pentru utilizare corectă și în deplină siguranță.",
+                },
+            ]}
+            cols="3"
+        />
+
+        <!-- What's included -->
+        <ContentSection
+            badge="Ce Include"
+            heading="Pachetul<br/>Full Service"
+            body="Fiecare proiect de implementare WHTC include un set complet de livrabile tehnice și de training, gata de predare la finalizarea montajului."
+            color={color}
+            imageRight={true}
+            bgGray={true}
+            imageGrid={[
+                {
+                    src: safetyTrainingImg,
+                    alt: "Training siguranță lucru la înălțime — instruire echipă WHTC",
+                    wide: true,
+                    badge: "Certificat",
+                },
+            ]}
+            listItems={[
+                "Raport de evaluare a riscurilor (Risk Assessment)",
+                "Proiect tehnic cu calcule de rezistență",
+                "Certificat de conformitate la finalizare",
+                "Manual de utilizare și instructaj PPE",
+                "Program de mentenanță recomandat",
+            ]}
+            ctaLabel="Solicită Ofertă Custom"
+            ctaSubject="Implementare Custom — Ofertă"
+        />
+
+        <!-- /servicii-custom anchor -->
+    </div>
+
+    <!-- Stats -->
+    <StatsStrip
+        stats={[
+            {
+                num: "500+",
+                label: "Proiecte Finalizate",
+                sub: "Implementări complete în România",
+            },
+            { num: "3", label: "Pași Simpli", sub: "Audit → Design → Montaj" },
+            {
+                num: "100%",
+                label: "Documentate",
+                sub: "Carte tehnică predată la finalizare",
+            },
+            {
+                num: "20+",
+                label: "Ani Experiență",
+                sub: "One-stop-shop la înălțime",
+            },
+        ]}
+    />
+
+    <CTABlock
+        heading="Hai Să Discutăm<br/>Proiectul Tău"
+        body="Evaluare gratuită la sediul dumneavoastră. Propunere tehnică în 5 zile lucrătoare."
+        ctaLabel="Solicită Evaluare Gratuită"
+        ctaSubject="Implementare Custom — Contact"
+        emailHref="office@whtc.ro"
+        color={color}
+        accentBackground={true}
+    />
+
+    <!-- Clients showcase -->
+    <ClientsShowcase
+        heading="Clienți de Încredere"
+        lead="Companii cu care am muncit împreună pentru siguranța echipelor de la audit inițial până la instruire și verificare periodică"
+        color="#111"
+        image={clientiImg}
+    />
+
+    <RelatedPages
+        heading="Servicii Conexe"
+        pages={[
+            {
+                label: "Sisteme Linia Vieții",
+                desc: "Verticale, Orizontale & Temporare",
+                href: "/solutii/linia-vietii/",
+                color: "#1e3a8a",
+                image: liniaVietiiImgRelated,
+            },
+            {
+                label: "Sisteme de Acces",
+                desc: "Scări, platforme și schele mobile",
+                href: "/solutii/acces/",
+                color: "#7c3aed",
+                image: accesImgRelated,
+            },
+            {
+                label: "Echipamente 3M™",
+                desc: "EIP, SRL-uri & blocatoare",
+                href: "/solutii/3m/",
+                color: "#D32F2F",
+                image: echipamente3mImgRelated,
+            },
+            {
+                label: "Verificări & Recertificări",
+                desc: "Inspecție periodică EIP și sisteme",
+                href: "/solutii/verificari-recertificari/",
+                color: "#16a34a",
+                image: verificariImgRelated,
+            },
+        ]}
+    />
+
+    <!-- Google Reviews -->
+    <GoogleReviewsStripe />
+
+    <PageFooter />
+</Layout>

@@ -1,0 +1,133 @@
+---
+/**
+ * ProcessSteps — numbered 01/02/03 step cards with hover colour fill.
+ *
+ * Props:
+ *   heading  — optional section heading above the cards
+ *   subtitle — optional subtitle below heading
+ *   steps    — array of { num, title, color, desc }
+ *   cols     — "2" | "3" | "4"  — grid columns (default "3")
+ */
+
+interface Step {
+    num: string;
+    title: string;
+    color: string;
+    desc: string;
+}
+
+interface Props {
+    heading?: string;
+    subtitle?: string;
+    steps: Step[];
+    cols?: "2" | "3" | "4";
+    bgWhite?: boolean;
+}
+
+const { heading, subtitle, steps, cols = "3", bgWhite = true } = Astro.props;
+
+const colClass: Record<string, string> = {
+    "2": "md:grid-cols-2",
+    "3": "md:grid-cols-3",
+    "4": "md:grid-cols-2 lg:grid-cols-4",
+};
+---
+
+<section
+    class={`py-16 lg:py-24 px-5 lg:px-8 ${bgWhite ? "bg-white" : "bg-gray-50"}`}
+>
+    <div class="max-w-7xl mx-auto">
+        {
+            (heading || subtitle) && (
+                <div class="text-center mb-10">
+                    {heading && (
+                        <h2 class="font-montserrat font-black text-3xl lg:text-4xl uppercase leading-none tracking-tighter mb-3 text-brand-black">
+                            {heading}
+                        </h2>
+                    )}
+                    {subtitle && (
+                        <p class="text-gray-400 font-montserrat font-bold uppercase tracking-widest text-xs italic">
+                            {subtitle}
+                        </p>
+                    )}
+                </div>
+            )
+        }
+
+        <div class={`grid gap-4 lg:gap-6 ${colClass[cols]}`}>
+            {
+                steps.map((step) => (
+                    <div class="step-card" style={`--sc:${step.color};`}>
+                        <span class="step-num">{step.num}</span>
+                        <h4 class="step-title">{step.title}</h4>
+                        <p class="step-desc">{step.desc}</p>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    .step-card {
+        border: 3px solid #000;
+        padding: 1.5rem;
+        cursor: default;
+        position: relative;
+        overflow: hidden;
+        transition: color 0.3s;
+    }
+    .step-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--sc);
+        transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .step-card:hover::before {
+        height: 100%;
+    }
+    .step-num {
+        display: block;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: 3rem;
+        line-height: 1;
+        color: rgba(0, 0, 0, 0.07);
+        margin-bottom: 0.5rem;
+        transition: color 0.3s;
+        position: relative;
+        z-index: 1;
+    }
+    .step-card:hover .step-num {
+        color: rgba(255, 255, 255, 0.12);
+    }
+    .step-title {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: 1.4rem;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+        position: relative;
+        z-index: 1;
+        transition: color 0.3s;
+    }
+    .step-card:hover .step-title {
+        color: #fff;
+    }
+    .step-desc {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #6b7280;
+        line-height: 1.6;
+        position: relative;
+        z-index: 1;
+        transition: color 0.3s;
+    }
+    .step-card:hover .step-desc {
+        color: rgba(255, 255, 255, 0.8);
+    }
+</style>

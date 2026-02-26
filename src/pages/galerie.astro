@@ -1,0 +1,276 @@
+---
+import Layout from "../layouts/Layout.astro";
+import GlobalNavbar from "../components/GlobalNavbar.astro";
+import PageFooter from "../components/PageFooter.astro";
+import SubPageHero from "../components/blocks/SubPageHero.astro";
+import { Image } from "astro:assets";
+
+// Import Gallery Images
+import imgLoto from "../assets/loto.webp";
+import imgSafetyAcademy from "../assets/safetyacademy_npc.webp";
+import img3M from "../assets/solutii/3m.webp";
+import imgClienti from "../assets/solutii/clienti_whtc.webp";
+import imgScara from "../assets/solutii/scara.webp";
+import imgSolutiiProtectie from "../assets/solutii/solutii_protectie_lucru_la_inaltime.webp";
+import imgVerificare from "../assets/solutii/verificare_eip.webp";
+import imgCabloc from "../assets/solutii/linia-vietii/cabloc.webp";
+import imgChinga from "../assets/solutii/linia-vietii/chinga.webp";
+import imgEzline from "../assets/solutii/linia-vietii/ezline.webp";
+import imgFactorul from "../assets/solutii/linia-vietii/factorul_de_cadere.webp";
+import imgLiniaOrizontala from "../assets/solutii/linia-vietii/linia-vietii-orizontala.webp";
+import imgScaraCrinolina from "../assets/solutii/linia-vietii/scara_crinolina.webp";
+import imgRampaAuto from "../assets/solutii/linia-vietii/sistem_orizontal_rampa_auto.webp";
+
+// Group images into a manageable array
+const galleryImages = [
+    { src: imgLoto, alt: "Soluții LOTO" },
+    { src: imgSafetyAcademy, alt: "Training Safety Academy" },
+    { src: imgSolutiiProtectie, alt: "Soluții Protecție Lucru la Înălțime" },
+    { src: imgLiniaOrizontala, alt: "Linia Vieții Orizontală" },
+    { src: imgScaraCrinolina, alt: "Scară cu Crinolină" },
+    { src: imgRampaAuto, alt: "Sistem Orizontal Rampă Auto" },
+    { src: imgVerificare, alt: "Verificare Echipamente EIP" },
+    { src: img3M, alt: "Echipamente 3M Fall Protection" },
+    { src: imgCabloc, alt: "Sistem Vertical Cabloc" },
+    { src: imgFactorul, alt: "Demonstrație Factorul de Cădere" },
+    { src: imgEzline, alt: "Sistem EZ-Line" },
+    { src: imgChinga, alt: "Chingă de Ancorare" },
+    { src: imgScara, alt: "Inspecție pe Scară" },
+    { src: imgClienti, alt: "Portofoliu Clienți WHTC" },
+];
+
+const color = "#f16215"; // WHTC Orange
+---
+
+<Layout title="Galerie Proiecte | WHTC">
+    <head slot="head">
+        <meta
+            name="description"
+            content="Galerie foto cu lucrări, sisteme de siguranță, soluții de protecție la înălțime și echipamente montate de echipa WHTC."
+        />
+    </head>
+
+    <GlobalNavbar />
+
+    <div class="pt-20">
+        <section class="py-12 md:py-20 lg:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="inline-block text-brand-orange font-bold tracking-wider uppercase text-sm mb-4">Portofoliu vizual</span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-black font-montserrat uppercase tracking-tight text-brand-black leading-tight mb-6">
+                        Galerie <span class="text-brand-orange">Proiecte</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-600 font-inter leading-relaxed">
+                        Imagini din teren, lucrări finalizate, sisteme de protecție anticădere și momente din centrele noastre de training Safety Academy.
+                    </p>
+                </div>
+
+                <!-- Bento Gallery Grid -->
+                <!-- Utilizes CSS grid with dense flow and varying spans for a bento effect -->
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4 auto-rows-[150px] md:auto-rows-[240px] grid-flow-dense">
+                    {galleryImages.map((image, index) => {
+                        const p = index % 14;
+                        let spanClasses = "col-span-1 row-span-1"; // Default small square
+                        
+                        // Create a pattern for the bento grid
+                        if (p === 0) spanClasses = "col-span-2 row-span-2 md:col-span-2 md:row-span-2"; // Large square
+                        else if (p === 3) spanClasses = "col-span-2 row-span-1 md:col-span-2 md:row-span-1"; // Wide
+                        else if (p === 4) spanClasses = "col-span-1 row-span-2 md:col-span-1 md:row-span-2"; // Tall
+                        else if (p === 7) spanClasses = "col-span-2 row-span-2 md:col-span-3 md:row-span-2"; // Very Wide & Tall
+                        else if (p === 9) spanClasses = "col-span-2 row-span-1 md:col-span-2 md:row-span-1"; // Wide
+                        else if (p === 12) spanClasses = "col-span-1 row-span-2 md:col-span-2 md:row-span-2"; // Large square
+
+                        return (
+                            <div 
+                                class={`group relative overflow-hidden rounded-xl bg-gray-100 cursor-zoom-in shadow-sm hover:shadow-xl transition-all duration-300 ${spanClasses}`}
+                                data-gallery-item
+                                data-index={index}
+                                data-full-src={image.src.src}
+                            >
+                                <Image
+                                    src={image.src}
+                                    alt={image.alt}
+                                    width={800}
+                                    height={800}
+                                    format="webp"
+                                    quality={70}
+                                    class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-in-out"
+                                />
+                                
+                                <!-- Overlay Caption -->
+                                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                                    <p class="text-white font-medium text-sm leading-tight">
+                                        {image.alt}
+                                    </p>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div 
+        id="lightbox" 
+        class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/95 backdrop-blur-sm opacity-0 transition-opacity duration-300"
+        aria-modal="true"
+        role="dialog"
+    >
+        <!-- Close Button -->
+        <button 
+            id="lightbox-close" 
+            class="absolute top-6 right-6 p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-colors z-10"
+            aria-label="Închide galeria"
+        >
+            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+
+        <!-- Prev Button -->
+        <button 
+            id="lightbox-prev" 
+            class="absolute left-4 top-1/2 -translate-y-1/2 p-3 text-white/50 hover:text-white hover:bg-white/10 rounded-full transition-colors z-10"
+            aria-label="Imaginea anterioară"
+        >
+            <svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+        </button>
+
+        <!-- Next Button -->
+        <button 
+            id="lightbox-next" 
+            class="absolute right-4 top-1/2 -translate-y-1/2 p-3 text-white/50 hover:text-white hover:bg-white/10 rounded-full transition-colors z-10"
+            aria-label="Imaginea următoare"
+        >
+            <svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+        </button>
+
+        <!-- Image Container -->
+        <div class="relative max-w-[90vw] max-h-[90vh] flex flex-col items-center justify-center">
+            <img 
+                id="lightbox-img" 
+                src="" 
+                alt="Imagine mărită" 
+                class="max-w-full max-h-[85vh] object-contain rounded-sm shadow-2xl transition-transform duration-300 scale-95"
+            />
+            <p id="lightbox-caption" class="text-white/80 mt-4 text-center text-sm md:text-base font-medium empty:hidden"></p>
+        </div>
+    </div>
+
+    <PageFooter />
+</Layout>
+
+<script>
+    // Lightbox Logic
+    document.addEventListener("DOMContentLoaded", () => {
+        const items = document.querySelectorAll("[data-gallery-item]");
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img") as HTMLImageElement;
+        const lightboxCaption = document.getElementById("lightbox-caption");
+        const btnClose = document.getElementById("lightbox-close");
+        const btnPrev = document.getElementById("lightbox-prev");
+        const btnNext = document.getElementById("lightbox-next");
+
+        if (!lightbox || !lightboxImg || items.length === 0) return;
+
+        let currentIndex = 0;
+        let isLightboxOpen = false;
+
+        // Open Lightbox
+        const openLightbox = (index: number) => {
+            currentIndex = index;
+            const item = items[index];
+            const src = item.getAttribute("data-full-src");
+            const alt = item.querySelector("img")?.getAttribute("alt") || "";
+            
+            if (src) {
+                // Pre-hide image for animation
+                lightboxImg.classList.remove("scale-100");
+                lightboxImg.classList.add("scale-95", "opacity-0");
+                
+                // Set source
+                lightboxImg.src = src;
+                if (lightboxCaption) lightboxCaption.textContent = alt;
+
+                // Show Lightbox overlay
+                lightbox.classList.remove("hidden");
+                // Trigger reflow
+                void lightbox.offsetWidth;
+                lightbox.classList.remove("opacity-0");
+                lightbox.classList.add("flex", "opacity-100");
+                
+                // Animate image in after load
+                lightboxImg.onload = () => {
+                    lightboxImg.classList.remove("scale-95", "opacity-0");
+                    lightboxImg.classList.add("scale-100", "opacity-100");
+                };
+
+                isLightboxOpen = true;
+                document.body.style.overflow = "hidden"; // Prevent scrolling
+            }
+        };
+
+        // Close Lightbox
+        const closeLightbox = () => {
+            lightbox.classList.remove("opacity-100");
+            lightbox.classList.add("opacity-0");
+            
+            // Wait for fade out
+            setTimeout(() => {
+                lightbox.classList.add("hidden");
+                lightbox.classList.remove("flex");
+                lightboxImg.src = "";
+                isLightboxOpen = false;
+                document.body.style.overflow = ""; // Restore scrolling
+            }, 300);
+        };
+
+        // Navigation
+        const goPrev = (e?: Event) => {
+            if (e) e.stopPropagation();
+            const newIndex = currentIndex > 0 ? currentIndex - 1 : items.length - 1;
+            openLightbox(newIndex);
+        };
+
+        const goNext = (e?: Event) => {
+            if (e) e.stopPropagation();
+            const newIndex = currentIndex < items.length - 1 ? currentIndex + 1 : 0;
+            openLightbox(newIndex);
+        };
+
+        // Attach Click to Grid Items
+        items.forEach((item) => {
+            item.addEventListener("click", () => {
+                const index = parseInt(item.getAttribute("data-index") || "0", 10);
+                openLightbox(index);
+            });
+        });
+
+        // Attach Button Clicks
+        btnClose?.addEventListener("click", closeLightbox);
+        btnPrev?.addEventListener("click", goPrev);
+        btnNext?.addEventListener("click", goNext);
+
+        // Click outside image to close
+        lightbox.addEventListener("click", (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Keyboard Navigation
+        document.addEventListener("keydown", (e) => {
+            if (!isLightboxOpen) return;
+            
+            if (e.key === "Escape") closeLightbox();
+            else if (e.key === "ArrowLeft") goPrev();
+            else if (e.key === "ArrowRight") goNext();
+        });
+    });
+</script>

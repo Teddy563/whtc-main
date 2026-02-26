@@ -1,0 +1,141 @@
+---
+/**
+ * RelatedPages — strip of sibling-page cards placed before <PageFooter />.
+ *
+ * Props:
+ *   heading — section heading (default: "Servicii Conexe")
+ *   pages   — array of { label, desc?, href, color? }
+ *   cols    — "2" | "3" | "4" | "5" grid cols (default: "4")
+ */
+
+import { Image } from "astro:assets";
+
+interface RelatedPage {
+    label: string;
+    desc?: string;
+    href: string;
+    color?: string;
+    image?: any; // Allow ImageMetadata or string
+}
+
+interface Props {
+    heading?: string;
+    pages: RelatedPage[];
+    cols?: "2" | "3" | "4" | "5";
+}
+
+const { heading = "Servicii Conexe", pages, cols = "4" } = Astro.props;
+
+const colClass: Record<string, string> = {
+    "2": "md:grid-cols-2",
+    "3": "md:grid-cols-3",
+    "4": "grid-cols-2 md:grid-cols-4",
+    "5": "grid-cols-2 md:grid-cols-5",
+};
+---
+
+<section class="bg-gray-50 py-12 px-5 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+        <h3
+            class="font-montserrat font-black text-xs uppercase tracking-[.2em] text-gray-400 mb-6"
+        >
+            {heading}
+        </h3>
+
+        <div class={`grid gap-3 ${colClass[cols]}`}>
+            {
+                pages.map((page) => (
+                    <a
+                        href={page.href}
+                        class="related-card group"
+                        style={
+                            page.color ? `--rc:${page.color};` : "--rc:#f16215;"
+                        }
+                    >
+                        {page.image && (
+                            <div class="h-40 mb-5 overflow-hidden -mx-6 -mt-6 relative z-10 bg-gray-200">
+                                {typeof page.image === "string" ? (
+                                    <img
+                                        src={page.image}
+                                        alt={page.label}
+                                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                        loading="lazy"
+                                    />
+                                ) : (
+                                    <Image
+                                        src={page.image}
+                                        alt={page.label}
+                                        width={400}
+                                        height={300}
+                                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    />
+                                )}
+                            </div>
+                        )}
+                        <span class="related-label">{page.label}</span>
+                        {page.desc && (
+                            <span class="related-desc">{page.desc}</span>
+                        )}
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    .related-card {
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem 1.5rem;
+        background: #fff;
+        border: 2px solid #e5e7eb;
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+        transition:
+            border-color 0.3s,
+            box-shadow 0.3s;
+        z-index: 1;
+    }
+    .related-card::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 0;
+        background: var(--rc);
+        z-index: -1;
+        transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .related-card:hover {
+        border-color: var(--rc);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    .related-card:hover::after {
+        height: 100%;
+    }
+    .related-label {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: #111;
+        transition: color 0.3s;
+    }
+    .related-card:hover .related-label {
+        color: #fff;
+    }
+    .related-desc {
+        font-size: 12px;
+        color: #6b7280;
+        margin-top: 5px;
+        font-weight: 500;
+        transition: color 0.3s;
+    }
+    .related-card:hover .related-desc {
+        color: rgba(255, 255, 255, 0.9);
+    }
+</style>

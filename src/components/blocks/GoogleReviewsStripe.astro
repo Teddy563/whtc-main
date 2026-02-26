@@ -1,0 +1,91 @@
+---
+/**
+ * GoogleReviewsStripe — colored social-proof banner with Google review count.
+ *
+ * Props:
+ *   count      — review count string (default "197+")
+ *   color      — background color (default brand orange)
+ *   label      — descriptive text
+ *   googleUrl  — link to Google Reviews page
+ */
+
+interface Props {
+    count?: string;
+    color?: string;
+    label?: string;
+    googleUrl?: string;
+}
+
+const {
+    count = "187+",
+    color = "#f16215",
+    label = "recenzii Google de la oameni mulțumiți de serviciile noastre de training",
+    googleUrl = "https://www.google.com/search?q=Safety+Academy+recenzii",
+} = Astro.props;
+---
+
+<div class="py-6 lg:py-8 px-5 lg:px-8" style={`background:${color};`}>
+    <div
+        class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-5"
+    >
+        <!-- Left: Stars + Count + Label grouped cleanly -->
+        <div class="flex flex-row items-center gap-4 sm:gap-6">
+            <!-- Stars column -->
+            <div class="flex flex-col items-center gap-1 flex-shrink-0">
+                <div class="flex gap-[3px]">
+                    {
+                        [1, 2, 3, 4, 5].map(() => (
+                            <svg
+                                class="w-4 h-4 lg:w-5 lg:h-5"
+                                viewBox="0 0 24 24"
+                                fill="#FFD700"
+                                aria-hidden="true"
+                            >
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                        ))
+                    }
+                </div>
+                <span
+                    class="font-montserrat font-black text-[9px] uppercase tracking-widest text-white/70"
+                >
+                    Google
+                </span>
+            </div>
+
+            <!-- Divider -->
+            <div class="w-px h-10 bg-white/20 flex-shrink-0"></div>
+
+            <!-- Count + label: number top-aligned with first line of text -->
+            <div class="flex flex-row items-start gap-3">
+                <span
+                    class="font-montserrat font-black text-4xl lg:text-5xl leading-none text-white flex-shrink-0 mt-0.5"
+                >
+                    {count}
+                </span>
+                <span
+                    class="font-montserrat font-bold text-[10px] lg:text-[11px] uppercase tracking-widest text-white/85 max-w-[200px] leading-snug"
+                >
+                    {label}
+                </span>
+            </div>
+        </div>
+
+        <!-- Right: CTA button -->
+        <a
+            href={googleUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="grev-cta font-montserrat font-black text-[10px] uppercase tracking-widest text-white border-2 border-white/50 px-5 py-3 hover:bg-white transition-colors duration-300 whitespace-nowrap flex-shrink-0"
+            style={`--rc:${color};`}
+        >
+            Vezi Recenziile →
+        </a>
+    </div>
+</div>
+
+<style>
+    .grev-cta:hover {
+        color: var(--rc);
+    }
+</style>

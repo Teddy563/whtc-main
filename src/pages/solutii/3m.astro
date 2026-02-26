@@ -1,0 +1,193 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import GlobalNavbar from "../../components/GlobalNavbar.astro";
+import PageFooter from "../../components/PageFooter.astro";
+import SubPageHero from "../../components/blocks/SubPageHero.astro";
+import ContentSection from "../../components/blocks/ContentSection.astro";
+import StatsStrip from "../../components/blocks/StatsStrip.astro";
+import CTABlock from "../../components/blocks/CTABlock.astro";
+import RelatedPages from "../../components/blocks/RelatedPages.astro";
+
+import img3m from "../../assets/solutii/3m.webp";
+import ezlineImg from "../../assets/solutii/linia-vietii/ezline.webp";
+import eipImg from "../../assets/solutii/eip.webp";
+import verificareEipImg from "../../assets/solutii/verificare_eip.webp";
+
+import liniaVietiiImgRelated from "../../assets/solutii/linia-vietii/linia-vietii-orizontala.webp";
+import accesImgRelated from "../../assets/solutii/schela_mobila.webp";
+import customImgRelated from "../../assets/solutii/solutii_custom.webp";
+import echipamente3mImgRelated from "../../assets/solutii/3m.webp";
+import verificariImgRelated from "../../assets/solutii/verificari-recertificari.webp";
+
+// ─── Category Theme ──────────────────────────────────────────────────────────
+const color = "#D32F2F"; // Red — 3M Distributor
+---
+
+<Layout title="Echipamente 3M EIP | Distribuitor Autorizat | WHTC Solutii">
+    <head slot="head">
+        <meta
+            name="description"
+            content="Distribuitor autorizat 3M România. Echipamente anticădere, protecție cap, față și ochi, protecție respiratorie și auditivă. Consultanță gratuită pentru alegerea corectă."
+        />
+    </head>
+
+    <GlobalNavbar />
+
+    <SubPageHero
+        badge="3M™ Distribuitor Autorizat"
+        title="Echipamente<br/>3M™ EIP"
+        subtitle="Linie completă de echipamente de protecție individuală: autentice, certificate, livrate rapid"
+        color={color}
+        bgImage="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1920"
+        ctaPrimary={{
+            label: "Solicită Catalog & Ofertă",
+            subject: "Echipamente 3M: Catalog & Ofertă",
+        }}
+        ctaScroll={{ label: "Descoperă Gama", anchor: "gama-3m" }}
+    />
+
+    <!-- Main 3M Overview -->
+    <div id="gama-3m">
+        <ContentSection
+            badge="3M™ Authorized Distributor"
+            heading="Gama Completă<br/>de Protecție"
+            lead="Tot ce are nevoie un profesionist care lucrează la înălțime"
+            body="Suntem distribuitor autorizat 3M în România pentru toată gama de echipamente de protecție individuală: anticădere, protecție cap & față, respiratorie, auditivă și kituri de evacuare. Beneficiați de consultanță specializată și livrare rapidă."
+            color={color}
+            imageGrid={[
+                {
+                    src: img3m,
+                    alt: "Echipamente 3M anticădere",
+                    wide: true,
+                    badge: "Distribuitor Autorizat",
+                },
+                {
+                    src: eipImg,
+                    alt: "EIP 3M",
+                },
+                {
+                    src: verificareEipImg,
+                    alt: "Verificare EIP 3M",
+                },
+            ]}
+            chips={[
+                "Anticădere",
+                "Protecție Cap & Față",
+                "Respiratorie",
+                "Auditivă",
+                "Rescue Kits",
+            ]}
+            ctaLabel="Solicită Catalog & Ofertă"
+            ctaSubject="Echipamente 3M: Catalog"
+        />
+
+        <!-- Anticădere -->
+        <ContentSection
+            badge="Anticădere"
+            heading="Sisteme Anticădere<br/>3M™ Protecta™"
+            body="Hamuri, longe, blocatoare, dispozitive retractabile și linii de viață pe șină: întreaga gamă Protecta™ și Rollgliss™, inclusiv soluții custom pentru medii speciale (temperaturi extreme, substanțe corozive)."
+            color={color}
+            imageRight={true}
+            bgGray={true}
+            imageGrid={[
+                {
+                    src: ezlineImg,
+                    alt: "Sistem EZ-Line 3M Anticădere",
+                    wide: true,
+                    badge: "EZ-Line™",
+                },
+                {
+                    src: eipImg,
+                    alt: "Echipamente Individuale de Protecție",
+                },
+                {
+                    src: verificareEipImg,
+                    alt: "Verificare EIP Anticădere",
+                },
+            ]}
+            listItems={[
+                "Hamuri de siguranță (clasa A1, A2, E, P, T)",
+                "Longe simple & cu absorbitor de energie",
+                "Dispozitive retractabile (SRL) 2-50m",
+                "Blocatoare pentru frânghie & șine",
+                "Kituri de evacuare & auto-rescue",
+            ]}
+            ctaLabel="Solicită Ofertă"
+            ctaSubject="Echipamente 3M Anticădere"
+        />
+
+        <!-- /gama-3m anchor -->
+    </div>
+
+    <!-- Stats -->
+    <StatsStrip
+        stats={[
+            {
+                num: "3M™",
+                label: "Distribuitor Autorizat",
+                sub: "Partener certificat în România",
+            },
+            {
+                num: "500+",
+                label: "Referințe Clienți",
+                sub: "Din toată industria românească",
+            },
+            {
+                num: "48h",
+                label: "Livrare Rapidă",
+                sub: "Din stocul propriu WHTC",
+            },
+            {
+                num: "ISO",
+                label: "Produse Certificate",
+                sub: "EN 361, EN 362, EN 365 etc.",
+            },
+        ]}
+    />
+
+    <CTABlock
+        heading="Alege Corect<br/>Prima Dată"
+        body="Consultanță gratuită pentru alegerea echipamentelor potrivite activității dvs. Testare și demo la sediul clientului."
+        ctaLabel="Solicită Consultanță"
+        ctaSubject="Consultanță Alegere 3M"
+        emailHref="office@whtc.ro"
+        color={color}
+        accentBackground={true}
+    />
+
+    <RelatedPages
+        heading="Servicii Conexe"
+        pages={[
+            {
+                label: "Sisteme Linia Vieții",
+                desc: "Verticale, Orizontale & Temporare",
+                href: "/solutii/linia-vietii/",
+                color: "#1e3a8a",
+                image: liniaVietiiImgRelated,
+            },
+            {
+                label: "Sisteme de Acces",
+                desc: "Scări, platforme și schele mobile",
+                href: "/solutii/acces/",
+                color: "#7c3aed",
+                image: accesImgRelated,
+            },
+            {
+                label: "Implementare Custom",
+                desc: "Proiectare și execuție la comandă",
+                href: "/solutii/custom/",
+                color: "#f16215",
+                image: customImgRelated,
+            },
+            {
+                label: "Verificări & Recertificări",
+                desc: "Inspecție periodică EIP și sisteme",
+                href: "/solutii/verificari-recertificari/",
+                color: "#16a34a",
+                image: verificariImgRelated,
+            },
+        ]}
+    />
+
+    <PageFooter />
+</Layout>

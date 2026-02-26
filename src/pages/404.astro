@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro";
+import whtcLogo from "../assets/whtc.svg";
+import { Image } from "astro:assets";
+import GlobalNavbar from "../components/GlobalNavbar.astro";
+---
+
+<Layout title="404 - Pagină Negăsită / În Lucru | WHTC">
+    <GlobalNavbar />
+    <main
+        class="min-h-[calc(100vh-80px)] bg-white flex items-center justify-center p-4 mt-20"
+    >
+        <div class="max-w-xl w-full text-center">
+            <!-- 404 Number -->
+            <h1
+                class="text-7xl lg:text-8xl font-black font-montserrat text-brand-orange leading-none mb-4"
+            >
+                404
+            </h1>
+
+            <!-- Message -->
+            <h2 class="text-2xl font-bold font-montserrat mb-2">
+                Pagină în Construcție / Under Construction
+            </h2>
+            <p class="text-lg lg:text-xl font-inter text-gray-600 mb-8">
+                Această secțiune a site-ului nostru este momentan în lucru sau
+                pagina pe care o cauți nu există încă. Lucrăm intens pentru a
+                aduce conținut nou!
+            </p>
+
+            <!-- Action Button -->
+            <a
+                href="/"
+                class="inline-block bg-brand-orange text-white font-bold font-inter px-8 py-4 hover:bg-orange-700 transition-colors duration-300"
+            >
+                Înapoi Acasă
+            </a>
+        </div>
+    </main>
+</Layout>

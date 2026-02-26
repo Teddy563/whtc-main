@@ -1,0 +1,190 @@
+---
+import Layout from "../layouts/Layout.astro";
+import GlobalNavbar from "../components/GlobalNavbar.astro";
+import PageFooter from "../components/PageFooter.astro";
+import SubPageHero from "../components/blocks/SubPageHero.astro";
+import ContentSection from "../components/blocks/ContentSection.astro";
+import StatsStrip from "../components/blocks/StatsStrip.astro";
+import CTABlock from "../components/blocks/CTABlock.astro";
+import RelatedPages from "../components/blocks/RelatedPages.astro";
+import lotoImg from "../assets/loto.webp";
+
+import trainingImgRelated from "../assets/training.webp";
+import liniaVietiiImgRelated from "../assets/solutii/linia-vietii/linia-vietii-orizontala.webp";
+import verificariImgRelated from "../assets/solutii/verificari-recertificari.webp";
+import echipamente3mImgRelated from "../assets/solutii/3m.webp";
+
+const color = "#D32F2F"; // Red — LOTO
+---
+
+<Layout
+    title="Control Energii Periculoase | LTT Lock · Lockout-Tagout WHTC"
+    description="Soluții complete Lockout-Tagout (LOTO) pentru controlul energiilor periculoase. Audit, proceduri personalizate și echipamente certificate OSHA/EU."
+>
+    <GlobalNavbar />
+
+    <SubPageHero
+        badge="LTT Lock · WHTC"
+        title="Control<br/>Energii<br/>Periculoase"
+        subtitle="Lockout-Tagout este cel mai eficient sistem de prevenire a accidentelor în timpul mentenanței industriale."
+        color={color}
+        bgImage={lotoImg}
+        ctaPrimary={{
+            label: "Solicită Audit Gratuit",
+            subject: "Control Energii / LOTO",
+        }}
+        ctaScroll={{ label: "Descoperă Soluțiile", anchor: "loto-content" }}
+    />
+
+    <!-- Main content -->
+    <div id="loto-content">
+        <ContentSection
+            badge="Ce este LOTO?"
+            heading="Lockout<br/>Tagout"
+            lead="Un lacăt. O cheie. O viață."
+            body="Lockout-Tagout este un sistem de proceduri care garantează că utilajele periculoase sunt oprite și securizate corect, neputând fi repornite accidental în timp ce un tehnician lucrează la ele. Statisticile arată că 10% din accidentele industriale grave se produc în timpul lucrărilor de mentenanță. Un program LOTO implementat corect elimină practic această categorie de riscuri."
+            color={color}
+            imageGrid={[
+                {
+                    src: lotoImg,
+                    alt: "Control energii periculoase Lockout Tagout",
+                    wide: true,
+                    badge: "LOTO",
+                },
+            ]}
+            chips={[
+                "Energie Electrică",
+                "Energie Hidraulică",
+                "Energie Pneumatică",
+                "Energie Termică",
+                "OSHA / EN ISO 50110",
+            ]}
+            ctaLabel="Solicită Audit Gratuit"
+            ctaSubject="Control Energii / LOTO"
+        />
+
+        <ContentSection
+            badge="Audit & Consultanță"
+            heading="Analiză &<br/>Plan LOTO"
+            lead="Identificăm riscurile și propunem un plan adaptat industriei tale"
+            body="Analizăm atent procesele de mentenanță din fabrica ta pentru a identifica punctele de risc și propunem un plan de implementare LOTO. Redactăm apoi proceduri specifice, pas cu pas, pentru fiecare utilaj, incluzând fotografii de identificare ale punctelor de energie și instrucțiuni simple de blocare."
+            color={color}
+            imageRight={true}
+            bgGray={true}
+            imageGrid={[
+                {
+                    src: lotoImg,
+                    alt: "Audit LOTO mentenanță industrială",
+                    wide: true,
+                    badge: "Audit",
+                },
+            ]}
+            listItems={[
+                "Analiză de riscuri chiar pe teren",
+                "Proceduri per utilaj cu fotografii tehnice",
+                "Conformitate OSHA / EN ISO 50110 / EU",
+                "Marcare și etichetare a surselor de energie",
+                "Raport complet cu un plan de acțiune clar",
+            ]}
+            ctaLabel="Solicită Audit Gratuit"
+            ctaSubject="Audit LOTO Gratuit"
+        />
+
+        <ContentSection
+            badge="Training & Echipamente"
+            heading="Instruire<br/>& Kituri LOTO"
+            lead="Echipa ta instruită, echipată și pregătită pentru zero accidente"
+            body="Instruim personalul de mentenanță și supraveghetorii în aplicarea corectă a procedurilor, printr-un training la fața locului. De asemenea, furnizăm kituri complete de lacăte, blocatoare de energie, accesorii și stații LOTO certificate, ca să aveți tot ce e nevoie pe poziție."
+            color="#111"
+            imageGrid={[
+                {
+                    src: lotoImg,
+                    alt: "Training LOTO echipamente",
+                    wide: true,
+                    badge: "Kituri",
+                },
+            ]}
+            featureBoxes={[
+                "Lacăte Individuale",
+                "Blocatoare Energie",
+                "Stații LOTO Complete",
+                "Certificate Participare",
+                "Follow-up Inclus",
+                "Suport Tehnic",
+            ]}
+            ctaLabel="Solicită Ofertă Echipamente"
+            ctaSubject="Echipamente LOTO"
+        />
+    </div>
+
+    <StatsStrip
+        stats={[
+            {
+                num: "15K+",
+                label: "Proceduri Create",
+                sub: "Per utilaj, cu fotografii tehnice",
+            },
+            {
+                num: "0",
+                label: "Accidente Țintă",
+                sub: "Zero accidente în timpul intervenției",
+            },
+            {
+                num: "ISO",
+                label: "50110 Conform",
+                sub: "OSHA & legislație UE",
+            },
+            {
+                num: "1",
+                label: "Un Lacăt, O Cheie",
+                sub: "Principiul fundamental LOTO",
+            },
+        ]}
+    />
+
+    <CTABlock
+        heading="Începe cu un audit gratuit<br/>al sistemului tău de mentenanță"
+        body="Evaluăm gratuit procesele actuale de mentenanță și îți prezentăm un raport concret cu riscurile identificate și soluțiile recomandate."
+        ctaLabel="Solicită Audit Gratuit"
+        ctaSubject="Audit LOTO Gratuit"
+        emailHref="office@whtc.ro"
+        color={color}
+        accentBackground={true}
+    />
+
+    <RelatedPages
+        heading="Alte Servicii WHTC"
+        pages={[
+            {
+                label: "Training Lucru la Înălțime",
+                desc: "Alpinism Utilitar, GWO",
+                href: "/training-lucru-la-inaltime/",
+                color: "#f16215",
+                image: trainingImgRelated,
+            },
+            {
+                label: "Linia Vieții",
+                desc: "Sisteme verticale, orizontale, temporare",
+                href: "/solutii/linia-vietii/",
+                color: "#1e3a8a",
+                image: liniaVietiiImgRelated,
+            },
+            {
+                label: "Verificări Periodice EIP",
+                desc: "Inspecție și recertificare echipamente",
+                href: "/solutii/verificari-recertificari/",
+                color: "#16a34a",
+                image: verificariImgRelated,
+            },
+            {
+                label: "Echipamente 3M™",
+                desc: "Distribuitor autorizat România",
+                href: "/solutii/3m/",
+                color: "#D32F2F",
+                image: echipamente3mImgRelated,
+            },
+        ]}
+    />
+
+    <PageFooter />
+</Layout>

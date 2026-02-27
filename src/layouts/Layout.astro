@@ -77,11 +77,10 @@ const schemaMarkup = {
 
 		<!-- Google tag (gtag.js) -->
 		<script
-			type="text/partytown"
 			async
 			src="https://www.googletagmanager.com/gtag/js?id=G-2RBDXLQV7L"
 		></script>
-		<script type="text/partytown">
+		<script is:inline>
 			window.dataLayer = window.dataLayer || [];
 			function gtag() {
 				dataLayer.push(arguments);
@@ -99,7 +98,7 @@ const schemaMarkup = {
 			gtag("config", "G-2RBDXLQV7L");
 		</script>
 		<!-- Microsoft Clarity -->
-		<script type="text/partytown">
+		<script is:inline>
 			(function (c, l, a, r, i, t, y) {
 				c[a] =
 					c[a] ||

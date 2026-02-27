@@ -11,7 +11,7 @@ import vercel from '@astrojs/vercel';
 export default defineConfig({
   // or another appropriate URL if known, I'll use the domain from email office@safetyacademy.ro
   site: 'https://www.whtc.ro',
-  output: 'server',
+  output: 'static',
 
   integrations: [tailwind(), sitemap(), icon()],
 

@@ -370,7 +370,19 @@
                     body: JSON.stringify(data),
                 });
 
-                const result = await response.json();
+                const responseText = await response.text();
+                let result;
+                try {
+                    result = JSON.parse(responseText);
+                } catch (e) {
+                    console.error(
+                        "Non-JSON Response from server:",
+                        responseText,
+                    );
+                    throw new Error(
+                        `Eroare de server (Ruta API nu a răspuns cu JSON). Status: ${response.status}`,
+                    );
+                }
 
                 if (!response.ok) {
                     throw new Error(result.message || "A apărut o eroare.");

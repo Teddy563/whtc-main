@@ -5,11 +5,19 @@ import sitemap from '@astrojs/sitemap';
 
 import icon from 'astro-icon';
 
+import vercel from '@astrojs/vercel';
+
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://www.whtc.ro', // or another appropriate URL if known, I'll use the domain from email office@safetyacademy.ro
+  // or another appropriate URL if known, I'll use the domain from email office@safetyacademy.ro
+  site: 'https://www.whtc.ro',
+  output: 'hybrid',
+
   integrations: [tailwind(), sitemap(), icon()],
+
   image: {
     domains: ["images.unsplash.com"],
   },
+
+  adapter: vercel(),
 });

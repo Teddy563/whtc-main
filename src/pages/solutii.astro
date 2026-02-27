@@ -10,7 +10,7 @@ import GoogleReviewsStripe from "../components/blocks/GoogleReviewsStripe.astro"
 
 import protectieImg from "../assets/solutii/solutii_protectie_lucru_la_inaltime.webp";
 import verificareEipImg from "../assets/solutii/verificare_eip.webp";
-import sistemeLiniaVietiiImg from "../assets/solutii/sisteme_linia_vietii.gif";
+import sistemeLiniaVietiiImg from "../assets/solutii/linia-vietii/ezline.webp";
 import scaraImg from "../assets/solutii/scara.webp";
 import treiMImg from "../assets/solutii/3m.webp";
 import customImg from "../assets/solutii/solutii_custom.webp";
@@ -21,29 +21,31 @@ const verificareEipBg = await getImage({
     src: verificareEipImg,
     format: "webp",
     width: 600,
-    quality: 65,
+    quality: 50,
 });
 const sistemeLiniaVietiiBg = await getImage({
     src: sistemeLiniaVietiiImg,
+    format: "webp",
     width: 600,
+    quality: 50,
 });
 const scaraBg = await getImage({
     src: scaraImg,
     format: "webp",
     width: 600,
-    quality: 65,
+    quality: 50,
 });
 const treiMBg = await getImage({
     src: treiMImg,
     format: "webp",
     width: 600,
-    quality: 65,
+    quality: 50,
 });
 const customBg = await getImage({
     src: customImg,
     format: "webp",
     width: 600,
-    quality: 65,
+    quality: 50,
 });
 ---
 
@@ -62,8 +64,9 @@ const customBg = await getImage({
                 src={protectieImg}
                 alt=""
                 aria-hidden="true"
-                width={1600}
-                quality={60}
+                widths={[600, 1000, 1600]}
+                sizes="100vw"
+                quality={50}
                 format="webp"
                 class="w-full h-full object-cover"
                 style="opacity:0.25; filter:grayscale(80%) contrast(1.2);"

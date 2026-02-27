@@ -104,10 +104,11 @@ const copyColClass = imageRight ? "order-2 md:order-1" : "";
                                 <Image
                                     src={imageGrid[0].src}
                                     alt={imageGrid[0].alt ?? ""}
-                                    width={800}
+                                    widths={[400, 800]}
+                                    sizes="(max-width: 768px) 100vw, 50vw"
                                     class="w-full h-full object-cover transition-all duration-700 hover:scale-105"
                                     loading="lazy"
-                                    quality={70}
+                                    quality={60}
                                     format="webp"
                                 />
                             )}

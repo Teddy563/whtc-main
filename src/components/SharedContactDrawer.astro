@@ -58,6 +58,7 @@
             <input type="hidden" name="device" id="drawer-device" />
             <input type="hidden" name="source" id="drawer-source" />
 
+            {/* Cloudflare Turnstile */}
             <script
                 is:inline
                 src="https://challenges.cloudflare.com/turnstile/v0/api.js"
@@ -132,7 +133,7 @@
             <div class="pt-0">
                 <div
                     class="cf-turnstile"
-                    data-sitekey={`${import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || ""}`}
+                    data-sitekey={`${import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"}`}
                     data-theme="light"
                 >
                 </div>

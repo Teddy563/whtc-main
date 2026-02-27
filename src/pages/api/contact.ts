@@ -56,11 +56,16 @@ export const POST: APIRoute = async ({ request }) => {
 
     const resend = new Resend(apiKey);
 
+    const rawSender = import.meta.env.SENDER_EMAIL || "WHTC Website <no-reply@lockout-tagout.ro>";
+    const cleanSender = rawSender.replace(/^["']|["']$/g, "");
+    const rawTo = import.meta.env.CONTACT_EMAIL || "office@lockout-tagout.ro,office@lttlock.com";
+    const cleanTo = rawTo.replace(/^["']|["']$/g, "").split(",").map((e: string) => e.trim());
+
     const emailSubject = customSubject ? `${customSubject} - ${name}` : `Mesaj nou de la ${name} (WHTC)`;
 
     const { data, error } = await resend.emails.send({
-      from: import.meta.env.SENDER_EMAIL || "WHTC Website <no-reply@lockout-tagout.ro>",
-      to: (import.meta.env.CONTACT_EMAIL || "office@lockout-tagout.ro,office@lttlock.com").split(",").map((e: string) => e.trim()),
+      from: cleanSender,
+      to: cleanTo,
       replyTo: email,
       subject: emailSubject,
       html: `

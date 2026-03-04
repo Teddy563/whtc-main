@@ -1,11 +1,13 @@
 ---
-// CookieConsent.astro
+/**
+ * CookieConsent.astro
+ * Standard GDPR / Consent Mode v2 implementation.
+ */
 import { Icon } from "astro-icon/components";
 
-const GA_MEASUREMENT_ID =
-    import.meta.env.PUBLIC_GA4_MEASUREMENT_ID || "G-2RBDXLQV7L";
-const CLARITY_PROJECT_ID =
-    import.meta.env.PUBLIC_CLARITY_PROJECT_ID || "unlwwm2waf";
+// Get keys from Astro.props or process.env
+const GA_ID = import.meta.env.PUBLIC_GA_ID;
+const CLARITY_ID = import.meta.env.PUBLIC_CLARITY_ID || "unlwwm2waf";
 const COOKIE_NAME = "whtc_consent_v2";
 const COOKIE_MAX_AGE_DAYS = 180;
 ---
@@ -15,7 +17,6 @@ const COOKIE_MAX_AGE_DAYS = 180;
     class="fixed bottom-4 left-4 w-[calc(100%-2rem)] md:left-6 md:w-[420px] bg-white border border-gray-200 z-[200] transform translate-y-[150%] opacity-0 transition-all duration-700 ease-[cubic-bezier(0.87,0,0.13,1)] shadow-2xl flex flex-col pointer-events-none p-5 rounded-none"
 >
     <div class="flex items-start gap-4">
-        <!-- Corporate Cookie Icon using mdi:cookie-alert -->
         <div class="text-[#f16215] flex-shrink-0 mt-0.5">
             <Icon name="mdi:cookie-alert" class="w-8 h-8" />
         </div>
@@ -59,49 +60,32 @@ const COOKIE_MAX_AGE_DAYS = 180;
     </div>
 </div>
 
-<!-- Inline variables definition -->
 <script
     is:inline
-    define:vars={{
-        __GA_ID__: GA_MEASUREMENT_ID,
-        __CLARITY_ID__: CLARITY_PROJECT_ID,
-        __COOKIE_NAME__: COOKIE_NAME,
-        __MAX_AGE_DAYS__: COOKIE_MAX_AGE_DAYS,
-    }}
+    define:vars={{ GA_ID, CLARITY_ID, COOKIE_NAME, COOKIE_MAX_AGE_DAYS }}
 >
-    function setCookie(name, value, days) {
-        const maxAge = days * 24 * 60 * 60;
-        document.cookie = `${name}=${encodeURIComponent(value)}; Max-Age=${maxAge}; Path=/; SameSite=Lax; ${location.protocol === "https:" ? "Secure;" : ""}`;
+    // Utility for cookies
+    function setConsentCookie(name, value, days) {
+        const d = new Date();
+        d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
+        document.cookie = `${name}=${value}; expires=${d.toUTCString()}; path=/; SameSite=Lax; ${location.protocol === "https:" ? "Secure" : ""}`;
     }
 
-    function getCookie(name) {
-        const parts = document.cookie.split("; ").map((v) => v.split("="));
-        const hit = parts.find(([k]) => k === name);
-        return hit ? decodeURIComponent(hit[1] || "") : null;
+    function getConsentCookie(name) {
+        const nameEQ = name + "=";
+        const ca = document.cookie.split(";");
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == " ") c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0)
+                return c.substring(nameEQ.length, c.length);
+        }
+        return null;
     }
 
-    function loadGA4() {
-        if (!__GA_ID__ || document.querySelector('script[data-ga4="1"]'))
-            return;
-
-        const s = document.createElement("script");
-        s.async = true;
-        s.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(__GA_ID__)}`;
-        s.dataset.ga4 = "1";
-        document.head.appendChild(s);
-
-        window.gtag("js", new Date());
-        window.gtag("config", __GA_ID__);
-    }
-
+    // Load Clarity (GA4 is handled via Layout.astro or GTM)
     function loadClarity() {
-        if (
-            !__CLARITY_ID__ ||
-            window.clarity ||
-            document.querySelector('script[data-clarity="1"]')
-        )
-            return;
-
+        if (!CLARITY_ID || window.clarity) return;
         (function (c, l, a, r, i, t, y) {
             c[a] =
                 c[a] ||
@@ -111,99 +95,79 @@ const COOKIE_MAX_AGE_DAYS = 180;
             t = l.createElement(r);
             t.async = 1;
             t.src = "https://www.clarity.ms/tag/" + i;
-            t.dataset.clarity = "1";
             y = l.getElementsByTagName(r)[0];
             y.parentNode.insertBefore(t, y);
-        })(window, document, "clarity", "script", __CLARITY_ID__);
+        })(window, document, "clarity", "script", CLARITY_ID);
     }
 
-    function applyConsent(choice) {
-        window.dataLayer = window.dataLayer || [];
-        window.gtag =
-            window.gtag ||
-            function () {
-                dataLayer.push(arguments);
-            };
+    function updateGtagConsent(choice) {
+        if (typeof gtag !== "function") return;
 
-        if (choice === "all" || choice === "analytics") {
-            const adStorage = choice === "all" ? "granted" : "denied";
-            window.gtag("consent", "update", {
+        if (choice === "all") {
+            gtag("consent", "update", {
                 analytics_storage: "granted",
-                ad_storage: adStorage,
-                ad_user_data: adStorage,
-                ad_personalization: adStorage,
-                functionality_storage: "granted",
-                security_storage: "granted",
+                ad_storage: "granted",
+                ad_user_data: "granted",
+                ad_personalization: "granted",
             });
-            loadGA4();
+            // Fire manual page_view now that we have consent
+            if (GA_ID) gtag("event", "page_view", { send_to: GA_ID });
             loadClarity();
         } else {
-            // necessary/reject
-            window.gtag("consent", "update", {
+            gtag("consent", "update", {
                 analytics_storage: "denied",
                 ad_storage: "denied",
                 ad_user_data: "denied",
                 ad_personalization: "denied",
-                functionality_storage: "granted",
-                security_storage: "granted",
             });
         }
     }
 
     function initCookieBanner() {
-        // 1. Initial deny state explicitly before processing choice
-        window.dataLayer = window.dataLayer || [];
-        window.gtag =
-            window.gtag ||
-            function () {
-                dataLayer.push(arguments);
-            };
-        window.gtag("consent", "default", {
-            analytics_storage: "denied",
-            ad_storage: "denied",
-            ad_user_data: "denied",
-            ad_personalization: "denied",
-            functionality_storage: "granted",
-            security_storage: "granted",
-        });
-
         const popup = document.getElementById("cookie-consent-popup");
-        const existingChoice = getCookie(__COOKIE_NAME__);
+        const existing = getConsentCookie(COOKIE_NAME);
 
-        if (!existingChoice) {
+        if (!existing) {
             setTimeout(() => {
-                if (popup) {
+                if (popup)
                     popup.classList.remove(
                         "translate-y-[150%]",
                         "opacity-0",
                         "pointer-events-none",
                     );
-                }
-            }, 1000);
+            }, 1500);
         } else {
-            applyConsent(existingChoice);
-        }
-
-        function saveAndHide(choice) {
-            setCookie(__COOKIE_NAME__, choice, __MAX_AGE_DAYS__);
-            applyConsent(choice);
-            if (popup) {
-                popup.classList.add(
-                    "translate-y-[150%]",
-                    "opacity-0",
-                    "pointer-events-none",
-                );
-            }
+            updateGtagConsent(existing);
         }
 
         document
             .getElementById("cookie-accept-all-btn")
-            ?.addEventListener("click", () => saveAndHide("all"));
+            ?.addEventListener("click", () => {
+                setConsentCookie(COOKIE_NAME, "all", COOKIE_MAX_AGE_DAYS);
+                updateGtagConsent("all");
+                if (popup)
+                    popup.classList.add(
+                        "translate-y-[150%]",
+                        "opacity-0",
+                        "pointer-events-none",
+                    );
+            });
+
         document
             .getElementById("cookie-necessary-btn")
-            ?.addEventListener("click", () => saveAndHide("necessary"));
+            ?.addEventListener("click", () => {
+                setConsentCookie(COOKIE_NAME, "necessary", COOKIE_MAX_AGE_DAYS);
+                updateGtagConsent("necessary");
+                if (popup)
+                    popup.classList.add(
+                        "translate-y-[150%]",
+                        "opacity-0",
+                        "pointer-events-none",
+                    );
+            });
     }
 
+    // Start
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", initCookieBanner);
     } else {

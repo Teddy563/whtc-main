@@ -75,48 +75,69 @@ const schemaMarkup = {
 
 		<title>{title}</title>
 
-		<!-- Google Analytics 4 (GA4) -->
-		<!-- Measurement ID is set via PUBLIC_GA_MEASUREMENT_ID in .env -->
-		{import.meta.env.PUBLIC_GA_MEASUREMENT_ID && (
-			<>
-				{/* Load gtag.js — async so it never blocks rendering */}
-				<script
-					is:inline
-					async
-					src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA_MEASUREMENT_ID}`}
-				></script>
-				<script is:inline define:vars={{ gaId: import.meta.env.PUBLIC_GA_MEASUREMENT_ID }}>
-					window.dataLayer = window.dataLayer || [];
-					function gtag() { dataLayer.push(arguments); }
-
-					// Consent Mode v2 — default DENIED until user accepts cookies
-					// This lets GA record anonymised hits even before consent,
-					// and upgrades to full tracking after the user clicks Accept.
-					gtag('consent', 'default', {
-						ad_storage:              'denied',
-						ad_user_data:            'denied',
-						ad_personalization:      'denied',
-						analytics_storage:       'denied',
-						functionality_storage:   'granted',
-						security_storage:        'granted',
-						wait_for_update:         500,
-					});
-
-					gtag('js', new Date());
-					gtag('config', gaId, {
-						// Anonymize IP while consent is pending
-						anonymize_ip: true,
-						// Don't send page_view automatically — we fire it after consent
-						send_page_view: false,
-					});
-				</script>
-			</>
-		)}
-		{/* Fallback: define a no-op gtag so inline calls elsewhere never throw */}
-		<script is:inline>
+		<!-- Google Marketing Stack (GA4, GTM, Ads) -->
+		<script
+			is:inline
+			define:vars={{
+				gaId: import.meta.env.PUBLIC_GA_ID,
+				gtmId: import.meta.env.PUBLIC_GTM_ID,
+				adsId: import.meta.env.PUBLIC_ADS_ID,
+			}}
+		>
 			window.dataLayer = window.dataLayer || [];
-			if (typeof window.gtag !== 'function') {
-				window.gtag = function() { dataLayer.push(arguments); };
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+
+			// 1. Set Consent Mode v2 Defaults (DENIED)
+			// This remains denied until CookieConsent.astro calls 'update'
+			gtag("consent", "default", {
+				ad_storage: "denied",
+				ad_user_data: "denied",
+				ad_personalization: "denied",
+				analytics_storage: "denied",
+				functionality_storage: "granted",
+				security_storage: "granted",
+				wait_for_update: 500,
+			});
+
+			gtag("js", new Date());
+
+			// Configure GA4 if present
+			if (gaId) {
+				gtag("config", gaId, {
+					anonymize_ip: true,
+					send_page_view: false,
+				});
+			}
+			// Configure Ads if present
+			if (adsId) {
+				gtag("config", adsId);
+			}
+
+			// 2. Load GTM Container if present
+			if (gtmId) {
+				(function (w, d, s, l, i) {
+					w[l] = w[l] || [];
+					w[l].push({
+						"gtm.start": new Date().getTime(),
+						event: "gtm.js",
+					});
+					var f = d.getElementsByTagName(s)[0],
+						j = d.createElement(s),
+						dl = l != "dataLayer" ? "&l=" + l : "";
+					j.async = true;
+					j.src =
+						"https://www.googletagmanager.com/gtag/js?id=" + i + dl;
+					f.parentNode.insertBefore(j, f);
+				})(window, document, "script", "dataLayer", gtmId);
+			}
+			// 3. Fallback: Load GA4 directly if GTM is NOT used
+			else if (gaId) {
+				const s = document.createElement("script");
+				s.async = true;
+				s.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+				document.head.appendChild(s);
 			}
 		</script>
 	</head>

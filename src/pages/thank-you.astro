@@ -1,31 +1,38 @@
 ---
-import FunnelLayout from '../layouts/FunnelLayout.astro';
+import FunnelLayout from "../layouts/FunnelLayout.astro";
 ---
 
 <FunnelLayout title="Mulțumim - Safety Academy">
-  <div class="bg-white w-full max-w-md p-12 border-t-8 border-[#FF6B00] text-center">
-    
+  <div
+    class="bg-white w-full max-w-md p-12 border-t-8 border-[#FF6B00] text-center"
+  >
     <div class="text-6xl mb-6">🎉</div>
-    
-    <h1 class="text-3xl font-extrabold text-gray-900 mb-4 uppercase tracking-tight">
+
+    <h1
+      class="text-3xl font-extrabold text-gray-900 mb-4 uppercase tracking-tight"
+    >
       Mulțumim!
     </h1>
-    
+
     <p class="text-gray-600 mb-8 leading-relaxed">
-      Solicitarea ta a fost înregistrată cu succes. Un consultant Safety Academy te va contacta în curând.
+      Solicitarea ta a fost înregistrată cu succes. Un consultant Safety Academy
+      te va contacta în curând.
     </p>
 
-    <a 
-      href="https://whtc.ro" 
+    <a
+      href="https://whtc.ro"
       class="inline-block bg-[#111827] hover:bg-[#FF6B00] text-white font-bold py-3 px-8 transition-colors duration-300 uppercase tracking-widest text-sm"
     >
       Înapoi la Site
     </a>
-
   </div>
 </FunnelLayout>
 
 <!-- Event snippet for Conv Apel conversion page -->
 <script is:inline>
-  gtag('event', 'conversion', {'send_to': 'AW-779991017/ULzOCPO06fUaEOnv9vMC'});
+  gtag("event", "conversion", { send_to: "AW-779991017/ULzOCPO06fUaEOnv9vMC" });
+  gtag("event", "generate_lead", {
+    event_category: "Leads",
+    event_label: "Thank You Page Form Submitted",
+  });
 </script>

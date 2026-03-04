@@ -1,32 +1,19 @@
 ---
 // CookieConsent.astro
 import { Icon } from "astro-icon/components";
+
+const GA_MEASUREMENT_ID =
+    import.meta.env.PUBLIC_GA4_MEASUREMENT_ID || "G-2RBDXLQV7L";
+const CLARITY_PROJECT_ID =
+    import.meta.env.PUBLIC_CLARITY_PROJECT_ID || "unlwwm2waf";
+const COOKIE_NAME = "whtc_consent_v2";
+const COOKIE_MAX_AGE_DAYS = 180;
 ---
 
 <div
     id="cookie-consent-popup"
-    class="fixed bottom-4 left-4 w-[calc(100%-2rem)] md:left-6 md:w-[380px] bg-white border border-gray-200 z-[200] transform translate-y-[150%] opacity-0 transition-all duration-700 ease-[cubic-bezier(0.87,0,0.13,1)] shadow-2xl flex flex-col pointer-events-none p-4 rounded-none"
+    class="fixed bottom-4 left-4 w-[calc(100%-2rem)] md:left-6 md:w-[420px] bg-white border border-gray-200 z-[200] transform translate-y-[150%] opacity-0 transition-all duration-700 ease-[cubic-bezier(0.87,0,0.13,1)] shadow-2xl flex flex-col pointer-events-none p-5 rounded-none"
 >
-    <!-- Close Button Top Right -->
-    <button
-        id="cookie-close-btn"
-        aria-label="Închide fereastra cookie-uri"
-        class="absolute top-4 right-4 text-gray-400 hover:text-black transition-colors"
-    >
-        <svg
-            class="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-        >
-            <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-    </button>
-
     <div class="flex items-start gap-4">
         <!-- Corporate Cookie Icon using mdi:cookie-alert -->
         <div class="text-[#f16215] flex-shrink-0 mt-0.5">
@@ -35,52 +22,155 @@ import { Icon } from "astro-icon/components";
 
         <div class="flex-1 w-full pr-2">
             <h3
-                class="text-[11px] font-black uppercase tracking-[0.1em] text-black font-montserrat mb-1.5 flex items-center gap-2"
+                class="text-[12px] font-black uppercase tracking-[0.1em] text-black font-montserrat mb-2 flex items-center gap-2"
             >
                 Gestionare Cookie-uri
             </h3>
 
             <p
-                class="text-[10px] font-medium text-gray-500 mb-3 leading-relaxed"
+                class="text-[11px] font-medium text-gray-600 mb-4 leading-relaxed"
             >
-                Acest site utilizează cookie-uri pentru a asigura
-                funcționalitatea optimă și a analiza traficul.
+                Utilizăm cookie-uri necesare pentru funcționarea site-ului. De
+                asemenea, folosim cookie-uri adiționale pentru statistici și
+                marketing, cu scopul de a-ți oferi o experiență mai relevantă și
+                îmbunătățită.
+                <a
+                    href="/politica-cookies"
+                    class="underline text-black decoration-[#f16215] inline-block mt-1"
+                    >Politica de confidențialitate</a
+                >.
             </p>
 
-            <div class="flex flex-col sm:flex-row items-center gap-3 w-full">
+            <div class="flex flex-col gap-2 w-full mt-2">
                 <button
-                    id="cookie-accept-btn"
-                    class="w-full sm:w-auto bg-[#f16215] border border-[#f16215] text-white px-4 py-2 text-[9px] font-black uppercase tracking-[0.1em] hover:bg-black hover:border-black transition-colors rounded-none"
+                    id="cookie-accept-all-btn"
+                    class="w-full bg-[#f16215] border border-[#f16215] text-white px-4 py-3 text-[11px] font-black uppercase tracking-[0.1em] hover:bg-black hover:border-black transition-colors rounded-none"
                 >
-                    Acceptă Toate
+                    Acceptă
                 </button>
                 <button
                     id="cookie-necessary-btn"
-                    class="w-full sm:w-auto text-gray-400 hover:text-black py-2 text-[9px] font-bold uppercase tracking-[0.1em] transition-colors text-center sm:text-left rounded-none"
+                    class="w-full text-gray-400 hover:text-black py-2.5 text-[11px] font-bold uppercase tracking-[0.1em] transition-colors rounded-none"
                 >
-                    Doar Necesare
+                    Respinge
                 </button>
             </div>
         </div>
     </div>
 </div>
 
-<script is:inline>
-    document.addEventListener("DOMContentLoaded", () => {
+<!-- Inline variables definition -->
+<script
+    is:inline
+    define:vars={{
+        __GA_ID__: GA_MEASUREMENT_ID,
+        __CLARITY_ID__: CLARITY_PROJECT_ID,
+        __COOKIE_NAME__: COOKIE_NAME,
+        __MAX_AGE_DAYS__: COOKIE_MAX_AGE_DAYS,
+    }}
+>
+    function setCookie(name, value, days) {
+        const maxAge = days * 24 * 60 * 60;
+        document.cookie = `${name}=${encodeURIComponent(value)}; Max-Age=${maxAge}; Path=/; SameSite=Lax; ${location.protocol === "https:" ? "Secure;" : ""}`;
+    }
+
+    function getCookie(name) {
+        const parts = document.cookie.split("; ").map((v) => v.split("="));
+        const hit = parts.find(([k]) => k === name);
+        return hit ? decodeURIComponent(hit[1] || "") : null;
+    }
+
+    function loadGA4() {
+        if (!__GA_ID__ || document.querySelector('script[data-ga4="1"]'))
+            return;
+
+        const s = document.createElement("script");
+        s.async = true;
+        s.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(__GA_ID__)}`;
+        s.dataset.ga4 = "1";
+        document.head.appendChild(s);
+
+        window.gtag("js", new Date());
+        window.gtag("config", __GA_ID__);
+    }
+
+    function loadClarity() {
+        if (
+            !__CLARITY_ID__ ||
+            window.clarity ||
+            document.querySelector('script[data-clarity="1"]')
+        )
+            return;
+
+        (function (c, l, a, r, i, t, y) {
+            c[a] =
+                c[a] ||
+                function () {
+                    (c[a].q = c[a].q || []).push(arguments);
+                };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            t.dataset.clarity = "1";
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", __CLARITY_ID__);
+    }
+
+    function applyConsent(choice) {
+        window.dataLayer = window.dataLayer || [];
+        window.gtag =
+            window.gtag ||
+            function () {
+                dataLayer.push(arguments);
+            };
+
+        if (choice === "all" || choice === "analytics") {
+            const adStorage = choice === "all" ? "granted" : "denied";
+            window.gtag("consent", "update", {
+                analytics_storage: "granted",
+                ad_storage: adStorage,
+                ad_user_data: adStorage,
+                ad_personalization: adStorage,
+                functionality_storage: "granted",
+                security_storage: "granted",
+            });
+            loadGA4();
+            loadClarity();
+        } else {
+            // necessary/reject
+            window.gtag("consent", "update", {
+                analytics_storage: "denied",
+                ad_storage: "denied",
+                ad_user_data: "denied",
+                ad_personalization: "denied",
+                functionality_storage: "granted",
+                security_storage: "granted",
+            });
+        }
+    }
+
+    function initCookieBanner() {
+        // 1. Initial deny state explicitly before processing choice
+        window.dataLayer = window.dataLayer || [];
+        window.gtag =
+            window.gtag ||
+            function () {
+                dataLayer.push(arguments);
+            };
+        window.gtag("consent", "default", {
+            analytics_storage: "denied",
+            ad_storage: "denied",
+            ad_user_data: "denied",
+            ad_personalization: "denied",
+            functionality_storage: "granted",
+            security_storage: "granted",
+        });
+
         const popup = document.getElementById("cookie-consent-popup");
-        const acceptBtn = document.getElementById("cookie-accept-btn");
-        const necessaryBtn = document.getElementById("cookie-necessary-btn");
-        const closeBtn = document.getElementById("cookie-close-btn");
+        const existingChoice = getCookie(__COOKIE_NAME__);
 
-        const COOKIE_NAME = "whtc_cookie_consent";
-
-        function checkCookie() {
-            // Check if user has already set preferences
-            if (localStorage.getItem(COOKIE_NAME)) {
-                return;
-            }
-
-            // Show popup with a slight delay for better UX
+        if (!existingChoice) {
             setTimeout(() => {
                 if (popup) {
                     popup.classList.remove(
@@ -90,9 +180,13 @@ import { Icon } from "astro-icon/components";
                     );
                 }
             }, 1000);
+        } else {
+            applyConsent(existingChoice);
         }
 
-        function hidePopup() {
+        function saveAndHide(choice) {
+            setCookie(__COOKIE_NAME__, choice, __MAX_AGE_DAYS__);
+            applyConsent(choice);
             if (popup) {
                 popup.classList.add(
                     "translate-y-[150%]",
@@ -102,41 +196,17 @@ import { Icon } from "astro-icon/components";
             }
         }
 
-        function saveConsent(level) {
-            localStorage.setItem(COOKIE_NAME, level);
-            hidePopup();
+        document
+            .getElementById("cookie-accept-all-btn")
+            ?.addEventListener("click", () => saveAndHide("all"));
+        document
+            .getElementById("cookie-necessary-btn")
+            ?.addEventListener("click", () => saveAndHide("necessary"));
+    }
 
-            console.log(`Cookie consent saved: ${level}`);
-
-            if (level === "all") {
-                if (typeof window.gtag === "function") {
-                    window.gtag("consent", "update", {
-                        analytics_storage: "granted",
-                        ad_storage: "granted",
-                        ad_user_data: "granted",
-                        ad_personalization: "granted",
-                    });
-                }
-                if (typeof window.clarity === "function") {
-                    window.clarity("consent");
-                }
-            }
-        }
-
-        if (acceptBtn) {
-            acceptBtn.addEventListener("click", () => saveConsent("all"));
-        }
-
-        if (necessaryBtn) {
-            necessaryBtn.addEventListener("click", () =>
-                saveConsent("necessary"),
-            );
-        }
-
-        if (closeBtn) {
-            closeBtn.addEventListener("click", () => hidePopup());
-        }
-
-        checkCookie();
-    });
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initCookieBanner);
+    } else {
+        initCookieBanner();
+    }
 </script>

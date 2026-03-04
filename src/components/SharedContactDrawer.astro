@@ -5,23 +5,24 @@
 <!-- Shared Contact Drawer -->
 <div
     id="shared-contact-drawer"
-    class="fixed inset-y-0 right-0 w-full md:w-[500px] lg:w-[600px] bg-white z-[200] transform translate-x-full transition-transform duration-200 ease-out will-change-transform flex flex-col font-montserrat"
+    class="fixed inset-y-0 right-0 w-full sm:w-[420px] md:w-[500px] lg:w-[600px] bg-white z-[200] transform translate-x-full transition-transform duration-200 ease-out will-change-transform flex flex-col font-montserrat"
+    style="max-height: 100dvh; max-height: 100vh;"
 >
     <!-- Drawer Header -->
     <div
         id="drawer-header"
-        class="flex items-center justify-between px-8 py-7 transition-colors duration-400 ease-in-out"
+        class="flex items-center justify-between px-5 py-3 sm:px-7 sm:py-4 lg:px-5 lg:py-3 xl:px-7 xl:py-5 transition-colors duration-400 ease-in-out flex-shrink-0"
         style="background-color: #000000;"
     >
         <div>
             <h2
-                class="text-3xl lg:text-4xl font-black uppercase leading-none tracking-tighter text-white"
+                class="text-xl sm:text-2xl lg:text-2xl xl:text-3xl font-black uppercase leading-none tracking-tighter text-white"
             >
                 Contact
             </h2>
             <p
                 id="drawer-subject-label"
-                class="text-xs font-bold uppercase tracking-[0.2em] mt-2 text-white/90"
+                class="text-[10px] sm:text-xs font-bold uppercase tracking-[0.15em] sm:tracking-[0.2em] mt-1.5 text-white/90"
             >
                 General Inquiry
             </p>
@@ -29,10 +30,10 @@
         <button
             onclick="closeContactDrawer()"
             aria-label="Închide fereastra de contact"
-            class="p-2.5 bg-black/10 hover:bg-black/20 text-white transition-colors duration-200 rounded-sm backdrop-blur-sm group"
+            class="p-2 sm:p-2.5 bg-black/10 hover:bg-black/20 text-white transition-colors duration-200 rounded-sm backdrop-blur-sm group flex-shrink-0 ml-3"
         >
             <svg
-                class="w-6 h-6 transition-transform group-hover:rotate-90 duration-300"
+                class="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:rotate-90 duration-300"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -46,8 +47,13 @@
     </div>
 
     <!-- Drawer Body -->
-    <div class="flex-grow overflow-y-auto px-8 py-8 bg-[#fafafa] flex flex-col">
-        <form id="drawer-form" class="space-y-6 flex-grow">
+    <div
+        class="flex-grow overflow-y-auto px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6 lg:px-5 lg:py-4 xl:px-8 xl:py-7 bg-[#fafafa] flex flex-col"
+    >
+        <form
+            id="drawer-form"
+            class="space-y-3 sm:space-y-4 lg:space-y-3 xl:space-y-5 flex-grow"
+        >
             <input
                 type="hidden"
                 id="drawer-subject"
@@ -65,7 +71,7 @@
                 async
                 defer></script>
 
-            <div class="space-y-2">
+            <div class="space-y-1.5 sm:space-y-2">
                 <label
                     for="drawer-name"
                     class="block font-black text-[10px] uppercase tracking-[0.15em] text-gray-400 ml-1"
@@ -77,14 +83,16 @@
                         id="drawer-name"
                         name="name"
                         required
-                        class="w-full bg-white border-2 border-gray-200 px-5 py-3.5 text-sm font-bold text-gray-800 placeholder-gray-300 focus:outline-none focus:border-black transition-colors rounded-none outline-none appearance-none"
+                        class="w-full bg-white border-2 border-gray-200 px-4 py-2.5 sm:px-5 sm:py-3.5 lg:py-2 xl:py-3.5 text-sm font-bold text-gray-800 placeholder-gray-300 focus:outline-none focus:border-black transition-colors rounded-none outline-none appearance-none"
                         placeholder="EX: ION POPESCU"
                     />
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div class="space-y-2">
+            <div
+                class="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 gap-3 sm:gap-5"
+            >
+                <div class="space-y-1.5 sm:space-y-2">
                     <label
                         for="drawer-email"
                         class="block font-black text-[10px] uppercase tracking-[0.15em] text-gray-400 ml-1"
@@ -95,11 +103,11 @@
                         id="drawer-email"
                         name="email"
                         required
-                        class="w-full bg-white border-2 border-gray-200 px-5 py-3.5 text-sm font-bold text-gray-800 placeholder-gray-300 focus:outline-none focus:border-black transition-colors rounded-none outline-none appearance-none"
+                        class="w-full bg-white border-2 border-gray-200 px-4 py-2.5 sm:px-5 sm:py-3.5 lg:py-2 xl:py-3.5 text-sm font-bold text-gray-800 placeholder-gray-300 focus:outline-none focus:border-black transition-colors rounded-none outline-none appearance-none"
                         placeholder="OFERTE@NUME.RO"
                     />
                 </div>
-                <div class="space-y-2">
+                <div class="space-y-1.5 sm:space-y-2">
                     <label
                         for="drawer-phone"
                         class="block font-black text-[10px] uppercase tracking-[0.15em] text-gray-400 ml-1"
@@ -110,13 +118,13 @@
                         id="drawer-phone"
                         name="phone"
                         required
-                        class="w-full bg-white border-2 border-gray-200 px-5 py-3.5 text-sm font-bold text-gray-800 placeholder-gray-300 focus:outline-none focus:border-black transition-colors rounded-none outline-none appearance-none"
+                        class="w-full bg-white border-2 border-gray-200 px-4 py-2.5 sm:px-5 sm:py-3.5 lg:py-2 xl:py-3.5 text-sm font-bold text-gray-800 placeholder-gray-300 focus:outline-none focus:border-black transition-colors rounded-none outline-none appearance-none"
                         placeholder="07XX XXX XXX"
                     />
                 </div>
             </div>
 
-            <div class="space-y-2">
+            <div class="space-y-1.5 sm:space-y-2">
                 <label
                     for="drawer-message"
                     class="block font-black text-[10px] uppercase tracking-[0.15em] text-gray-400 ml-1"
@@ -126,23 +134,26 @@
                     id="drawer-message"
                     name="message"
                     required
-                    class="w-full h-28 bg-white border-2 border-gray-200 px-5 py-4 text-sm font-medium text-gray-800 placeholder-gray-300 focus:outline-none focus:border-black transition-colors resize-none rounded-none outline-none appearance-none"
+                    class="w-full h-16 sm:h-24 lg:h-28 xl:h-40 bg-white border-2 border-gray-200 px-4 py-2.5 sm:px-5 sm:py-4 lg:py-3 xl:py-4 text-sm font-medium text-gray-800 placeholder-gray-300 focus:outline-none focus:border-black transition-colors resize-none rounded-none outline-none appearance-none"
                     placeholder="DESCRIE PE SCURT CERINTELE TALE..."></textarea>
             </div>
 
-            <div class="pt-0">
-                <div
-                    class="cf-turnstile"
-                    data-sitekey={`${import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"}`}
-                    data-theme="light"
-                >
+            <div class="pt-0 overflow-hidden">
+                <!-- Turnstile wrapper: scales down on narrow screens so it never overflows -->
+                <div id="turnstile-wrapper" style="transform-origin: left top;">
+                    <div
+                        class="cf-turnstile"
+                        data-sitekey={`${import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"}`}
+                        data-theme="light"
+                    >
+                    </div>
                 </div>
             </div>
 
             <button
                 type="submit"
                 id="drawer-submit-btn"
-                class="w-full text-white py-4 font-black uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-3 mt-4 rounded-none border-2 border-black transition-all ease-in-out hover:brightness-110 active:scale-[0.98]"
+                class="w-full text-white py-2.5 sm:py-4 lg:py-4 xl:py-5 font-black uppercase tracking-[0.1em] sm:tracking-[0.2em] text-xs flex items-center justify-center gap-3 mt-1 sm:mt-4 lg:mt-3 xl:mt-5 rounded-none border-2 border-black transition-all ease-in-out hover:brightness-110 active:scale-[0.98]"
                 style="background-color: #000000;"
             >
                 <span>Trimite Solicitarea</span>
@@ -156,16 +167,18 @@
         </form>
 
         <!-- Small Contact Info at bottom -->
-        <div class="mt-8 pt-4 border-t-2 border-gray-200">
+        <div
+            class="mt-3 sm:mt-6 lg:mt-3 xl:mt-8 pt-3 sm:pt-4 lg:pt-3 xl:pt-5 border-t-2 border-gray-200 flex-shrink-0"
+        >
             <div
-                class="flex flex-col sm:flex-row items-stretch justify-center gap-3"
+                class="flex flex-row items-stretch justify-center gap-2 sm:gap-3"
             >
                 <a
                     href="tel:+40749225956"
-                    class="flex-1 flex items-center justify-center gap-2 p-3 border-2 border-gray-200 hover:border-black hover:bg-black hover:text-white transition-all duration-300 rounded-none group bg-white"
+                    class="flex-1 flex items-center justify-center gap-2 p-2.5 sm:p-3 border-2 border-gray-200 hover:border-black hover:bg-black hover:text-white transition-all duration-300 rounded-none group bg-white min-w-0"
                 >
                     <svg
-                        class="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity"
+                        class="w-3.5 h-3.5 sm:w-4 sm:h-4 opacity-50 group-hover:opacity-100 transition-opacity flex-shrink-0"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -177,16 +190,16 @@
                         ></path></svg
                     >
                     <span
-                        class="text-[10px] uppercase font-black tracking-widest"
+                        class="text-[9px] sm:text-[10px] uppercase font-black tracking-wider sm:tracking-widest truncate"
                         >+40 749 225 956</span
                     >
                 </a>
                 <a
                     href="mailto:office@whtc.ro"
-                    class="flex-1 flex items-center justify-center gap-2 p-3 border-2 border-gray-200 hover:border-black hover:bg-black hover:text-white transition-all duration-300 rounded-none group bg-white"
+                    class="flex-1 flex items-center justify-center gap-2 p-2.5 sm:p-3 border-2 border-gray-200 hover:border-black hover:bg-black hover:text-white transition-all duration-300 rounded-none group bg-white min-w-0"
                 >
                     <svg
-                        class="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity"
+                        class="w-3.5 h-3.5 sm:w-4 sm:h-4 opacity-50 group-hover:opacity-100 transition-opacity flex-shrink-0"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -198,7 +211,7 @@
                         ></path></svg
                     >
                     <span
-                        class="text-[10px] uppercase font-black tracking-widest"
+                        class="text-[9px] sm:text-[10px] uppercase font-black tracking-wider sm:tracking-widest truncate"
                         >OFFICE@WHTC.RO</span
                     >
                 </a>
@@ -289,6 +302,31 @@
                 dd.classList.add("hidden");
                 dd.classList.remove("flex");
             }
+
+            // Scale Turnstile widget to fit inside drawer on small screens
+            // Turnstile renders at a fixed ~300px wide; scale it down if drawer is narrower
+            setTimeout(() => {
+                const wrapper = document.getElementById("turnstile-wrapper");
+                if (wrapper) {
+                    // Padding on each side is ~16px (px-4) on mobile, total ~32px
+                    const drawerEl = document.getElementById(
+                        "shared-contact-drawer",
+                    );
+                    const bodyPadding = window.innerWidth >= 640 ? 48 : 32; // sm:px-6 = 24*2, px-4 = 16*2
+                    const availableWidth =
+                        (drawerEl ? drawerEl.offsetWidth : window.innerWidth) -
+                        bodyPadding;
+                    const widgetWidth = 300; // Turnstile fixed width
+                    if (availableWidth < widgetWidth) {
+                        const scale = availableWidth / widgetWidth;
+                        wrapper.style.transform = `scale(${scale})`;
+                        wrapper.style.height = `${Math.round(65 * scale)}px`; // Roughly 65px tall when scaled
+                    } else {
+                        wrapper.style.transform = "";
+                        wrapper.style.height = "";
+                    }
+                }
+            }, 50);
         }
     };
 
@@ -399,6 +437,14 @@
                     "border-green-600",
                 );
                 if (window.turnstile) window.turnstile.reset();
+
+                // Trigger GA4 Lead Event
+                if (typeof window.gtag === "function") {
+                    window.gtag("event", "generate_lead", {
+                        event_category: "Leads",
+                        event_label: "Contact Drawer Form Submitted",
+                    });
+                }
 
                 // Close drawer after delay
                 setTimeout(() => {

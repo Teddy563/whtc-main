@@ -75,42 +75,49 @@ const schemaMarkup = {
 
 		<title>{title}</title>
 
-		<!-- Google tag (gtag.js) -->
-		<script
-			async
-			src="https://www.googletagmanager.com/gtag/js?id=G-2RBDXLQV7L"
-		></script>
+		<!-- Google Analytics 4 (GA4) -->
+		<!-- Measurement ID is set via PUBLIC_GA_MEASUREMENT_ID in .env -->
+		{import.meta.env.PUBLIC_GA_MEASUREMENT_ID && (
+			<>
+				{/* Load gtag.js — async so it never blocks rendering */}
+				<script
+					is:inline
+					async
+					src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA_MEASUREMENT_ID}`}
+				></script>
+				<script is:inline define:vars={{ gaId: import.meta.env.PUBLIC_GA_MEASUREMENT_ID }}>
+					window.dataLayer = window.dataLayer || [];
+					function gtag() { dataLayer.push(arguments); }
+
+					// Consent Mode v2 — default DENIED until user accepts cookies
+					// This lets GA record anonymised hits even before consent,
+					// and upgrades to full tracking after the user clicks Accept.
+					gtag('consent', 'default', {
+						ad_storage:              'denied',
+						ad_user_data:            'denied',
+						ad_personalization:      'denied',
+						analytics_storage:       'denied',
+						functionality_storage:   'granted',
+						security_storage:        'granted',
+						wait_for_update:         500,
+					});
+
+					gtag('js', new Date());
+					gtag('config', gaId, {
+						// Anonymize IP while consent is pending
+						anonymize_ip: true,
+						// Don't send page_view automatically — we fire it after consent
+						send_page_view: false,
+					});
+				</script>
+			</>
+		)}
+		{/* Fallback: define a no-op gtag so inline calls elsewhere never throw */}
 		<script is:inline>
 			window.dataLayer = window.dataLayer || [];
-			function gtag() {
-				dataLayer.push(arguments);
+			if (typeof window.gtag !== 'function') {
+				window.gtag = function() { dataLayer.push(arguments); };
 			}
-
-			// Default consent to denied before any tracking happens
-			gtag("consent", "default", {
-				analytics_storage: "denied",
-				ad_storage: "denied",
-				ad_user_data: "denied",
-				ad_personalization: "denied",
-			});
-
-			gtag("js", new Date());
-			gtag("config", "G-2RBDXLQV7L");
-		</script>
-		<!-- Microsoft Clarity -->
-		<script is:inline>
-			(function (c, l, a, r, i, t, y) {
-				c[a] =
-					c[a] ||
-					function () {
-						(c[a].q = c[a].q || []).push(arguments);
-					};
-				t = l.createElement(r);
-				t.async = 1;
-				t.src = "https://www.clarity.ms/tag/" + i;
-				y = l.getElementsByTagName(r)[0];
-				y.parentNode.insertBefore(t, y);
-			})(window, document, "clarity", "script", "unlwwm2waf");
 		</script>
 	</head>
 	<body
@@ -321,6 +328,27 @@ const schemaMarkup = {
 
 			// Expose to window for button onclicks
 			window.setLanguage = setLanguage;
+		</script>
+		<!-- Audience Tracking (Page View Segments) -->
+		<script is:inline>
+			document.addEventListener("DOMContentLoaded", () => {
+				const path = window.location.pathname.toLowerCase();
+				window.dataLayer = window.dataLayer || [];
+				function gtag() {
+					dataLayer.push(arguments);
+				}
+
+				if (path.includes("/solutii")) {
+					gtag("event", "view_solution");
+				} else if (path.includes("/training")) {
+					gtag("event", "view_training");
+				} else if (
+					path.includes("/loto") ||
+					path.includes("/control-energii")
+				) {
+					gtag("event", "view_loto");
+				}
+			});
 		</script>
 	</body>
 </html>

@@ -6,8 +6,10 @@
  *   title      — main H1 (HTML allowed for <br/> breaks)
  *   subtitle   — small text below title (plain string)
  *   badge      — category label shown in coloured pill above H1
- *   color      — hex for badge bg and tint overlay (e.g. "#16a34a")
- *   bgImage    — background: imported ImageMetadata (Astro-optimized) OR a URL string
+ *   color      — hex for badge bg and tint overlay
+ *   bgImage    — background: imported ImageMetadata OR a URL string
+ *   ctaPrimary — opens contact drawer { label, subject }
+ *   ctaScroll  — smooth-scrolls to page section { label, anchor }
  */
 
 import { Image } from "astro:assets";
@@ -20,7 +22,7 @@ interface CtaPrimary {
 
 interface CtaScroll {
     label: string;
-    anchor: string; // without the # prefix
+    anchor: string;
 }
 
 interface Props {
@@ -29,10 +31,8 @@ interface Props {
     badge?: string;
     color?: string;
     bgImage?: string | ImageMetadata;
-    noGradient?: boolean; // suppress bottom fade-to-white
-    fullHeight?: boolean; // make hero take full screen height
-    ctaPrimary?: CtaPrimary; // opens contact drawer
-    ctaScroll?: CtaScroll; // smooth-scrolls to page section
+    ctaPrimary?: CtaPrimary;
+    ctaScroll?: CtaScroll;
 }
 
 const {
@@ -41,28 +41,25 @@ const {
     badge,
     color = "#f16215",
     bgImage,
-    noGradient = false,
-    fullHeight = false,
     ctaPrimary,
     ctaScroll,
 } = Astro.props;
 
-const hasCtas = ctaPrimary || ctaScroll;
 const bgIsLocal = bgImage && typeof bgImage !== "string";
+const hasCtas = ctaPrimary || ctaScroll;
 ---
 
 <section
-    class={`sub-hero relative bg-black text-white overflow-hidden pt-20 flex flex-col justify-center ${fullHeight ? "is-full-height" : ""}`}
-    style="height: 100svh;"
+    class="sub-hero relative bg-black text-white overflow-hidden flex flex-col justify-center"
 >
     {/* Tinted colour wash */}
     <div
         class="absolute inset-0 z-0 pointer-events-none"
-        style={`background:${color}; opacity:0.15;`}
+        style={`background:${color}; opacity:0.13;`}
     >
     </div>
 
-    {/* Optional photo layer */}
+    {/* Background image */}
     {
         bgImage && (
             <div class="absolute inset-0 z-0 pointer-events-none">
@@ -73,7 +70,7 @@ const bgIsLocal = bgImage && typeof bgImage !== "string";
                         aria-hidden="true"
                         width={1600}
                         class="w-full h-full object-cover"
-                        style="opacity:0.28; filter:grayscale(65%) contrast(1.15);"
+                        style="opacity:0.25; filter:grayscale(60%) contrast(1.15);"
                         loading="eager"
                         fetchpriority="high"
                         quality={60}
@@ -88,7 +85,7 @@ const bgIsLocal = bgImage && typeof bgImage !== "string";
                         height={1080}
                         inferSize={true}
                         class="w-full h-full object-cover"
-                        style="opacity:0.22; filter:grayscale(70%) contrast(1.15);"
+                        style="opacity:0.20; filter:grayscale(70%) contrast(1.15);"
                         loading="eager"
                         fetchpriority="high"
                         quality={60}
@@ -97,26 +94,28 @@ const bgIsLocal = bgImage && typeof bgImage !== "string";
                 )}
                 <div
                     class="absolute inset-0"
-                    style="background:linear-gradient(to bottom,rgba(0,0,0,0.55) 0%,rgba(0,0,0,0.08) 50%,rgba(0,0,0,0.8) 100%);"
+                    style="background:linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.65) 100%);"
                 />
             </div>
         )
     }
 
-    {/* Accent line at very top of section */}
+    {/* Accent stripe at very top */}
     <div
         class="absolute top-0 left-0 right-0 h-[3px] z-10"
         style={`background:${color};`}
     >
     </div>
 
+    {/* Centered content */}
     <div
-        class="relative z-10 max-w-5xl mx-auto w-full px-5 lg:px-8 py-10 lg:py-14 text-center"
+        class="relative z-10 max-w-4xl mx-auto w-full px-5 lg:px-8 text-center py-8"
     >
+        {/* Badge */}
         {
             badge && (
                 <span
-                    class="inline-block py-1 px-3 mb-3 lg:mb-5 font-montserrat font-black text-[9px] uppercase tracking-widest text-white"
+                    class="inline-block py-1 px-3 mb-4 font-montserrat font-black text-[9px] uppercase tracking-widest text-white"
                     style={`background:${color};`}
                 >
                     {badge}
@@ -124,11 +123,13 @@ const bgIsLocal = bgImage && typeof bgImage !== "string";
             )
         }
 
+        {/* Title */}
         <h1
-            class="hero-title font-montserrat font-black uppercase leading-none tracking-tighter mb-3 lg:mb-5"
+            class="hero-title font-montserrat font-black uppercase leading-none tracking-tighter mb-4 text-white"
             set:html={title}
         />
 
+        {/* Subtitle */}
         {
             subtitle && (
                 <p
@@ -138,7 +139,7 @@ const bgIsLocal = bgImage && typeof bgImage !== "string";
             )
         }
 
-        {/* ── Dual CTA Row ── */}
+        {/* CTA buttons */}
         {
             hasCtas && (
                 <div class="flex flex-col sm:flex-row flex-wrap gap-3 justify-center mt-6 lg:mt-8">
@@ -190,37 +191,24 @@ const bgIsLocal = bgImage && typeof bgImage !== "string";
             )
         }
     </div>
-
-    {/* Scroll hint arrow — absolutely pinned to bottom centre of section */}
-    {
-        ctaScroll && (
-            <button
-                onclick={`const el=document.getElementById('${ctaScroll.anchor}');if(el){window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-80,behavior:'smooth'});}`}
-                aria-label="Scroll down"
-                class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 text-white/40 hover:text-white transition-colors duration-300 cursor-pointer"
-            >
-                <svg
-                    class="w-7 h-7 bounce-arrow"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="1.5"
-                        d="M19 9l-7 7-7-7"
-                    />
-                </svg>
-            </button>
-        )
-    }
 </section>
 
 <style>
-    .hero-title {
-        font-size: clamp(2.8rem, 7vw, 6rem);
+    .sub-hero {
+        /* Navbar is 80px fixed; hero sits below it */
+        padding-top: 80px;
+        /* 60% of the full viewport height */
+        height: 60vh;
+        min-height: 380px;
+        max-height: 620px;
     }
+
+    .hero-title {
+        /* Big and bold — scales smoothly from mobile to widescreen */
+        font-size: clamp(2.2rem, 5.5vw, 5rem);
+        /* Ensure max 2 lines — let each <br/> in the markup control the break */
+    }
+
     .hero-cta-primary {
         background: var(--hc);
         cursor: pointer;
@@ -229,23 +217,5 @@ const bgIsLocal = bgImage && typeof bgImage !== "string";
     .hero-cta-primary:hover {
         background: #111;
         border-color: #111;
-    }
-    /* Bouncing scroll arrow */
-    @keyframes bounce-down {
-        0%,
-        100% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(7px);
-        }
-    }
-    .bounce-arrow {
-        animation: bounce-down 1.8s ease-in-out infinite;
-    }
-    @media (min-width: 1920px) {
-        .hero-title {
-            font-size: clamp(4rem, 7vw, 8rem);
-        }
     }
 </style>

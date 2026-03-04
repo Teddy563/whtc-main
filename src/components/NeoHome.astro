@@ -94,69 +94,74 @@ const lotoBg = await getImage({
                 <div
                     id="desk-nav-panel"
                     class="desk-nav-panel-closed fixed top-0 right-0 h-full bg-white border-l-2 border-black z-[300] flex flex-col pointer-events-none overflow-y-auto"
-                    style="font-family:'Montserrat',sans-serif; width:min(400px,40vw);"
+                    style="font-family: 'Montserrat', sans-serif; width: min(400px, 40vw);"
                 >
                     <!-- Soluții Protecție — flat always-visible category list -->
                     <div class="flex-shrink-0">
                         <div
-                            class="flex items-center justify-between px-6 pt-7 pb-3"
+                            class="flex items-center justify-between px-6 pt-6 pb-3"
                         >
                             <span
                                 class="font-black text-[9px] uppercase tracking-[.3em] text-gray-400"
                                 >Soluții Protecție</span
                             >
+                            <a
+                                href="/solutii/"
+                                class="text-[9px] font-black uppercase tracking-widest text-brand-orange hover:underline"
+                                >Vezi Toate &rarr;</a
+                            >
                         </div>
-                        <div>
+                        <div class="divide-y divide-gray-100">
                             <a
                                 href="/solutii/linia-vietii/"
-                                class="flex items-center gap-4 px-6 py-4 border-t border-gray-100 hover:bg-gray-50 transition-colors"
+                                class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors"
                             >
                                 <span
-                                    class="w-1 h-8 rounded-full flex-shrink-0"
+                                    class="w-2 h-2 rounded-full flex-shrink-0"
                                     style="background:#1e3a8a;"></span>
                                 <div>
                                     <span
-                                        class="block font-black text-[19px] uppercase leading-none tracking-tight text-gray-900"
+                                        class="block font-montserrat font-black text-[12px] text-gray-900 leading-tight uppercase tracking-tight"
                                         >Linia Vieții</span
                                     >
                                     <span
-                                        class="block text-[10px] font-bold uppercase tracking-wider mt-0.5"
+                                        class="block text-[9px] font-bold uppercase tracking-[.2em]"
                                         style="color:#1e3a8a;">Inginerie</span
                                     >
                                 </div>
                             </a>
                             <a
                                 href="/solutii/verificari-recertificari/"
-                                class="flex items-center gap-4 px-6 py-4 border-t border-gray-100 hover:bg-gray-50 transition-colors"
+                                class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors"
                             >
                                 <span
-                                    class="w-1 h-8 rounded-full flex-shrink-0"
+                                    class="w-2 h-2 rounded-full flex-shrink-0"
                                     style="background:#16a34a;"></span>
                                 <div>
                                     <span
-                                        class="block font-black text-[19px] uppercase leading-none tracking-tight text-gray-900"
+                                        class="block font-montserrat font-black text-[12px] text-gray-900 leading-tight uppercase tracking-tight"
                                         >Verificări EIP</span
                                     >
                                     <span
-                                        class="block text-[10px] font-bold uppercase tracking-wider mt-0.5"
+                                        class="block text-[9px] font-bold uppercase tracking-[.2em]"
                                         style="color:#16a34a;">Inspecție</span
                                     >
                                 </div>
                             </a>
                             <a
                                 href="/solutii/acces/"
-                                class="flex items-center gap-4 px-6 py-4 border-t border-gray-100 hover:bg-gray-50 transition-colors"
+                                class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors"
                             >
                                 <span
-                                    class="w-1 h-8 rounded-full flex-shrink-0"
+                                    class="w-2 h-2 rounded-full flex-shrink-0"
                                     style="background:#7c3aed;"></span>
                                 <div>
                                     <span
-                                        class="block font-black text-[19px] uppercase leading-none tracking-tight text-gray-900"
+                                        class="block font-montserrat font-black text-[12px] text-gray-900 leading-tight uppercase tracking-tight"
                                         >Scări &amp; Platforme</span
                                     >
                                     <span
-                                        class="block text-[10px] font-bold uppercase tracking-wider mt-0.5"
+                                        class="block text-[9px] font-bold uppercase tracking-[.2em]"
                                         style="color:#7c3aed;"
                                         >Acces Industrial</span
                                     >
@@ -164,18 +169,18 @@ const lotoBg = await getImage({
                             </a>
                             <a
                                 href="/solutii/3m/"
-                                class="flex items-center gap-4 px-6 py-4 border-t border-gray-100 hover:bg-gray-50 transition-colors"
+                                class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors"
                             >
                                 <span
-                                    class="w-1 h-8 rounded-full flex-shrink-0"
+                                    class="w-2 h-2 rounded-full flex-shrink-0"
                                     style="background:#D32F2F;"></span>
                                 <div>
                                     <span
-                                        class="block font-black text-[19px] uppercase leading-none tracking-tight text-gray-900"
+                                        class="block font-montserrat font-black text-[12px] text-gray-900 leading-tight uppercase tracking-tight"
                                         >Echipamente 3M™</span
                                     >
                                     <span
-                                        class="block text-[10px] font-bold uppercase tracking-wider mt-0.5"
+                                        class="block text-[9px] font-bold uppercase tracking-[.2em]"
                                         style="color:#D32F2F;"
                                         >Distribuitor Autorizat</span
                                     >
@@ -183,19 +188,18 @@ const lotoBg = await getImage({
                             </a>
                             <a
                                 href="/solutii/custom/"
-                                class="flex items-center gap-4 px-6 py-4 border-t border-b-2 border-gray-100 hover:bg-gray-50 transition-colors"
-                                style="border-bottom: 2px solid #000;"
+                                class="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors"
                             >
                                 <span
-                                    class="w-1 h-8 rounded-full flex-shrink-0"
+                                    class="w-2 h-2 rounded-full flex-shrink-0"
                                     style="background:#f16215;"></span>
                                 <div>
                                     <span
-                                        class="block font-black text-[19px] uppercase leading-none tracking-tight text-gray-900"
+                                        class="block font-montserrat font-black text-[12px] text-gray-900 leading-tight uppercase tracking-tight"
                                         >Implementare Custom</span
                                     >
                                     <span
-                                        class="block text-[10px] font-bold uppercase tracking-wider mt-0.5"
+                                        class="block text-[9px] font-bold uppercase tracking-[.2em]"
                                         style="color:#f16215;"
                                         >Full Service</span
                                     >
@@ -206,7 +210,9 @@ const lotoBg = await getImage({
 
                     <!-- Training & Control Energii -->
                     <div class="flex-shrink-0">
-                        <div class="px-6 pt-5 pb-2">
+                        <div
+                            class="border-t border-gray-100 px-4 py-2.5 flex items-center justify-between"
+                        >
                             <span
                                 class="font-black text-[9px] uppercase tracking-[.3em] text-gray-400"
                                 >Servicii</span
@@ -214,14 +220,23 @@ const lotoBg = await getImage({
                         </div>
                         <a
                             href="/training-lucru-la-inaltime/"
-                            class="flex items-center justify-between px-6 py-4 border-t border-gray-100 border-b border-gray-100 hover:bg-gray-50 transition-colors group"
+                            class="flex items-center gap-3 px-4 py-3 border-t border-gray-100 hover:bg-gray-50 transition-colors group"
                         >
                             <span
-                                class="font-black text-[19px] uppercase leading-none tracking-tight text-gray-900"
-                                >Training</span
-                            >
+                                class="w-2 h-2 rounded-full flex-shrink-0 bg-brand-orange-alt"
+                            ></span>
+                            <div>
+                                <span
+                                    class="block font-montserrat font-black text-[12px] text-gray-900 leading-tight uppercase tracking-tight"
+                                    >Training Industrial</span
+                                >
+                                <span
+                                    class="block text-[9px] font-bold uppercase tracking-[.2em] text-brand-orange-alt"
+                                    >Safety Academy</span
+                                >
+                            </div>
                             <svg
-                                class="w-4 h-4 text-gray-300 group-hover:text-gray-600 transition-colors"
+                                class="w-3 h-3 text-gray-300 group-hover:text-gray-600 transition-colors ml-auto"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -234,14 +249,24 @@ const lotoBg = await getImage({
                         </a>
                         <a
                             href="/control-energii-lockout-tagout/"
-                            class="flex items-center justify-between px-6 py-4 border-b-2 border-black hover:bg-gray-50 transition-colors group"
+                            class="flex items-center gap-3 px-4 py-3 border-t border-b-2 border-gray-100 hover:bg-gray-50 transition-colors group"
+                            style="border-bottom: 2px solid #000;"
                         >
                             <span
-                                class="font-black text-[19px] uppercase leading-none tracking-tight text-gray-900"
-                                >Control Energii</span
-                            >
+                                class="w-2 h-2 rounded-full flex-shrink-0 bg-brand-red"
+                            ></span>
+                            <div>
+                                <span
+                                    class="block font-montserrat font-black text-[12px] text-gray-900 leading-tight uppercase tracking-tight"
+                                    >Control Energii</span
+                                >
+                                <span
+                                    class="block text-[9px] font-bold uppercase tracking-[.2em] text-brand-red"
+                                    >Lockout Tagout</span
+                                >
+                            </div>
                             <svg
-                                class="w-4 h-4 text-gray-300 group-hover:text-gray-600 transition-colors"
+                                class="w-3 h-3 text-gray-300 group-hover:text-gray-600 transition-colors ml-auto"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -328,34 +353,37 @@ const lotoBg = await getImage({
             </button>
         </nav>
 
-        <!-- Mobile Full-Screen Nav Overlay -->
+        <!-- Mobile Dropdown Nav -->
         <div
             id="mob-nav-overlay"
-            class="hidden fixed inset-0 z-[140] bg-white flex flex-col"
-            style="font-family:'Montserrat',sans-serif; padding-top: 64px;"
+            class="hidden fixed top-[64px] left-0 w-full h-[calc(100vh-64px)] bg-white border-t-2 border-black z-[140] flex flex-col overflow-y-auto shadow-xl"
         >
             <div class="flex-1 overflow-y-auto">
-                <!-- Soluții Protecție — always expanded on mobile -->
-                <div class="border-b-2 border-black">
-                    <div
-                        class="flex items-center justify-between px-5 py-4 bg-black"
-                    >
-                        <span
-                            class="font-black text-[13px] uppercase tracking-wider text-white"
-                            >Soluții Protecție</span
+                <!-- Soluții Protecție Section -->
+                <div class="px-5 pt-5 pb-3">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3
+                            class="font-black text-[10px] uppercase tracking-[0.25em] text-gray-400"
+                        >
+                            Soluții Protecție
+                        </h3>
+                        <a
+                            href="/solutii/"
+                            class="text-[10px] font-black uppercase tracking-widest text-brand-orange hover:underline"
+                            >Vezi Toate →</a
                         >
                     </div>
-                    <div class="bg-gray-50">
+                    <div class="space-y-1.5">
                         <a
                             href="/solutii/linia-vietii/"
-                            class="flex items-center gap-4 px-6 py-4 border-b border-gray-100 hover:bg-white transition-colors"
+                            class="flex items-center gap-3 py-3 px-3 border border-gray-100 hover:border-gray-300 hover:bg-gray-50 transition-colors"
                         >
                             <span
-                                class="w-2.5 h-2.5 rounded-full flex-shrink-0"
+                                class="w-2 h-2 rounded-full flex-shrink-0"
                                 style="background:#1e3a8a;"></span>
                             <div>
                                 <span
-                                    class="block font-black text-[13px] uppercase tracking-wide text-gray-800"
+                                    class="block font-black text-[12px] uppercase tracking-tight text-gray-800"
                                     >Linia Vieții</span
                                 >
                                 <span
@@ -366,14 +394,14 @@ const lotoBg = await getImage({
                         </a>
                         <a
                             href="/solutii/verificari-recertificari/"
-                            class="flex items-center gap-4 px-6 py-4 border-b border-gray-100 hover:bg-white transition-colors"
+                            class="flex items-center gap-3 py-3 px-3 border border-gray-100 hover:border-gray-300 hover:bg-gray-50 transition-colors"
                         >
                             <span
-                                class="w-2.5 h-2.5 rounded-full flex-shrink-0"
+                                class="w-2 h-2 rounded-full flex-shrink-0"
                                 style="background:#16a34a;"></span>
                             <div>
                                 <span
-                                    class="block font-black text-[13px] uppercase tracking-wide text-gray-800"
+                                    class="block font-black text-[12px] uppercase tracking-tight text-gray-800"
                                     >Verificări EIP</span
                                 >
                                 <span
@@ -384,14 +412,14 @@ const lotoBg = await getImage({
                         </a>
                         <a
                             href="/solutii/acces/"
-                            class="flex items-center gap-4 px-6 py-4 border-b border-gray-100 hover:bg-white transition-colors"
+                            class="flex items-center gap-3 py-3 px-3 border border-gray-100 hover:border-gray-300 hover:bg-gray-50 transition-colors"
                         >
                             <span
-                                class="w-2.5 h-2.5 rounded-full flex-shrink-0"
+                                class="w-2 h-2 rounded-full flex-shrink-0"
                                 style="background:#7c3aed;"></span>
                             <div>
                                 <span
-                                    class="block font-black text-[13px] uppercase tracking-wide text-gray-800"
+                                    class="block font-black text-[12px] uppercase tracking-tight text-gray-800"
                                     >Scări &amp; Platforme</span
                                 >
                                 <span
@@ -403,14 +431,14 @@ const lotoBg = await getImage({
                         </a>
                         <a
                             href="/solutii/3m/"
-                            class="flex items-center gap-4 px-6 py-4 border-b border-gray-100 hover:bg-white transition-colors"
+                            class="flex items-center gap-3 py-3 px-3 border border-gray-100 hover:border-gray-300 hover:bg-gray-50 transition-colors"
                         >
                             <span
-                                class="w-2.5 h-2.5 rounded-full flex-shrink-0"
+                                class="w-2 h-2 rounded-full flex-shrink-0"
                                 style="background:#D32F2F;"></span>
                             <div>
                                 <span
-                                    class="block font-black text-[13px] uppercase tracking-wide text-gray-800"
+                                    class="block font-black text-[12px] uppercase tracking-tight text-gray-800"
                                     >Echipamente 3M™</span
                                 >
                                 <span
@@ -422,14 +450,14 @@ const lotoBg = await getImage({
                         </a>
                         <a
                             href="/solutii/custom/"
-                            class="flex items-center gap-4 px-6 py-4 border-b border-gray-100 hover:bg-white transition-colors"
+                            class="flex items-center gap-3 py-3 px-3 border border-gray-100 hover:border-gray-300 hover:bg-gray-50 transition-colors"
                         >
                             <span
-                                class="w-2.5 h-2.5 rounded-full flex-shrink-0"
+                                class="w-2 h-2 rounded-full flex-shrink-0"
                                 style="background:#f16215;"></span>
                             <div>
                                 <span
-                                    class="block font-black text-[13px] uppercase tracking-wide text-gray-800"
+                                    class="block font-black text-[12px] uppercase tracking-tight text-gray-800"
                                     >Implementare Custom</span
                                 >
                                 <span
@@ -441,17 +469,20 @@ const lotoBg = await getImage({
                     </div>
                 </div>
 
+                <!-- Divider -->
+                <div class="border-t border-gray-100 mx-5"></div>
+
                 <!-- Training -->
                 <a
                     href="/training-lucru-la-inaltime/"
-                    class="flex items-center justify-between px-5 py-5 border-b-2 border-black hover:bg-gray-50 transition-colors"
+                    class="flex items-center justify-between px-5 py-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
                 >
                     <span
-                        class="font-black text-[14px] uppercase tracking-wider text-black"
+                        class="font-black text-[13px] uppercase tracking-wider text-black"
                         >Training</span
                     >
                     <svg
-                        class="w-5 h-5 text-gray-300"
+                        class="w-4 h-4 text-gray-300"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -466,14 +497,14 @@ const lotoBg = await getImage({
                 <!-- Control Energii -->
                 <a
                     href="/control-energii-lockout-tagout/"
-                    class="flex items-center justify-between px-5 py-5 border-b-2 border-black hover:bg-gray-50 transition-colors"
+                    class="flex items-center justify-between px-5 py-4 hover:bg-gray-50 transition-colors border-b border-gray-100"
                 >
                     <span
-                        class="font-black text-[14px] uppercase tracking-wider text-black"
+                        class="font-black text-[13px] uppercase tracking-wider text-black"
                         >Control Energii</span
                     >
                     <svg
-                        class="w-5 h-5 text-gray-300"
+                        class="w-4 h-4 text-gray-300"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -492,7 +523,7 @@ const lotoBg = await getImage({
             >
                 <button
                     onclick="openContactDrawer(); toggleMobNav();"
-                    class="w-full bg-black text-white py-4 font-black text-[12px] uppercase tracking-[.2em] hover:bg-gray-800 transition-colors cursor-pointer"
+                    class="w-full bg-black text-white py-4 font-black text-[12px] uppercase tracking-[.2em] hover:bg-brand-orange transition-colors cursor-pointer"
                 >
                     Contact Expert
                 </button>
@@ -657,31 +688,6 @@ const lotoBg = await getImage({
         );
     }
 
-    // Cycle "signal" hover effect on hero verticals
-    const verticals = document.querySelectorAll(".hero-vertical");
-    let currentVerticalIndex = 0;
-
-    function cycleVerticals() {
-        if (!verticals.length) return;
-
-        // Remove signal class from all
-        verticals.forEach((v) => v.classList.remove("signal-hover"));
-
-        // Add signal class to current
-        verticals[currentVerticalIndex].classList.add("signal-hover");
-
-        // Prepare next index
-        currentVerticalIndex = (currentVerticalIndex + 1) % verticals.length;
-    }
-
-    // Start the cycle
-    if (verticals.length > 0) {
-        // Run immediately first time
-        cycleVerticals();
-        // Then every 3 seconds
-        setInterval(cycleVerticals, 3000);
-    }
-
     // ── Desktop dropdown nav (smooth, no backdrop, no scroll lock) ──────
     window.toggleDeskNav = function () {
         const panel = document.getElementById("desk-nav-panel");
@@ -773,8 +779,48 @@ const lotoBg = await getImage({
         color: inherit;
         border: 1px solid #000;
         transition:
-            color 0.5s ease-in-out,
-            background-color 0.5s ease-in-out;
+            color 0.3s ease-out,
+            background-color 0.3s ease-out;
+    }
+
+    .brutal-block.hero-vertical {
+        background-color: #000;
+        color: #fff;
+        transition:
+            color 0.3s ease-out,
+            background-color 0.3s ease-out;
+    }
+
+    .brutal-block.hero-vertical:hover {
+        background-color: #fff;
+        color: #000;
+    }
+
+    .brutal-block.hero-vertical h2 {
+        text-shadow: 2px 2px 0px #000;
+        transition: text-shadow 0.3s ease-out;
+    }
+
+    .brutal-block.hero-vertical::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            to right,
+            rgba(0, 0, 0, 0.9) 0%,
+            rgba(0, 0, 0, 0) 80%
+        );
+        z-index: 15;
+        pointer-events: none;
+        transition: opacity 0.3s ease-out;
+    }
+
+    .brutal-block.hero-vertical:hover::after {
+        opacity: 0;
+    }
+
+    .brutal-block.hero-vertical:hover h2 {
+        text-shadow: none;
     }
 
     .brutal-block-btn {
@@ -807,9 +853,6 @@ const lotoBg = await getImage({
     .brutal-block:hover {
         background-color: #000;
         color: #fff;
-        transition:
-            color 0.3s ease-out,
-            background-color 0.3s ease-out;
     }
 
     /* Overlay images - B&W default at 10% */
@@ -818,46 +861,40 @@ const lotoBg = await getImage({
         inset: 0;
         background-size: cover;
         background-position: center;
-        opacity: 0.1;
+        opacity: 0;
         z-index: 10;
         filter: grayscale(75%) contrast(130%);
         pointer-events: none;
         transition:
-            opacity 0.5s ease-in-out,
-            transform 0.5s ease-in-out;
+            opacity 0.3s ease-out,
+            transform 0.3s ease-out;
         transform: scale(1);
     }
 
-    /* Overlay images - Color on hover at 60% */
+    /* Overlay images - Color on hover at 90% */
     .bg-overlay-color {
         position: absolute;
         inset: 0;
         background-size: cover;
         background-position: center;
-        opacity: 0;
+        opacity: 0.9;
         z-index: 10;
         filter: grayscale(0%);
         pointer-events: none;
         transition:
-            opacity 0.5s ease-in-out,
-            transform 0.5s ease-in-out;
+            opacity 0.3s ease-out,
+            transform 0.3s ease-out;
         transform: scale(1);
     }
 
     .group:hover .bg-overlay-bw {
-        opacity: 0;
-        transform: scale(1.05);
-        transition:
-            opacity 0.3s ease-out,
-            transform 0.3s ease-out;
+        opacity: 0.2;
+        transform: scale(1.03);
     }
 
     .group:hover .bg-overlay-color {
-        opacity: 0.75;
-        transform: scale(1.05);
-        transition:
-            opacity 0.3s ease-out,
-            transform 0.3s ease-out;
+        opacity: 0;
+        transform: scale(1.03);
     }
 
     /* Fix for desktop - console-like aspect */

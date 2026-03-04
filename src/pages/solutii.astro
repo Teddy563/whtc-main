@@ -92,7 +92,7 @@ const customBg = await getImage({
             <div class="flex items-center gap-4">
                 <div class="h-px flex-1 max-w-[60px] bg-white/15"></div>
                 <span
-                    class="font-montserrat font-black lg:text-[14px] md:text-[10px] sm:text-[8px] uppercase tracking-[0.4em] text-white/70"
+                    class="font-montserrat font-black text-[9px] sm:text-[10px] md:text-[12px] lg:text-[14px] uppercase tracking-[0.4em] text-white/70"
                     >Industrială · La Înălțime</span
                 >
                 <div class="h-px flex-1 max-w-[60px] bg-white/15"></div>
@@ -102,7 +102,7 @@ const customBg = await getImage({
         <!-- Service cards strip -->
         <div class="relative z-10 w-full">
             <div
-                class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 w-full gap-[2px] bg-black border-t-2 border-black"
+                class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 w-full gap-[2px] bg-black border-t-2 border-black"
             >
                 <a
                     href="/solutii/verificari-recertificari"
@@ -192,7 +192,7 @@ const customBg = await getImage({
 
                 <a
                     href="/solutii/custom"
-                    class="svc-card col-span-2 sm:col-span-1"
+                    class="svc-card sm:col-span-1"
                     data-index="4"
                 >
                     <div
@@ -503,7 +503,7 @@ const customBg = await getImage({
         }
     }
     .hero-heading {
-        font-size: clamp(3.2rem, 9.5vw, 8.5rem);
+        font-size: clamp(2.2rem, 8.5vw, 8.5rem);
     }
 
     /* ---- Nav pills ---- */
@@ -526,29 +526,53 @@ const customBg = await getImage({
 
     /* ---- Service cards ---- */
     .svc-card {
-        background: #fff;
+        background: #000;
         position: relative;
         overflow: hidden;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
         text-decoration: none;
-        color: #111;
+        color: #fff;
         border: 1px solid #000;
-        height: 190px;
-        padding: 1.25rem 1.5rem;
+        height: 120px;
+        padding: 1rem 1.25rem;
         transition:
-            background-color 0.5s ease,
-            color 0.5s ease;
+            background-color 0.3s ease-out,
+            color 0.3s ease-out;
     }
-    /* B&W overlay at 25% */
-    /* B&W overlay at 25% */
+    @media (min-width: 640px) {
+        .svc-card {
+            height: 190px;
+            padding: 1.25rem 1.5rem;
+        }
+    }
+
+    /* Gradient behind text from left to right */
+    .svc-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            to right,
+            rgba(0, 0, 0, 0.9) 0%,
+            rgba(0, 0, 0, 0) 80%
+        );
+        z-index: 1;
+        pointer-events: none;
+        transition: opacity 0.3s ease-out;
+    }
+
+    .svc-card:hover::after {
+        opacity: 0;
+    }
+    /* B&W overlay at 0% */
     .svc-bw {
         position: absolute;
         inset: 0;
         background-size: cover;
         background-position: center;
-        opacity: 0.1;
+        opacity: 0;
         filter: grayscale(75%) contrast(130%);
         pointer-events: none;
         transition:
@@ -557,13 +581,13 @@ const customBg = await getImage({
         z-index: 1;
         transform: scale(1);
     }
-    /* Color overlay hidden at rest */
+    /* Color overlay visible at rest */
     .svc-col {
         position: absolute;
         inset: 0;
         background-size: cover;
         background-position: center;
-        opacity: 0;
+        opacity: 0.9;
         pointer-events: none;
         transition:
             opacity 0.3s ease-out,
@@ -593,6 +617,10 @@ const customBg = await getImage({
         text-transform: uppercase;
         line-height: 0.9;
         margin-bottom: 0.6rem;
+        text-shadow: 2px 2px 0px #000;
+        transition:
+            text-shadow 0.3s ease-out,
+            color 0.3s ease-out;
     }
     .svc-bar {
         width: 2.5rem;
@@ -602,16 +630,19 @@ const customBg = await getImage({
 
     /* Hover / signal: darken + color image + zoom */
     .svc-card:hover {
-        background-color: #000;
-        color: #fff;
+        background-color: #fff;
+        color: #000;
+    }
+    .svc-card:hover .svc-title {
+        text-shadow: none;
     }
     .svc-card:hover .svc-bw {
-        opacity: 0;
-        transform: scale(1.05);
+        opacity: 0.2;
+        transform: scale(1.03);
     }
     .svc-card:hover .svc-col {
-        opacity: 0.75;
-        transform: scale(1.05);
+        opacity: 0;
+        transform: scale(1.03);
     }
     .svc-card:hover .svc-bar {
         width: 4rem;

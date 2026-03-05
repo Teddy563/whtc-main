@@ -98,9 +98,14 @@ const solutiiItems = [
                                 d="M19 9l-7 7-7-7"></path></svg
                         >
                     </a>
-                    <!-- Compact dropdown panel — anchored below button, not full-width -->
+                    <!-- Invisible hover bridge so mouse can travel smoothly over the gap -->
                     <div
-                        class="absolute top-full left-0 mt-0 w-72 bg-white border border-gray-200 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform -translate-y-1 group-hover:translate-y-0 z-[99]"
+                        class="absolute top-full left-0 right-0 h-[20px] z-[98]"
+                    >
+                    </div>
+                    <!-- Dropdown panel — flush below the navbar border -->
+                    <div
+                        class="absolute top-full left-0 mt-[20px] w-72 bg-white border-x border-b border-t-0 border-gray-200 shadow-[0_15px_30px_-5px_rgba(0,0,0,0.1)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-0 z-[99] rounded-none"
                     >
                         <div class="divide-y divide-gray-100">
                             {
@@ -180,10 +185,14 @@ const solutiiItems = [
                     Contact Expert
                 </button>
 
-                <!-- Phone Button -->
-                <div class="relative hidden sm:block">
+                <!-- Phone Button — hover AND click to open -->
+                <div
+                    class="relative hidden sm:block group/phone"
+                    id="phone-btn-wrap"
+                >
                     <button
-                        onclick="togglePhoneDropdown()"
+                        id="phone-toggle-btn"
+                        onclick="togglePhoneDropdown(event)"
                         class="flex items-center justify-center w-12 bg-white border border-gray-300 hover:border-black hover:text-black text-gray-700 transition-colors relative z-10 box-border"
                         aria-label="Call Expert"
                         style="height: 48px; width: 48px;"
@@ -204,10 +213,16 @@ const solutiiItems = [
                         >
                     </button>
 
-                    <!-- Phone Dropdown -->
+                    <!-- Invisible hover bridge so mouse can travel from button to dropdown -->
+                    <div
+                        class="absolute top-full left-0 right-0 h-[16px] z-[98]"
+                    >
+                    </div>
+
+                    <!-- Phone Dropdown — smooth fade like Soluții, controlled by .is-open -->
                     <div
                         id="phone-dropdown"
-                        class="absolute top-full right-0 mt-2 w-72 bg-white border border-gray-200 shadow-xl p-6 hidden flex-col gap-4 transform origin-top-right transition-all z-20 rounded-sm"
+                        class="absolute top-full right-0 mt-[16px] w-72 bg-white border-x border-b border-t-0 border-gray-200 shadow-[0_15px_30px_-5px_rgba(0,0,0,0.1)] p-6 flex flex-col gap-4 origin-top-right z-[99] rounded-none opacity-0 invisible pointer-events-none transition-all duration-200"
                     >
                         <div>
                             <span
@@ -216,7 +231,7 @@ const solutiiItems = [
                             >
                             <a
                                 href="mailto:office@whtc.ro"
-                                class="block font-bold text-sm text-gray-800 hover:text-brand-orange transition-colors"
+                                class="block font-black text-lg text-gray-800 hover:text-brand-orange transition-colors"
                                 >office@whtc.ro</a
                             >
                         </div>
@@ -227,12 +242,12 @@ const solutiiItems = [
                             >
                             <a
                                 href="tel:+40749225956"
-                                class="block font-black text-lg text-gray-900 hover:text-brand-orange transition-colors"
+                                class="block font-black text-xl tracking-tight text-gray-900 hover:text-brand-orange transition-colors"
                                 >+40 749 225 956</a
                             >
                         </div>
                         <div
-                            class="pt-4 border-t border-gray-100 flex items-center gap-2"
+                            class="pt-4 flex items-center gap-2"
                             id="phone-status-container"
                         >
                             <!-- Status populated by JS -->
@@ -391,15 +406,44 @@ const solutiiItems = [
 <SharedContactDrawer />
 
 <script is:inline>
-    // Phone Dropdown Logic
-    window.togglePhoneDropdown = function () {
+    // Phone Dropdown Logic — smooth fade, supports both click and hover
+    var phoneHoverTimer = null;
+
+    function openPhoneDropdown() {
         const dd = document.getElementById("phone-dropdown");
-        if (dd) {
-            dd.classList.toggle("hidden");
-            dd.classList.toggle("flex");
-            updateWorkStatus();
+        if (!dd) return;
+        clearTimeout(phoneHoverTimer);
+        dd.classList.add("opacity-100", "visible", "pointer-events-auto");
+        dd.classList.remove("opacity-0", "invisible", "pointer-events-none");
+        updateWorkStatus();
+    }
+
+    function closePhoneDropdown() {
+        const dd = document.getElementById("phone-dropdown");
+        if (!dd) return;
+        dd.classList.remove("opacity-100", "visible", "pointer-events-auto");
+        dd.classList.add("opacity-0", "invisible", "pointer-events-none");
+    }
+
+    window.togglePhoneDropdown = function (e) {
+        if (e) e.stopPropagation();
+        const dd = document.getElementById("phone-dropdown");
+        if (!dd) return;
+        if (dd.classList.contains("opacity-0")) {
+            openPhoneDropdown();
+        } else {
+            closePhoneDropdown();
         }
     };
+
+    // Hover open/close
+    var phoneWrap = document.getElementById("phone-btn-wrap");
+    if (phoneWrap) {
+        phoneWrap.addEventListener("mouseenter", openPhoneDropdown);
+        phoneWrap.addEventListener("mouseleave", function () {
+            phoneHoverTimer = setTimeout(closePhoneDropdown, 150);
+        });
+    }
 
     // Work Status Logic
     function updateWorkStatus() {
@@ -432,17 +476,15 @@ const solutiiItems = [
     // Close phone dropdown when clicking outside
     document.addEventListener("click", function (event) {
         const dd = document.getElementById("phone-dropdown");
-        const btn = event.target.closest(
-            'button[onclick="togglePhoneDropdown()"]',
-        );
+        const wrap = document.getElementById("phone-btn-wrap");
         if (
             dd &&
-            !dd.classList.contains("hidden") &&
+            !dd.classList.contains("opacity-0") &&
             !dd.contains(event.target) &&
-            !btn
+            wrap &&
+            !wrap.contains(event.target)
         ) {
-            dd.classList.add("hidden");
-            dd.classList.remove("flex");
+            closePhoneDropdown();
         }
     });
 </script>

@@ -82,10 +82,10 @@ const customBg = await getImage({
 
         <!-- Hero text -->
         <div
-            class="relative z-10 flex-grow flex flex-col items-center justify-center text-center px-4"
+            class="relative z-10 flex-grow flex flex-col items-center justify-center text-center px-4 py-6 sm:py-0"
         >
             <h1
-                class="hero-heading font-montserrat font-black text-white uppercase leading-[0.88] tracking-tighter mb-4"
+                class="hero-heading font-montserrat font-black text-white uppercase leading-[0.88] tracking-tighter mb-3 sm:mb-4"
             >
                 Soluții<br />Protecție
             </h1>
@@ -102,7 +102,7 @@ const customBg = await getImage({
         <!-- Service cards strip -->
         <div class="relative z-10 w-full">
             <div
-                class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 w-full gap-[2px] bg-black border-t-2 border-black"
+                class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 w-full gap-[2px] bg-black border-t-2 border-black"
             >
                 <a
                     href="/solutii/verificari-recertificari"
@@ -192,7 +192,7 @@ const customBg = await getImage({
 
                 <a
                     href="/solutii/custom"
-                    class="svc-card sm:col-span-1"
+                    class="svc-card col-span-2 sm:col-span-1"
                     data-index="4"
                 >
                     <div
@@ -503,7 +503,8 @@ const customBg = await getImage({
         }
     }
     .hero-heading {
-        font-size: clamp(2.2rem, 8.5vw, 8.5rem);
+        /* Smaller on mobile so h1 + subtitle + cards all fit comfortably */
+        font-size: clamp(1.6rem, 12vw, 8.5rem);
     }
 
     /* ---- Nav pills ---- */
@@ -535,8 +536,9 @@ const customBg = await getImage({
         text-decoration: none;
         color: #fff;
         border: 1px solid #000;
-        height: 120px;
-        padding: 1rem 1.25rem;
+        /* Mobile: larger cards so text is comfortably readable */
+        height: clamp(140px, 28svh, 200px);
+        padding: 1rem 1.2rem;
         transition:
             background-color 0.3s ease-out,
             color 0.3s ease-out;

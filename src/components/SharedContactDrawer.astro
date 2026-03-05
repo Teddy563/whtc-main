@@ -282,9 +282,37 @@
             if (header) header.style.backgroundColor = dynamicColor;
             if (submitBtn) {
                 submitBtn.style.backgroundColor = dynamicColor;
-                // Add a border match if it isn't transparent
                 submitBtn.style.borderColor = dynamicColor;
             }
+
+            // ── GTM: Track drawer open with niche context ─────────────────
+            var niche = "general";
+            if (/training|curs|gwo|alpinism|inaltime/i.test(subject))
+                niche = "training";
+            else if (/loto|lockout|control.energii|ltt/i.test(subject))
+                niche = "loto";
+            else if (
+                /inginerie|solutii|sisteme|linie|ancore|engineering/i.test(
+                    subject,
+                )
+            )
+                niche = "engineering";
+
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: "drawer_open",
+                contact_subject: subject,
+                contact_niche: niche,
+                page_path: window.location.pathname,
+            });
+            if (typeof window.gtag === "function") {
+                window.gtag("event", "contact_intent", {
+                    event_category: "Engagement",
+                    event_label: subject,
+                    contact_niche: niche,
+                });
+            }
+            // ─────────────────────────────────────────────────────────────
 
             // Prevent body scroll and layout shift
             const scrollbarWidth =
@@ -438,13 +466,41 @@
                 );
                 if (window.turnstile) window.turnstile.reset();
 
-                // Trigger GA4 Lead Event
+                // ── GTM + GA4: Lead Conversion Event ─────────────────────
+                var formSubject =
+                    document.getElementById("drawer-subject")?.value ||
+                    "General Inquiry";
+                var leadNiche = "general";
+                if (/training|curs|gwo|alpinism|inaltime/i.test(formSubject))
+                    leadNiche = "training";
+                else if (/loto|lockout|control.energii|ltt/i.test(formSubject))
+                    leadNiche = "loto";
+                else if (
+                    /inginerie|solutii|sisteme|linie|ancore|engineering/i.test(
+                        formSubject,
+                    )
+                )
+                    leadNiche = "engineering";
+
+                // Push to dataLayer first (GTM picks this up for Ads Conversion tag)
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    event: "form_submit_success",
+                    lead_niche: leadNiche,
+                    lead_subject: formSubject,
+                    source_url: window.location.href,
+                });
+
+                // Also fire gtag directly for GA4
                 if (typeof window.gtag === "function") {
                     window.gtag("event", "generate_lead", {
                         event_category: "Leads",
-                        event_label: "Contact Drawer Form Submitted",
+                        event_label: formSubject,
+                        lead_niche: leadNiche,
+                        source_url: window.location.href,
                     });
                 }
+                // ─────────────────────────────────────────────────────────
 
                 // Close drawer after delay
                 setTimeout(() => {

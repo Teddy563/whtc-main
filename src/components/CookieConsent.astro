@@ -6,8 +6,9 @@
 import { Icon } from "astro-icon/components";
 
 // Get keys from Astro.props or process.env
-const GA_ID = import.meta.env.PUBLIC_GA_ID;
-const CLARITY_ID = import.meta.env.PUBLIC_CLARITY_ID || "unlwwm2waf";
+const GA_ID = import.meta.env.PUBLIC_GA_ID ?? "";
+const GTM_ID = import.meta.env.PUBLIC_GTM_ID ?? "";
+const CLARITY_ID = import.meta.env.PUBLIC_CLARITY_ID ?? "";
 const COOKIE_NAME = "whtc_consent_v2";
 const COOKIE_MAX_AGE_DAYS = 180;
 ---
@@ -62,28 +63,40 @@ const COOKIE_MAX_AGE_DAYS = 180;
 
 <script
     is:inline
-    define:vars={{ GA_ID, CLARITY_ID, COOKIE_NAME, COOKIE_MAX_AGE_DAYS }}
+    define:vars={{
+        GA_ID,
+        GTM_ID,
+        CLARITY_ID,
+        COOKIE_NAME,
+        COOKIE_MAX_AGE_DAYS,
+    }}
 >
-    // Utility for cookies
+    // ── Cookie helpers ────────────────────────────────────────────────────────
     function setConsentCookie(name, value, days) {
         const d = new Date();
         d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
-        document.cookie = `${name}=${value}; expires=${d.toUTCString()}; path=/; SameSite=Lax; ${location.protocol === "https:" ? "Secure" : ""}`;
+        const secure = location.protocol === "https:" ? "; Secure" : "";
+        document.cookie =
+            name +
+            "=" +
+            value +
+            "; expires=" +
+            d.toUTCString() +
+            "; path=/; SameSite=Lax" +
+            secure;
     }
 
     function getConsentCookie(name) {
         const nameEQ = name + "=";
         const ca = document.cookie.split(";");
         for (let i = 0; i < ca.length; i++) {
-            let c = ca[i];
-            while (c.charAt(0) == " ") c = c.substring(1, c.length);
-            if (c.indexOf(nameEQ) == 0)
-                return c.substring(nameEQ.length, c.length);
+            let c = ca[i].trim();
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length);
         }
         return null;
     }
 
-    // Load Clarity (GA4 is handled via Layout.astro or GTM)
+    // ── Load Microsoft Clarity ────────────────────────────────────────────────
     function loadClarity() {
         if (!CLARITY_ID || window.clarity) return;
         (function (c, l, a, r, i, t, y) {
@@ -100,6 +113,22 @@ const COOKIE_MAX_AGE_DAYS = 180;
         })(window, document, "clarity", "script", CLARITY_ID);
     }
 
+    // ── Fire a page_view through whatever tracking stack is available ─────────
+    function firePageView() {
+        if (typeof gtag === "function") {
+            // If GTM is used, fire a generic page_view so GTM can handle it.
+            // If GA_ID is also available, target it directly as a fallback.
+            if (GA_ID) {
+                gtag("event", "page_view", { send_to: GA_ID });
+            } else {
+                // GTM-only: push a page_view event to dataLayer
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({ event: "page_view" });
+            }
+        }
+    }
+
+    // ── Update Google Consent Mode v2 ─────────────────────────────────────────
     function updateGtagConsent(choice) {
         if (typeof gtag !== "function") return;
 
@@ -110,8 +139,7 @@ const COOKIE_MAX_AGE_DAYS = 180;
                 ad_user_data: "granted",
                 ad_personalization: "granted",
             });
-            // Fire manual page_view now that we have consent
-            if (GA_ID) gtag("event", "page_view", { send_to: GA_ID });
+            firePageView();
             loadClarity();
         } else {
             gtag("consent", "update", {
@@ -123,51 +151,60 @@ const COOKIE_MAX_AGE_DAYS = 180;
         }
     }
 
+    // ── Initialise banner ─────────────────────────────────────────────────────
     function initCookieBanner() {
         const popup = document.getElementById("cookie-consent-popup");
         const existing = getConsentCookie(COOKIE_NAME);
 
         if (!existing) {
-            setTimeout(() => {
-                if (popup)
+            // No stored preference → show banner after short delay
+            setTimeout(function () {
+                if (popup) {
                     popup.classList.remove(
                         "translate-y-[150%]",
                         "opacity-0",
                         "pointer-events-none",
                     );
+                }
             }, 1500);
         } else {
+            // Restore consent from cookie on every page load
             updateGtagConsent(existing);
+            if (existing === "all") loadClarity();
         }
 
+        // Accept All
         document
             .getElementById("cookie-accept-all-btn")
-            ?.addEventListener("click", () => {
+            ?.addEventListener("click", function () {
                 setConsentCookie(COOKIE_NAME, "all", COOKIE_MAX_AGE_DAYS);
                 updateGtagConsent("all");
-                if (popup)
+                if (popup) {
                     popup.classList.add(
                         "translate-y-[150%]",
                         "opacity-0",
                         "pointer-events-none",
                     );
+                }
             });
 
+        // Reject / Necessary only
         document
             .getElementById("cookie-necessary-btn")
-            ?.addEventListener("click", () => {
+            ?.addEventListener("click", function () {
                 setConsentCookie(COOKIE_NAME, "necessary", COOKIE_MAX_AGE_DAYS);
                 updateGtagConsent("necessary");
-                if (popup)
+                if (popup) {
                     popup.classList.add(
                         "translate-y-[150%]",
                         "opacity-0",
                         "pointer-events-none",
                     );
+                }
             });
     }
 
-    // Start
+    // Run immediately or wait for DOM
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", initCookieBanner);
     } else {

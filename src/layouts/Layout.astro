@@ -144,6 +144,21 @@ const schemaMarkup = {
 	<body
 		class="bg-white font-inter text-brand-black antialiased overflow-x-hidden"
 	>
+		<!-- Google Tag Manager (noscript) -->
+		{
+			import.meta.env.PUBLIC_GTM_ID && (
+				<noscript>
+					<iframe
+						src={`https://www.googletagmanager.com/ns.html?id=${import.meta.env.PUBLIC_GTM_ID}`}
+						height="0"
+						width="0"
+						style="display:none;visibility:hidden"
+					/>
+				</noscript>
+			)
+		}
+		<!-- End Google Tag Manager (noscript) -->
+
 		<slot />
 
 		<PageScripts />

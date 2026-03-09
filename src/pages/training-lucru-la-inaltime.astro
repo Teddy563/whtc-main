@@ -42,13 +42,40 @@ const color = "#f16215"; // Orange — Training
     <!-- Courses Overview -->
     <div id="cursuri">
         <ContentSection
+            badge="Personalizat"
+            heading="Cursuri de<br/>Perfecționare"
+            lead="Training adaptat echipelor și locației tale"
+            body="Organizăm workshop-uri și cursuri interne (inhouse), perfect adaptate riscurilor specifice din zona ta de lucru. Punem accent pe practica la sediul tău, unde simulăm inclusiv scenarii de urgență și salvare."
+            color="#1e3a8a"
+            imageRight={false}
+            bgGray={false}
+            imageGrid={[
+                {
+                    src: trainingCenterImg,
+                    alt: "Safety Academy curs custom",
+                    wide: true,
+                    badge: "Custom",
+                },
+            ]}
+            chips={[
+                "Lucru la înălțime (SSM)",
+                "Utilizare corectă EIP",
+                "Salvare și evacuare",
+                "Spații închise",
+                "Training Inhouse",
+            ]}
+            ctaLabel="Solicită Ofertă Customizată"
+            ctaSubject="Safety Academy / Curs Custom"
+        />
+
+        <ContentSection
             badge="ANC"
             heading="Alpinism<br/>Utilitar"
             lead="Acces pe frânghie în medii industriale complexe"
             body="Oferim programe acreditate ANC pentru alpinism utilitar industrial. Acoperim instruire esențială pentru lucrul la înălțime și includem proceduri complete și tehnici esențiale de salvare din coardă."
             color={color}
-            imageRight={false}
-            bgGray={false}
+            imageRight={true}
+            bgGray={true}
             imageGrid={[
                 {
                     src: alpinismUtilitarImg,
@@ -73,8 +100,8 @@ const color = "#f16215"; // Orange — Training
             lead="Standardul de excelență în energia eoliană"
             body="Livrăm programe de formare acreditate de Global Wind Organisation, axate pe procedurile de siguranță la înălțime. Aceste cursuri recunoscute la nivel internațional sunt predate de instructori experimentați, direct din teren, unde ai ocazia să practici în medii atent controlate."
             color="#111"
-            imageRight={true}
-            bgGray={true}
+            imageRight={false}
+            bgGray={false}
             imageGrid={[
                 {
                     src: gwoImg,
@@ -91,31 +118,6 @@ const color = "#f16215"; // Orange — Training
             ]}
             ctaLabel="Înscrie-te la GWO"
             ctaSubject="Cursuri GWO"
-        />
-
-        <ContentSection
-            badge="Personalizat"
-            heading="Cursuri de<br/>Perfecționare"
-            lead="Training adaptat echipelor și locației tale"
-            body="Organizăm workshop-uri și cursuri interne (inhouse), perfect adaptate riscurilor specifice din zona ta de lucru. Punem accent pe practica la sediul tău, unde simulăm inclusiv scenarii de urgență și salvare."
-            color="#1e3a8a"
-            imageGrid={[
-                {
-                    src: trainingCenterImg,
-                    alt: "Safety Academy curs custom",
-                    wide: true,
-                    badge: "Custom",
-                },
-            ]}
-            chips={[
-                "Lucru la înălțime (SSM)",
-                "Utilizare corectă EIP",
-                "Salvare și evacuare",
-                "Spații închise",
-                "Training Inhouse",
-            ]}
-            ctaLabel="Solicită Ofertă Customizată"
-            ctaSubject="Safety Academy / Curs Custom"
         />
     </div>
 
